@@ -1,38 +1,71 @@
 <script lang="ts">
   // import Heti from "./lib/heti/js/heti-addon"
-  import { Tategaki } from "./lib/tategaki/src/tategaki"
-  import { onMount } from 'svelte';
-  onMount(async ()=>{
-    const article = document.getElementById("test")
-    let tategaki = new Tategaki(article, {
-        shouldPcS: true,
-        imitatePcS: false,
-        imitateTransfromToFullWidth: false,
-        shouldRemoveStyle: false,
-        convertNewlineCustom: false
-    })
-    await tategaki.parse()
+  import Counter from "./lib/components/Counter.svelte"
+  import Article from "./lib/components/Article.svelte"
+  import { PostList } from "./lib/utils/dummy"
+  import { onMount } from "svelte"
+  const wheelHandler = (e: WheelEvent) => {
+    if (e.deltaX == 0) {
+      // console.log(e.target)
+      let delta = (e.deltaY || e.detail) >> 10 || 1
+      // let delta = ((e.deltaY ) >> 10) || 1;
+      delta = delta * 120
+      document.documentElement.scrollLeft -= delta
+      // safari needs also this
+      document.body.scrollLeft -= delta
+      e.preventDefault()
+    }
+  }
+  onMount(async () => {
+    document.body.addEventListener(
+      "wheel",
+      (e) => {
+        wheelHandler(e)
+      },
+      { passive: false }
+    )
   })
 </script>
 
 <main>
-  <article id="test">
-    <h1 class="text-3xl font-bold underline">Hello Typescript!</h1>
-    <p>
-      上明公母院杯母助苗冬助力室吧扒菜，還北又找。英紅一母力幫目！姐教告品了色耳巴間十女陽良消活，綠物條。彩雲校。
-      休千士游哥冒尼清飯貝綠游裏打兌：土種多許什幸在習日反松助女找不竹！巴吧裏兒給師紅成歌母樹年太，頭免歌根教多辛更玉節法二過讀從各「十音巾肖」人法服相，音定道樹飽昌今手美，空奶手合雨雲，千愛幸。
-      朱太壯福又，口躲者語首道買背流。候羽但。就她走。以良幸訴百就而忍昌媽祖辛耳色時要新用刀；坡校朋香支良東汗現真夕東歌因？包得甲錯貝能一六。
-      向欠貝聽忍免斥物月錯三已具「再員交語枝道往早或」央生哪遠室肖棵苗遠室動北王人英鴨耳汗風。節已工食今好士少麻學念來安就。
-      蝸做故？去寸母。幸以看問課功或第里斤文雪教收經司已秋、尤也彩乾弓什升清常尾飯去快泉食兒道，話力泉姊但裝陽尺用雄刀有：見林乍在亮申同洋雨別瓜，聲哭有，喝好者許蝸那支雄蛋。
-      呢您親喜他几象中元共息。抄干包哥巾孝古中十着科魚太間卜東自起，足珠杯時哪。里者人美香奶飛笑福扒消至有！買加午高穿流亭讀毛毛尤神封室卜急早大，只能向習神土蛋支像看往弟方，星孝力：用支浪。
-      央童良中牙牙，住歡心風毛平再直媽幾婆許：念乍告什禾氣，鴨帽假因呀米清都。內現怕幾送南苗來秋六明。
-    </p>
-  </article>
+  <div class="flex flex-col" id="container">
+    <div class="flex flex-col">
+      {#each PostList as post}
+        <Article title={post.title} content={post.content} />
+      {/each}
+    </div>
+  </div>
 </main>
 
 <style global lang="scss">
-  main {
+  // use "user-scalable" in "viewport" meta
+  // to solve user can scale the page
+  // A bug/feature in Webkit based browsers
+  html {
+    // position: absolute;
+    // top: 0;
+    // left: 0;
+    max-height: 100vh;
+    min-height: 99vh;
+    overflow-y: hidden;
+  }
+  body {
+    // set vertical-rl to make the initial scroll position
+    // the most left
+    writing-mode: vertical-rl;
+  }
+  pre {
     height: 95vh;
+    writing-mode: horizontal-tb;
+    flex: auto;
+    overflow: auto;
+  }
+  main {
+    height: 98vh;
     vertical-align: middle;
+  }
+  #container {
+    // writing-mode: vertical-rl;
+    height: 95vh;
   }
 </style>

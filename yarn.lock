@@ -979,7 +979,7 @@ svelte-hmr@^0.14.9:
   resolved "https://registry.yarnpkg.com/svelte-hmr/-/svelte-hmr-0.14.9.tgz#35f277efc789e1a6230185717347cddb2f8e9833"
   integrity sha512-bKE9+4qb4sAnA+TKHiYurUl970rjA0XmlP9TEP7K/ncyWz3m81kA4HOgmlZK/7irGK7gzZlaPDI3cmf8fp/+tg==
 
-svelte-preprocess@^4.0.0, svelte-preprocess@^4.9.8:
+svelte-preprocess@^4.0.0, svelte-preprocess@^4.10.1:
   version "4.10.1"
   resolved "https://registry.yarnpkg.com/svelte-preprocess/-/svelte-preprocess-4.10.1.tgz#5f435e8aaa82976165bc8f5fa690e2e5ba084760"
   integrity sha512-NSNloaylf+o9UeyUR2KvpdxrAyMdHl3U7rMnoP06/sG0iwJvlUM4TpMno13RaNqovh4AAoGsx1jeYcIyuGUXMw==
@@ -996,7 +996,7 @@ svelte@^3.44.0:
   resolved "https://registry.yarnpkg.com/svelte/-/svelte-3.46.1.tgz#8ea23595824a39d47d04c16c217000fbc4c52c49"
   integrity sha512-Ue8ivq+G45AfZZL4Z93xNFiC352wPkyGiY9QSuWjxXh6jiaZMrpthinjc1rz0OSTceuST7Pxr1HDBj2KioliZg==
 
-tailwindcss@^3.0.13:
+tailwindcss@^3.0.12:
   version "3.0.13"
   resolved "https://registry.yarnpkg.com/tailwindcss/-/tailwindcss-3.0.13.tgz#0d571643bfc8c76602bbba95a780a9552ae44c64"
   integrity sha512-raRPGFwQSGXn/3h0ttHND9jyPYfqk/ur2NXtlQuK25+ZnrCjlH1s1j4/oPswHGMoZzGNykUVycZ/LcROanUE0A==
