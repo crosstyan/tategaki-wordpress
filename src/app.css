@@ -1,4 +1,9 @@
-/* Write your global styles here, in PostCSS syntax */
+/* import from tategaki style */
+@import "./lib/tategaki/assets/tategaki";
+
+/* tailwind */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Write your global styles here, in PostCSS syntax */

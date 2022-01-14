@@ -31,9 +31,6 @@
 </main>
 
 <style global lang="scss">
-  // @import "./lib/heti/lib/heti.scss";
-  // It's not necessary to specify the extension (.css or .scss) of a style file.
-  @import "./lib/tategaki/assets/tategaki";
   main {
     height: 95vh;
     vertical-align: middle;
