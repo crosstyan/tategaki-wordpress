@@ -1,65 +1,23 @@
 <script lang="ts">
-  import logo from './assets/svelte.png'
-  import Counter from './lib/Counter.svelte'
+  import logo from "./assets/svelte.png"
+  import Counter from "./lib/Counter.svelte"
 </script>
 
 <main>
-  <img src={logo} alt="Svelte Logo" />
-  <h1>Hello Typescript!</h1>
-
-  <Counter />
-
-  <p>
-    Visit <a href="https://svelte.dev">svelte.dev</a> to learn how to build Svelte
-    apps.
-  </p>
-
-  <p>
-    Check out <a href="https://github.com/sveltejs/kit#readme">SvelteKit</a> for
-    the officially supported framework, also powered by Vite!
-  </p>
+  <article class="entry heti heti--vertical">
+    <h1>Hello Typescript!</h1>
+    <p>
+      上明公母院杯母助苗冬助力室吧扒菜，還北又找。英紅一母力幫目！姐教告品了色耳巴間十女陽良消活，綠物條。彩雲校。
+      休千士游哥冒尼清飯貝綠游裏打兌：土種多許什幸在習日反松助女找不竹！巴吧裏兒給師紅成歌母樹年太，頭免歌根教多辛更玉節法二過讀從各「十音巾肖」人法服相，音定道樹飽昌今手美，空奶手合雨雲，千愛幸。
+      朱太壯福又，口躲者語首道買背流。候羽但。就她走。以良幸訴百就而忍昌媽祖辛耳色時要新用刀；坡校朋香支良東汗現真夕東歌因？包得甲錯貝能一六。
+      向欠貝聽忍免斥物月錯三已具「再員交語枝道往早或」央生哪遠室肖棵苗遠室動北王人英鴨耳汗風。節已工食今好士少麻學念來安就。
+      蝸做故？去寸母。幸以看問課功或第里斤文雪教收經司已秋、尤也彩乾弓什升清常尾飯去快泉食兒道，話力泉姊但裝陽尺用雄刀有：見林乍在亮申同洋雨別瓜，聲哭有，喝好者許蝸那支雄蛋。
+      呢您親喜他几象中元共息。抄干包哥巾孝古中十着科魚太間卜東自起，足珠杯時哪。里者人美香奶飛笑福扒消至有！買加午高穿流亭讀毛毛尤神封室卜急早大，只能向習神土蛋支像看往弟方，星孝力：用支浪。
+      央童良中牙牙，住歡心風毛平再直媽幾婆許：念乍告什禾氣，鴨帽假因呀米清都。內現怕幾送南苗來秋六明。
+    </p>
+  </article>
 </main>
 
-<style>
-  :root {
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
-      Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-  }
-
-  main {
-    text-align: center;
-    padding: 1em;
-    margin: 0 auto;
-  }
-
-  img {
-    height: 16rem;
-    width: 16rem;
-  }
-
-  h1 {
-    color: #ff3e00;
-    text-transform: uppercase;
-    font-size: 4rem;
-    font-weight: 100;
-    line-height: 1.1;
-    margin: 2rem auto;
-    max-width: 14rem;
-  }
-
-  p {
-    max-width: 14rem;
-    margin: 1rem auto;
-    line-height: 1.35;
-  }
-
-  @media (min-width: 480px) {
-    h1 {
-      max-width: none;
-    }
-
-    p {
-      max-width: none;
-    }
-  }
+<style type="text/scss">
+  @import "./lib/heti/lib/heti.scss";
 </style>
