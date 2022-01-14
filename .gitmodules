@@ -1,0 +1,6 @@
+[submodule "src/lib/heti"]
+	path = src/lib/heti
+	url = https://github.com/crosstyan/heti
+[submodule "src/lib/tategaki"]
+	path = src/lib/tategaki
+	url = https://github.com/crosstyan/Tategaki-Core
