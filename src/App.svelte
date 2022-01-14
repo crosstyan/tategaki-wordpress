@@ -1,9 +1,22 @@
 <script lang="ts">
-  import Heti from "./lib/heti/js/heti-addon"
+  // import Heti from "./lib/heti/js/heti-addon"
+  import { Tategaki } from "./lib/tategaki/src/tategaki"
+  import { onMount } from 'svelte';
+  onMount(async ()=>{
+    const article = document.getElementById("test")
+    let tategaki = new Tategaki(article, {
+        shouldPcS: true,
+        imitatePcS: false,
+        imitateTransfromToFullWidth: false,
+        shouldRemoveStyle: false,
+        convertNewlineCustom: false
+    })
+    await tategaki.parse()
+  })
 </script>
 
 <main>
-  <article class="entry heti heti--vertical">
+  <article id="test">
     <h1>Hello Typescript!</h1>
     <p>
       上明公母院杯母助苗冬助力室吧扒菜，還北又找。英紅一母力幫目！姐教告品了色耳巴間十女陽良消活，綠物條。彩雲校。
@@ -17,6 +30,8 @@
   </article>
 </main>
 
-<style type="text/scss">
-  @import "./lib/heti/lib/heti.scss";
+<style global type="text/scss">
+  // @import "./lib/heti/lib/heti.scss";
+  // It's not necessary to specify the extension (.css or .scss) of a style file.
+  @import "./lib/tategaki/assets/tategaki";
 </style>
