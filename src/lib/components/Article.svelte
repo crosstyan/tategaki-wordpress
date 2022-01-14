@@ -14,9 +14,13 @@
     })
     tategaki.parse()
   })
+  // TODO I can't fix the bug that IOS user can't scroll
+  // the pre or other overflowed element
+  // So I decide to give them another option
+  // to open another page and display a alert message
 </script>
 
-<article bind:this={article}>
+<article bind:this={article} lang="cn">
   <h1 class="text-3xl underline text-gray-500">{title}</h1>
   <p>{@html content}</p>
 </article>

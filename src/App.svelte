@@ -52,13 +52,8 @@
   body {
     // set vertical-rl to make the initial scroll position
     // the most left
+    overflow-y: hidden;
     writing-mode: vertical-rl;
-  }
-  pre {
-    height: 95vh;
-    writing-mode: horizontal-tb;
-    flex: auto;
-    overflow: auto;
   }
   main {
     height: 98vh;
@@ -67,5 +62,26 @@
   #container {
     // writing-mode: vertical-rl;
     height: 95vh;
+  }
+
+  /* sm */
+  @media screen and (min-width: 280px) {
+    pre {
+      height: 80vh;
+      width: 75vw;
+    }
+  }
+  /* sm */
+  @media screen and (min-width: 640px) {
+    pre {
+      height: 90vh;
+      width: 80vw;
+    }
+  }
+  /* md */
+  @media screen and (min-width: 768px) {
+    pre {
+      width: 33vw;
+    }
   }
 </style>
