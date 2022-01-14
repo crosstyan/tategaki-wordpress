@@ -1,6 +1,5 @@
 <script lang="ts">
-  import logo from "./assets/svelte.png"
-  import Counter from "./lib/Counter.svelte"
+  import Heti from "./lib/heti/js/heti-addon"
 </script>
 
 <main>

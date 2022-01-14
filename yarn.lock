@@ -334,6 +334,11 @@ has@^1.0.3:
   dependencies:
     function-bind "^1.1.1"
 
+heti-findandreplacedomtext@^0.5.0:
+  version "0.5.0"
+  resolved "https://registry.yarnpkg.com/heti-findandreplacedomtext/-/heti-findandreplacedomtext-0.5.0.tgz#a69dd028ac3d37c73a33173e376f2c3366cdd46f"
+  integrity sha512-GFZjqU8LAdu1uR72GqrReI+lzNLMlcWtvdz1TKNJiofyo1mfTecFYSZEoEbcLcRMl+KwEldnNQoS4BwO8wtg0A==
+
 immutable@^4.0.0:
   version "4.0.0"
   resolved "https://registry.yarnpkg.com/immutable/-/immutable-4.0.0.tgz#b86f78de6adef3608395efb269a91462797e2c23"
