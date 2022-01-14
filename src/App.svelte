@@ -17,7 +17,7 @@
 
 <main>
   <article id="test">
-    <h1>Hello Typescript!</h1>
+    <h1 class="text-3xl font-bold underline">Hello Typescript!</h1>
     <p>
       上明公母院杯母助苗冬助力室吧扒菜，還北又找。英紅一母力幫目！姐教告品了色耳巴間十女陽良消活，綠物條。彩雲校。
       休千士游哥冒尼清飯貝綠游裏打兌：土種多許什幸在習日反松助女找不竹！巴吧裏兒給師紅成歌母樹年太，頭免歌根教多辛更玉節法二過讀從各「十音巾肖」人法服相，音定道樹飽昌今手美，空奶手合雨雲，千愛幸。
@@ -30,8 +30,12 @@
   </article>
 </main>
 
-<style global type="text/scss">
+<style global lang="scss">
   // @import "./lib/heti/lib/heti.scss";
   // It's not necessary to specify the extension (.css or .scss) of a style file.
   @import "./lib/tategaki/assets/tategaki";
+  main {
+    height: 95vh;
+    vertical-align: middle;
+  }
 </style>
