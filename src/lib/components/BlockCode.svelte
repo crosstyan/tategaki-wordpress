@@ -6,7 +6,7 @@
 <style lang="postcss">
   /* your styles go here */
 </style>
-
-<div class="code">
-  {@html code.innerHTML}
+<!-- I know I should have use slot -->
+<div>
+  {@html code.outerHTML}
 </div>

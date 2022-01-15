@@ -16,8 +16,28 @@
     })
     tategaki.parse()
     const codes = article.getElementsByTagName("code")
+    // Format all code, including inline and preformatted
     Array.from(codes).forEach((code)=>{
       Prism.highlightElement(code)
+    })
+    // Wrap all preformatted code in BlockCode component
+    // TODO: maybe I should move it to BlockCode
+    const preformatteds = article.getElementsByTagName("pre")
+    Array.from( preformatteds ).forEach((pre)=>{
+      const parent = pre.parentElement
+      const newBlock = document.createElement("div")
+      newBlock.classList.add("dummy-pre-code")
+      // This method is kind of tidious.
+      // But I can't think of a better way
+      parent.insertBefore(newBlock, pre)
+      const block = new BlockCode({
+        target: newBlock,
+        anchor: null, // the component renders in the target directly
+        props: {
+          code: pre,
+        }
+      })
+      pre.remove()
     })
   })
   // TODO I can't fix the bug that IOS user can't scroll
