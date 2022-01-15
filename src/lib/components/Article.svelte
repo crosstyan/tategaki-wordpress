@@ -1,6 +1,8 @@
 <script lang="ts">
   import { Tategaki } from "../tategaki/src/tategaki"
   import { onMount } from "svelte"
+  import BlockCode from "./BlockCode.svelte";
+  import Prism from "prismjs"
   export let title = ""
   export let content = ""
   let article:HTMLElement;
@@ -13,6 +15,10 @@
       convertNewlineCustom: false,
     })
     tategaki.parse()
+    const codes = article.getElementsByTagName("code")
+    Array.from(codes).forEach((code)=>{
+      Prism.highlightElement(code)
+    })
   })
   // TODO I can't fix the bug that IOS user can't scroll
   // the pre or other overflowed element
@@ -22,7 +28,7 @@
 
 <article bind:this={article} lang="cn">
   <h1 class="text-3xl underline text-gray-500">{title}</h1>
-  <p>{@html content}</p>
+  {@html content}
 </article>
 
 <style lang="postcss">
