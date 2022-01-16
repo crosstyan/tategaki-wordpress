@@ -2,8 +2,12 @@
   // import Heti from "./lib/heti/js/heti-addon"
   import Counter from "./lib/components/Counter.svelte"
   import Article from "./lib/components/Article.svelte"
-  import { PostList } from "./lib/utils/dummy"
+  // import { PostList } from "./lib/utils/dummy"
+  import type { Post } from "./lib/utils/post"
   import { onMount } from "svelte"
+  import { of } from "rxjs"
+  import { fromFetch } from "rxjs/fetch"
+  import { switchMap, catchError } from "rxjs/operators"
   const wheelHandler = (e: WheelEvent) => {
     if (e.deltaX == 0) {
       // console.log(e.target)
@@ -16,7 +20,26 @@
       e.preventDefault()
     }
   }
+  let postList:Post[] = []
+  // TODO: implement pagination
+  let page = 2
+  // let PostList = []
   onMount(async () => {
+    // 'https://jsonplaceholder.typicode.com/posts'
+    const api = new URL("https://blog.moe.wtf/wp-json/wp/v2/posts")
+    api.search = new URLSearchParams({
+        page: page.toString(),
+    }).toString ()
+    const data$ = fromFetch(api.toString()).pipe(
+      switchMap((res) => {
+        return res.json()
+      }),
+      catchError((err) => of([]))
+    )
+    data$.subscribe({
+      next: (result) => postList = result,
+      complete: () => console.log("done"),
+    })
     document.body.addEventListener(
       "wheel",
       (e) => {
@@ -30,8 +53,8 @@
 <main>
   <div class="flex flex-col" id="container">
     <div class="flex flex-col">
-      {#each PostList as post}
-        <Article title={post.title} content={post.content} />
+      {#each postList as post}
+        <Article title={post.title.rendered} content={post.content.rendered} />
       {/each}
     </div>
   </div>

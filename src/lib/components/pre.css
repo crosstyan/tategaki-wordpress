@@ -2,15 +2,34 @@
 pre {
   height: 95vh;
   writing-mode: horizontal-tb;
-  max-width: 640px;
+  max-width: 480px;
   overflow-x: auto;
-  overflow-y: scroll;
+  overflow-y: auto;
   -webkit-overflow-scrolling: touch;
+  @apply mx-2;
+}
+
+.gist {
+  height: 95vh;
+  writing-mode: horizontal-tb;
+  max-width: 480px;
+  overflow-x: auto;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  @apply mx-2;
+}
+
+.gist .blob-wrapper{
+  overflow-y: auto !important;
 }
 
 /* a small screen */
 @media screen and (min-width: 280px) {
   pre {
+    height: 80vh;
+    width: 75vw;
+  }
+  .gist {
     height: 80vh;
     width: 75vw;
   }
@@ -21,10 +40,17 @@ pre {
     height: 90vh;
     width: 80vw;
   }
+  .gist {
+    height: 90vh;
+    width: 80vw;
+  }
 }
 /* md */
 @media screen and (min-width: 768px) {
   pre {
+    width: 33vw;
+  }
+  .gist {
     width: 33vw;
   }
 }

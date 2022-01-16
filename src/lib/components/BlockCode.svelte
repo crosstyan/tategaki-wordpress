@@ -1,6 +1,27 @@
 <script lang="ts">
   import { onMount } from "svelte"
   import Prism from "prismjs"
+  import "prismjs/plugins/line-numbers/prism-line-numbers"
+  import "prismjs/plugins/autolinker/prism-autolinker"
+  import "prismjs/plugins/autolinker/prism-autolinker.css"
+  import "prismjs/plugins/line-numbers/prism-line-numbers.css"
+  import {CopyInfo, copyTextToClipboard} from "../utils/clipboard"
+  // Modified autoloader which use CDN
+  // the o../utils/prism-autoloader
+  // https://github.com/PrismJS/prism/blob/master/plugins/autoloader/prism-autoloader.js
+  import "../utils/prism-autoloader"
+
+  let isCopied = false
+  const copyInfo:CopyInfo = {
+    getText: ()=>{
+      return code.textContent || ""
+    },
+    success: ()=>{isCopied = true},
+    error: (reason)=>{
+      console.error("Copy error:", reason)
+    }
+  }
+  
   // Expect the element to be
   // <pre>
   //   <code class="language-javascript">
@@ -19,18 +40,25 @@
   // So I decide to give them another option
   // to open another page and display a alert message
   onMount(() => {
+    // console.log("Plugin", Prism.plugins.lineNumbers)
     // get the language of the code
     try {
       code.getElementsByTagName("code").item(0).classList.forEach(className => {
         if (className.startsWith("language-")) {
           language = className
         }
+      // line number
+      // code.getElementsByTagName("code").item(0).classList.add("line-numbers")
+      code.classList.add("line-numbers")
       })
     } catch (err) {
       console.log(err)
     }
     try {
-      Prism.highlightElement(code.getElementsByTagName("code")[0])
+      // Prism.highlightElement(code.getElementsByTagName("code")[0])
+      // Prism.highlightAllUnder(code)
+      // I know that it's not efficient at all
+      Prism.highlightAll()
     } catch (err) {
       console.error(err)
     }
@@ -49,11 +77,21 @@
       role="button"
       href="#">{isClosed ? "Show" : "Hide"} Code</a
     >
+    <!-- TODO: implement a function to open another page to show the code -->
+    <!-- it can be modal window or a standalone window -->
     <a
       on:click|preventDefault={doNothing}
       class="{btnClassName}"
       role="button"
       href="#">View Source</a
+    >
+    <a
+      on:click|preventDefault={()=>{
+        copyTextToClipboard(copyInfo)
+      }}
+      class="{btnClassName}"
+      role="button"
+      href="#">{isCopied ? "Copied" : "Copy"} </a
     >
     <a
       on:click|preventDefault={doNothing}

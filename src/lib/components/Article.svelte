@@ -2,6 +2,7 @@
   import { Tategaki } from "../tategaki/src/tategaki"
   import { onMount } from "svelte"
   import BlockCode from "./BlockCode.svelte";
+  import Gist from "./Gist.svelte"
   export let title = ""
   export let content = ""
   let article:HTMLElement;
@@ -14,7 +15,6 @@
       convertNewlineCustom: false,
     })
     tategaki.parse()
-    const codes = article.getElementsByTagName("code")
     // Wrap all preformatted code in BlockCode component
     const preformatteds = article.getElementsByTagName("pre")
     // TODO: use slot instead of passing HTMLElement as props
@@ -36,10 +36,28 @@
       })
       pre.remove()
     })
+
+    // Find all github gist
+    // TODO: script tag is not supported yet
+    // script src="https://gist.github.com/crosstyan/973e4843067ab09b04db1881379d8654.js"
+    // We should support the script like this
+    // It's strange that svelte won't load the script in @html macro
+    const dataSelectorName = 'data-github-gist',
+    gistsLoadingElements = article.querySelectorAll('[data-github-gist]');
+    Array.from(gistsLoadingElements).forEach((gistLoadingElement) => {
+      const gistId = gistLoadingElement.getAttribute(dataSelectorName);
+      const gist = new Gist({
+        target: gistLoadingElement,
+        anchor: null,
+        props: {
+          gistId: gistId,
+        }
+      })
+    })
   })
 </script>
 
-<article bind:this={article} lang="cn">
+<article bind:this={article} lang="zh-Hant">
   <h1 class="text-3xl">{title}</h1>
   {@html content}
 </article>
