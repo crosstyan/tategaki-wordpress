@@ -40,7 +40,7 @@
 </script>
 
 <article bind:this={article} lang="cn">
-  <h1 class="text-3xl underline text-gray-500">{title}</h1>
+  <h1 class="text-3xl">{title}</h1>
   {@html content}
 </article>
 

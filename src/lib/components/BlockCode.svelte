@@ -8,35 +8,58 @@
   //   </code>
   // </pre>
   export let code: HTMLElement
+  let language = "language-none"
   let isClosed = false
+  let mediaQuery = window.matchMedia('(min-width: 640px)')
+  window.addEventListener('resize', ()=>(mediaQuery = window.matchMedia('(min-width: 640px)')), true);
+  // change the value of isClosed automatically when the mediaQuery changes
+  $: isClosed = mediaQuery.matches ? false : true
   // TODO I can't fix the bug that IOS user can't scroll
   // the pre or other overflowed element
   // So I decide to give them another option
   // to open another page and display a alert message
   onMount(() => {
+    // get the language of the code
+    try {
+      code.getElementsByTagName("code").item(0).classList.forEach(className => {
+        if (className.startsWith("language-")) {
+          language = className
+        }
+      })
+    } catch (err) {
+      console.log(err)
+    }
     try {
       Prism.highlightElement(code.getElementsByTagName("code")[0])
-    } catch (e) {
-      console.error(e)
+    } catch (err) {
+      console.error(err)
     }
   })
+  const doNothing = () => {}
+  // TODO: why I don't let the button become a standalone component?
+  const btnClassName = "flex btn mt-3 px-1 py-3 h-auto w-auto"
 </script>
 
 <!-- I know I should have use slot -->
 <div class=" mx-2 mt-2">
   <div class="button-group flex">
     <a
-      on:click|preventDefault={function () {
-        isClosed = !isClosed
-      }}
-      class="flex mt-3 px-1 py-3 bg-blue-200 rounded-full"
+      on:click|preventDefault={() => (isClosed = !isClosed)}
+      class="{btnClassName}"
       role="button"
-      href="#">Hide Code</a
+      href="#">{isClosed ? "Show" : "Hide"} Code</a
     >
     <a
-      class="flex mt-3 px-1 py-3 bg-blue-200 rounded-full"
+      on:click|preventDefault={doNothing}
+      class="{btnClassName}"
       role="button"
       href="#">View Source</a
+    >
+    <a
+      on:click|preventDefault={doNothing}
+      class="{btnClassName + " font-mono lowercase"} "
+      role="button"
+      href="#">{language}</a
     >
   </div>
   <div
