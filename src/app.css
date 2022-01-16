@@ -1,19 +1,7 @@
 /* import from tategaki style */
 @import "./lib/tategaki/assets/tategaki";
-@import "./lib/utils/prism-github";
 
 /* tailwind */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
-/* Write your global styles here, in PostCSS syntax */
-pre {
-  /* display: inline-block; */
-  height: 95vh;
-  writing-mode: horizontal-tb;
-  max-width: 640px;
-  overflow-x: auto;
-  overflow-y: scroll;
-  -webkit-overflow-scrolling: touch;
-}

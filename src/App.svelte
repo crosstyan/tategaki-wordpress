@@ -63,25 +63,7 @@
     // writing-mode: vertical-rl;
     height: 95vh;
   }
-
-  /* sm */
-  @media screen and (min-width: 280px) {
-    pre {
-      height: 80vh;
-      width: 75vw;
-    }
-  }
-  /* sm */
-  @media screen and (min-width: 640px) {
-    pre {
-      height: 90vh;
-      width: 80vw;
-    }
-  }
-  /* md */
-  @media screen and (min-width: 768px) {
-    pre {
-      width: 33vw;
-    }
+  .to-fullwidth {
+    text-orientation: upright;
   }
 </style>

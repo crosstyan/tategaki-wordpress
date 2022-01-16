@@ -2,7 +2,6 @@
   import { Tategaki } from "../tategaki/src/tategaki"
   import { onMount } from "svelte"
   import BlockCode from "./BlockCode.svelte";
-  import Prism from "prismjs"
   export let title = ""
   export let content = ""
   let article:HTMLElement;
@@ -16,13 +15,11 @@
     })
     tategaki.parse()
     const codes = article.getElementsByTagName("code")
-    // Format all code, including inline and preformatted
-    Array.from(codes).forEach((code)=>{
-      Prism.highlightElement(code)
-    })
     // Wrap all preformatted code in BlockCode component
-    // TODO: maybe I should move it to BlockCode
     const preformatteds = article.getElementsByTagName("pre")
+    // TODO: use slot instead of passing HTMLElement as props
+    // See the issues here
+    // https://github.com/sveltejs/svelte/issues/2588
     Array.from( preformatteds ).forEach((pre)=>{
       const parent = pre.parentElement
       const newBlock = document.createElement("div")
@@ -40,10 +37,6 @@
       pre.remove()
     })
   })
-  // TODO I can't fix the bug that IOS user can't scroll
-  // the pre or other overflowed element
-  // So I decide to give them another option
-  // to open another page and display a alert message
 </script>
 
 <article bind:this={article} lang="cn">
