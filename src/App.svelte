@@ -1,6 +1,5 @@
 <script lang="ts">
   // import Heti from "./lib/heti/js/heti-addon"
-  import Counter from "./lib/components/Counter.svelte"
   import Article from "./lib/components/Article.svelte"
   // import { PostList } from "./lib/utils/dummy"
   import type { Post } from "./lib/utils/post"
