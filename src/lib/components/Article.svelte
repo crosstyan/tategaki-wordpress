@@ -7,7 +7,31 @@
   export let content = ""
   let article:HTMLElement;
   const dataSelectorName = 'data-github-gist'
+  // Not a pure function because it mutates the DOM
+  function parsePuctuation(element:HTMLElement) {
+    const paragraphElement = Array.from(element.getElementsByTagName("p")) as HTMLElement[]
+    const listElement = Array.from(element.getElementsByTagName("li"))
+    const replaceElement = [...paragraphElement, ...listElement]
+    replaceElement.forEach(elem => {
+      let text = elem.innerHTML
+      const regexPeriod = /(?<![a-z]|[A-Z]|[\!-9])(\.\s)+/g
+      const regexComma = /(?<![a-z]|[A-Z]|[\!-9])(,\s)+/g
+      // const regexPara= /(?<![a-z]|[A-Z]|[\!-9])(\)\s)+|(\s\()+(?![a-z]|[A-Z]|[\!-9])/g
+      const regexLeftPara = /(\()+(?![a-z]|[A-Z]|[\!-9])/g
+      const regexRightPara = /(?<![a-z]|[A-Z]|[\!-9])(\))+/g
+
+      text = text.replace(regexPeriod, "。")
+      text = text.replace(regexComma, "，")
+      text = text.replace(regexLeftPara, "（")
+      text = text.replace(regexRightPara, "）")
+      text = text.replace(" （", "（")
+      text = text.replace("） ", "）")
+      text 
+      elem.innerHTML = text
+    })
+  }
   onMount(async () => {
+    parsePuctuation(article)
     let tategaki = new Tategaki(article, {
       shouldPcS: true,
       imitatePcS: false,
@@ -53,6 +77,7 @@
       newBlock.setAttribute(dataSelectorName, gistId)
       script.remove()
     })
+    // TODO: support configure the url of gist
     // It's strange that svelte won't load the script in @html macro
     const gistsLoadingElements = article.querySelectorAll('[data-github-gist]')
     Array.from(gistsLoadingElements).forEach((gistLoadingElement) => {

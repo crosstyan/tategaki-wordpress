@@ -23,10 +23,11 @@
     return gistScriptElement
   }
   onMount(async () => {
-    // In a nut shell, the library just use document.currentScript?.insertAdjacentHTML() instead of document.write()
+    // In a nut shell, the library just use document.currentScript.insertAdjacentHTML() instead of document.write()
     document.write = function (content) {
       document.currentScript?.insertAdjacentHTML("beforebegin", content)
     }
+    // I know it has to be a better way to do this
     document
       .querySelector("[" + dataSelectorName + '="' + gistId + '"]')
       .getElementsByClassName("code-block")[0]
@@ -50,7 +51,8 @@
     <a
       class={btnClassName}
       role="button"
-      href="{`${githubGistsUrl}/${gistId}`}">View Gist</a
+      href="{`${githubGistsUrl}/${gistId}`}"
+      target="_blank">View Gist</a
     >
   </div>
   <div
