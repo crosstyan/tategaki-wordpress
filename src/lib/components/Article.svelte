@@ -3,6 +3,7 @@
   import { onMount } from "svelte"
   import BlockCode from "./BlockCode.svelte";
   import Gist from "./Gist.svelte"
+  import InlineCode from "./InlineCode.svelte"
   export let title = ""
   export let content = ""
   let article:HTMLElement;
@@ -14,14 +15,18 @@
     const replaceElement = [...paragraphElement, ...listElement]
     replaceElement.forEach(elem => {
       let text = elem.innerHTML
-      const regexPeriod = /(?<![a-z]|[A-Z]|[\!-9])(\.\s)+/g
-      const regexComma = /(?<![a-z]|[A-Z]|[\!-9])(,\s)+/g
+      const regexPeriod = /(?<![a-z]|[A-Z]|[\!-9]|\>|\s)(\.\s)+/g
+      const regexComma = /(?<![a-z]|[A-Z]|[\!-9]|\>|\s)(,\s)+/g
+      const regexQuestionMark = /(?<![a-z]|[A-Z]|[\!-9])(\?\s)+/g
+      const regexExclamationMark = /(?<![a-z]|[A-Z]|[\!-9])(\!\s)+/g
       // const regexPara= /(?<![a-z]|[A-Z]|[\!-9])(\)\s)+|(\s\()+(?![a-z]|[A-Z]|[\!-9])/g
       const regexLeftPara = /(\()+(?![a-z]|[A-Z]|[\!-9])/g
       const regexRightPara = /(?<![a-z]|[A-Z]|[\!-9])(\))+/g
 
       text = text.replace(regexPeriod, "。")
       text = text.replace(regexComma, "，")
+      text = text.replace(regexQuestionMark, "？")
+      text = text.replace(regexExclamationMark, "！")
       text = text.replace(regexLeftPara, "（")
       text = text.replace(regexRightPara, "）")
       text = text.replace(" （", "（")
@@ -41,6 +46,21 @@
     })
     tategaki.parse()
     // Wrap all preformatted code in BlockCode component
+    const inlineCode = article.getElementsByTagName("code")
+    Array.from(inlineCode).forEach(code => {
+      const parent = code.parentElement
+      if (parent.tagName !== "PRE") {
+        const dummy = document.createElement("span")
+        parent.insertBefore(dummy, code)
+        const inlineCodeComponent = new InlineCode({
+          target: dummy,
+          props: {
+            codeElem: code,
+          },
+        })
+        code.remove()
+      }
+    })
     const preformatteds = article.getElementsByTagName("pre")
     // TODO: use slot instead of passing HTMLElement as props
     // See the issues here
@@ -63,9 +83,6 @@
     })
 
     // Find all github gist
-    // TODO: script tag is not supported yet
-    // script src="https://gist.github.com/crosstyan/973e4843067ab09b04db1881379d8654.js"
-    // We should support the script like this
     const gists = article.getElementsByTagName("script")
     Array.from(gists).forEach((script)=>{
       const src = script.getAttribute("src")
@@ -98,5 +115,15 @@
   {@html content}
 </article>
 
-<style lang="postcss">
+<style global lang="scss">
+  article {
+    li a, p a{
+      text-decoration: underline;
+      color: dodgerblue;
+    }
+    ul{
+      list-style-type: circle;
+      padding-top: 2em;
+    }
+  }
 </style>
