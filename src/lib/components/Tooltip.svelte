@@ -28,7 +28,7 @@
 </span>
 
 {#if isHovered}
-	<div style="top: {y}px; left: {x}px; writing-mode: horizontal-tb;" class="tooltip">{title}</div>
+	<div style="top: {y}px; left: {x}px; writing-mode: horizontal-tb;" class="tooltip font-mono">{title}</div>
 {/if}
 
 <style>

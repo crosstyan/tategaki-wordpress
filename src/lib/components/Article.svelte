@@ -4,10 +4,18 @@
   import BlockCode from "./BlockCode.svelte";
   import Gist from "./Gist.svelte"
   import InlineCode from "./InlineCode.svelte"
-  export let title = ""
-  export let content = ""
+  export let title;
+  export let content;
   let article:HTMLElement;
   // TODO: instead of putting the whole thing in the DOM,
+  // TODO: use https://use.typekit.net/ or https://fonts.gstatic.com/
+  // TODO: blockquote
+  // https://tategaki.de/dementia-02-20
+  // https://tategaki.de/%E6%92%AD%E5%AE%A2%E6%98%AF%E4%B8%80%E6%9D%A1%E6%B2%B3-12-05
+  // https://blog.typlog.com/spring-theme
+  // https://www.cnblogs.com/yangjiale/p/13925810.html#%E5%AD%90%E9%9B%86%E5%8C%96%E5%AD%97%E4%BD%93%E5%B7%A5%E5%85%B7
+  // https://efe.baidu.com/blog/fontmin-getting-started/
+  // https://tate-young.github.io/2020/08/26/css-font-face.html
   // We should traverse the DOM and put them in a array then render them
   // I'm not sure which one is better
   const dataSelectorName = 'data-github-gist'
@@ -20,8 +28,8 @@
       let text = elem.innerHTML
       const regexPeriod = /(?<![a-z]|[A-Z]|[\!-9]|\>|\s)(\.)+/g
       const regexComma = /(?<![a-z]|[A-Z]|[\!-9]|\>|\s)(,\s)+/g
-      const regexQuestionMark = /(?<![a-z]|[A-Z]|[\!-9])(\?)+/g
-      const regexExclamationMark = /(?<![a-z]|[A-Z]|[\!-9])(\!)+/g
+      const regexQuestionMark = /(?<![a-z]|[A-Z]|[\!-9]|[\<\>])(\?)+/g
+      const regexExclamationMark = /(?<![a-z]|[A-Z]|[\!-9]|[\<\>])(\!)+/g
       // const regexPara= /(?<![a-z]|[A-Z]|[\!-9])(\)\s)+|(\s\()+(?![a-z]|[A-Z]|[\!-9])/g
       const regexLeftPara = /(\()+(?![a-z]|[A-Z]|[\!-9])/g
       const regexRightPara = /(?<![a-z]|[A-Z]|[\!-9])(\))+/g
@@ -49,8 +57,17 @@
     })
   }
   onMount(async () => {
-    addStyle(article, "a", "underline text-blue-500")
+    // TODO: build a interface to handle all the style
+    addStyle(article, "p", "ml-4")
+    addStyle(article, "a", "underline decoration-blue-500 decoration-2")
     addStyle(article, "ul", "list-disc pt-7")
+    addStyle(article, "ol", "list-decimal pt-7")
+    addStyle(article, "h1", "text-2xl ml-2 mr-8 font-bold")
+    addStyle(article, "h2", "text-2xl ml-2 mr-8 font-bold")
+    addStyle(article, "h3", "text-xl ml-2 mr-8 font-bold")
+    addStyle(article, "h4", "text-lg ml-2 mr-8 font-bold")
+    addStyle(article, "h5", "text-base ml-2 mr-8 font-bold")
+    addStyle(article, "img", "max-h-[80%] mx-8 my-auto")
     parsePuctuation(article)
     let tategaki = new Tategaki(article, {
       shouldPcS: true,
@@ -60,6 +77,9 @@
       convertNewlineCustom: false,
     })
     tategaki.parse()
+    // TODO: latin class tooltip
+    // COMMENT: I don't know if there is a better way to do this
+    // https://svelte.dev/repl/28996f04783542ceafed7cc6a85128b9?version=3.23.0
     // Wrap all preformatted code in BlockCode component
     const inlineCode = article.getElementsByTagName("code")
     Array.from(inlineCode).forEach(code => {
@@ -125,11 +145,17 @@
   })
 </script>
 
-<article bind:this={article} lang="zh-Hant">
-  <h1 class="text-3xl">{title}</h1>
-  {@html content}
+<article lang="zh-Hant" class="font-serif pr-8 mr-8">
+  <h1 class="text-4xl font-bold ml-16">{title}</h1>
+  <h2></h2>
+  <content bind:this={article}>
+    {@html content}
+  </content>
 </article>
 
 <style lang="scss">
+  content {
+    line-height: 1.42;
+  }
   // Since I'm using tailwind, I should do it in tailwind's way
 </style>

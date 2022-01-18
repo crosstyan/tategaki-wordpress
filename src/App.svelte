@@ -51,15 +51,18 @@
 
 <main>
   <div class="flex flex-col" id="container">
-    <div class="flex flex-col">
+    <div id="article-frame" class="flex flex-col divide-x-2 divide-x-reverse ">
       {#each postList as post}
-        <Article title={post.title.rendered} content={post.content.rendered} />
+        <Article title={post.title.rendered} content={post.content.rendered}/>
       {/each}
     </div>
   </div>
 </main>
 
 <style global lang="scss">
+  #article-frame {
+    max-height: 70vh;
+  }
   // use "user-scalable" in "viewport" meta
   // to solve user can scale the page
   // A bug/feature in Webkit based browsers
@@ -78,8 +81,18 @@
     writing-mode: vertical-rl;
   }
   main {
+    padding: 4rem;
     height: 98vh;
     vertical-align: middle;
+  }
+  @media screen and (max-width: 640px) {
+    main {
+      padding: 0.5em;
+      height: 98vh;
+    }
+    #article-frame {
+      max-height: 96vh;
+    }
   }
   #container {
     // writing-mode: vertical-rl;

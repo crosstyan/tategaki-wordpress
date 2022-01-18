@@ -1,6 +1,7 @@
 /* the styles for preformatted */
 pre {
-  height: 95vh;
+  /* height: 95vh; */
+  max-height: 80vh;
   writing-mode: horizontal-tb;
   max-width: 480px;
   overflow-x: auto;
@@ -10,7 +11,7 @@ pre {
 }
 
 .gist {
-  height: 95vh;
+  max-height: 80vh;
   writing-mode: horizontal-tb;
   max-width: 480px;
   overflow-x: auto;

@@ -9,7 +9,7 @@
 
 <Tooltip title={codeElem.innerText}>
   <span
-    class="code text-gray-300 text-sm font-mono my-1 py-2 bg-slate-600 no-underline"
+    class="code text-gray-200 text-sm font-mono my-1 py-2 bg-gray-600 no-underline"
     >{@html codeElem.outerHTML}</span
   >
 </Tooltip>
