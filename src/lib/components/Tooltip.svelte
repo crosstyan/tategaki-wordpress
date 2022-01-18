@@ -2,15 +2,15 @@
   // https://svelte.dev/repl/dd6754a2ad0547c5b1c1ea37c0293fef?version=3.46.2
 	export let title;
 	let isHovered = false;
-	let x;
-	let y;
+	let x:number;
+	let y:number;
 	
-	function mouseOver(event) {
+	function mouseOver(event: MouseEvent) {
 		isHovered = true;
 		x = event.pageX + 5;
 		y = event.pageY + 5;
 	}
-	function mouseMove(event) {
+	function mouseMove(event: MouseEvent) {
 		x = event.pageX + 5;
 		y = event.pageY + 5;
 	}
