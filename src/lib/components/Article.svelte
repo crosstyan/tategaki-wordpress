@@ -18,10 +18,10 @@
     const replaceElement = [...paragraphElement, ...listElement]
     replaceElement.forEach(elem => {
       let text = elem.innerHTML
-      const regexPeriod = /(?<![a-z]|[A-Z]|[\!-9]|\>|\s)(\.\s)+/g
+      const regexPeriod = /(?<![a-z]|[A-Z]|[\!-9]|\>|\s)(\.)+/g
       const regexComma = /(?<![a-z]|[A-Z]|[\!-9]|\>|\s)(,\s)+/g
-      const regexQuestionMark = /(?<![a-z]|[A-Z]|[\!-9])(\?\s)+/g
-      const regexExclamationMark = /(?<![a-z]|[A-Z]|[\!-9])(\!\s)+/g
+      const regexQuestionMark = /(?<![a-z]|[A-Z]|[\!-9])(\?)+/g
+      const regexExclamationMark = /(?<![a-z]|[A-Z]|[\!-9])(\!)+/g
       // const regexPara= /(?<![a-z]|[A-Z]|[\!-9])(\)\s)+|(\s\()+(?![a-z]|[A-Z]|[\!-9])/g
       const regexLeftPara = /(\()+(?![a-z]|[A-Z]|[\!-9])/g
       const regexRightPara = /(?<![a-z]|[A-Z]|[\!-9])(\))+/g
@@ -34,6 +34,9 @@
       text = text.replace(regexRightPara, "）")
       text = text.replace(" （", "（")
       text = text.replace("） ", "）")
+      text = text.replace("！ ", "！")
+      text = text.replace("？ ", "？")
+      text = text.replace("。 ", "。")
       text 
       elem.innerHTML = text
     })

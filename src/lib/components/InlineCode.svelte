@@ -2,6 +2,7 @@
   export let codeElem: HTMLElement
   // TODO: inlineCode hover to display horizontal code
   // https://www.npmjs.com/package/svelte-tooltip
+  // https://svelte.dev/repl/dd6754a2ad0547c5b1c1ea37c0293fef?version=3.46.2
   // Tooltip
 </script>
 

@@ -79,20 +79,22 @@
     >
     <!-- TODO: implement a function to open another page to show the code -->
     <!-- it can be modal window or a standalone window -->
-    <a
-      on:click|preventDefault={doNothing}
-      class="{btnClassName}"
-      role="button"
-      href="#">View Source</a
-    >
-    <a
-      on:click|preventDefault={()=>{
-        copyTextToClipboard(copyInfo)
-      }}
-      class="{btnClassName}"
-      role="button"
-      href="#">{isCopied ? "Copied" : "Copy"} </a
-    >
+    {#if !isClosed}
+      <a
+        on:click|preventDefault={doNothing}
+        class="{btnClassName}"
+        role="button"
+        href="#">View Source</a
+      >
+      <a
+        on:click|preventDefault={()=>{
+          copyTextToClipboard(copyInfo)
+        }}
+        class="{btnClassName}"
+        role="button"
+        href="#">{isCopied ? "Copied" : "Copy"} </a
+      >
+    {/if}
     <a
       on:click|preventDefault={doNothing}
       class="{btnClassName + " font-mono lowercase"} "
