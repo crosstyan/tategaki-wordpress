@@ -6,7 +6,9 @@
   import { onMount } from "svelte"
   export let gistId
   let isClosed = false
+  let isError = false
   let mediaQuery = window.matchMedia("(min-width: 640px)")
+  let mainCodeBlock: HTMLDivElement;
   window.addEventListener(
     "resize",
     () => (mediaQuery = window.matchMedia("(min-width: 640px)")),
@@ -17,7 +19,7 @@
   // From https://github.com/Machy8/async-github-gist
   // window.addEventListener('load', loadGists);
   function createGistScriptElement(gistId: string): HTMLScriptElement {
-    var gistScriptElement = document.createElement("script")
+    const gistScriptElement = document.createElement("script")
     gistScriptElement.setAttribute("type", scriptElementType)
     gistScriptElement.setAttribute("src", githubGistsUrl + "/" + gistId + ".js")
     return gistScriptElement
@@ -28,10 +30,18 @@
       document.currentScript?.insertAdjacentHTML("beforebegin", content)
     }
     // I know it has to be a better way to do this
+    // https://stackoverflow.com/questions/59629947/how-do-i-load-an-external-js-library-in-svelte-sapper
+    const gistScriptElement = createGistScriptElement(gistId)
     document
       .querySelector("[" + dataSelectorName + '="' + gistId + '"]')
       .getElementsByClassName("code-block")[0]
-      .appendChild(createGistScriptElement(gistId))
+      .appendChild(gistScriptElement)
+    gistScriptElement.addEventListener("load", () => {
+      isError = false
+    })
+    gistScriptElement.addEventListener("error", () => {
+      isError = true
+    })
   })
 
   const doNothing = () => {}
@@ -40,12 +50,21 @@
 
 <div class=" mx-2 mt-2">
   <div class="button-group flex">
-    <a
-      on:click|preventDefault={() => (isClosed = !isClosed)}
-      class={btnClassName}
-      role="button"
-      href="#">{isClosed ? "Show" : "Hide"} Gist</a
-    >
+    {#if !isError}
+      <a
+        on:click|preventDefault={() => (isClosed = !isClosed)}
+        class={btnClassName}
+        role="button"
+        href="#">{isClosed ? "Show" : "Hide"} Gist</a
+      >
+    {:else}
+      <a
+        on:click|preventDefault={doNothing}
+        class={btnClassName}
+        role="button"
+        href="#">Loading Error</a
+      >
+    {/if}
     <!-- TODO: implement a function to open another page to show the code -->
     <!-- it can be modal window or a standalone window -->
     <a

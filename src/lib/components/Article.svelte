@@ -7,6 +7,9 @@
   export let title = ""
   export let content = ""
   let article:HTMLElement;
+  // TODO: instead of putting the whole thing in the DOM,
+  // We should traverse the DOM and put them in a array then render them
+  // I'm not sure which one is better
   const dataSelectorName = 'data-github-gist'
   // Not a pure function because it mutates the DOM
   function parsePuctuation(element:HTMLElement) {
@@ -35,7 +38,16 @@
       elem.innerHTML = text
     })
   }
+  /// tailwind css
+  function addStyle(elem: HTMLElement, tagName:string, style: string) {
+    const styles = style.split(" ")
+    Array.from(elem.getElementsByTagName(tagName)).forEach(elem => {
+      elem.classList.add(...styles)
+    })
+  }
   onMount(async () => {
+    addStyle(article, "a", "underline text-blue-500")
+    addStyle(article, "ul", "list-disc pt-7")
     parsePuctuation(article)
     let tategaki = new Tategaki(article, {
       shouldPcS: true,
@@ -115,15 +127,6 @@
   {@html content}
 </article>
 
-<style global lang="scss">
-  article {
-    li a, p a{
-      text-decoration: underline;
-      color: dodgerblue;
-    }
-    ul{
-      list-style-type: circle;
-      padding-top: 2em;
-    }
-  }
+<style lang="scss">
+  // Since I'm using tailwind, I should do it in tailwind's way
 </style>
