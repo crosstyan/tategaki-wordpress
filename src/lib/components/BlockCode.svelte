@@ -1,10 +1,5 @@
 <script lang="ts">
   import { onMount } from "svelte"
-  import Prism from "prismjs"
-  import "prismjs/plugins/line-numbers/prism-line-numbers"
-  import "prismjs/plugins/autolinker/prism-autolinker"
-  import "prismjs/plugins/autolinker/prism-autolinker.css"
-  import "prismjs/plugins/line-numbers/prism-line-numbers.css"
   import {CopyInfo, copyTextToClipboard} from "../utils/clipboard"
   // Modified autoloader which use CDN
   // the o../utils/prism-autoloader
@@ -47,20 +42,10 @@
         if (className.startsWith("language-")) {
           language = className
         }
-      // line number
-      // code.getElementsByTagName("code").item(0).classList.add("line-numbers")
       code.classList.add("line-numbers")
       })
     } catch (err) {
       console.log(err)
-    }
-    try {
-      // Prism.highlightElement(code.getElementsByTagName("code")[0])
-      // Prism.highlightAllUnder(code)
-      // I know that it's not efficient at all
-      Prism.highlightAll()
-    } catch (err) {
-      console.error(err)
     }
   })
   const doNothing = () => {}

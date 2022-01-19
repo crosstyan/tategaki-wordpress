@@ -5,6 +5,11 @@
   import Gist from "./Gist.svelte"
   import InlineCode from "./InlineCode.svelte"
   import pangu from "pangu/src/browser/pangu"
+  import Prism from "prismjs"
+  import "prismjs/plugins/line-numbers/prism-line-numbers"
+  import "prismjs/plugins/autolinker/prism-autolinker"
+  import "prismjs/plugins/autolinker/prism-autolinker.css"
+  import "prismjs/plugins/line-numbers/prism-line-numbers.css"
   export let title;
   export let content;
   let article:HTMLElement;
@@ -130,7 +135,7 @@
       })
       pre.remove()
     })
-
+    Prism.highlightAllUnder(article)
     // Find all github gist
     const gists = article.getElementsByTagName("script")
     Array.from(gists).forEach((script)=>{
