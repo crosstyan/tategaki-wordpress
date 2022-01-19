@@ -115,6 +115,4 @@
 <style lang="postcss">
   @import "./pre";
   @import "../utils/prism-github";
-  .code-block {
-  }
 </style>

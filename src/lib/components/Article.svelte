@@ -1,9 +1,10 @@
 <script lang="ts">
-  import { Tategaki } from "../tategaki/src/tategaki"
+  import { Tategaki } from "tategaki"
   import { onMount } from "svelte"
-  import BlockCode from "./BlockCode.svelte";
+  import BlockCode from "./BlockCode.svelte"
   import Gist from "./Gist.svelte"
   import InlineCode from "./InlineCode.svelte"
+  import pangu from "pangu/src/browser/pangu"
   export let title;
   export let content;
   let article:HTMLElement;
@@ -47,7 +48,6 @@
       text = text.replace("！ ", "！")
       text = text.replace("？ ", "？")
       text = text.replace("。 ", "。")
-      text 
       elem.innerHTML = text
     })
   }
@@ -71,6 +71,7 @@
     addStyle(article, "h5", "text-base ml-2 mr-8 font-bold")
     addStyle(article, "img", "max-h-[80%] mx-8 my-auto")
     parsePuctuation(article)
+    pangu.spacingNode(article)
     let tategaki = new Tategaki(article, {
       shouldPcS: true,
       imitatePcS: false,
