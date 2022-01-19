@@ -12,7 +12,7 @@
       // console.log(e.target)
       let delta = (e.deltaY || e.detail) >> 10 || 1
       // let delta = ((e.deltaY ) >> 10) || 1;
-      delta = delta * 120
+      delta = delta * 100
       document.documentElement.scrollLeft -= delta
       // safari needs also this
       document.body.scrollLeft -= delta
@@ -43,11 +43,11 @@
     return data
   }
 
-  function handleNextPage(){
+  function handleNextPage() {
     page++
     fetchPosts(api, page).subscribe({
       next: (data) => (postList = postList.concat(data)),
-      complete: () => (console.log(`done ${page}`))
+      complete: () => console.log(`done ${page}`),
     })
   }
 
@@ -57,13 +57,9 @@
       next: (result) => (postList = postList.concat(result)),
       complete: () => console.log("done"),
     })
-    document.body.addEventListener(
-      "wheel",
-      (e) => {
-        wheelHandler(e)
-      },
-      { passive: false }
-    )
+    document.body.addEventListener("wheel", (e) => wheelHandler(e), {
+      passive: false,
+    })
   })
 </script>
 
