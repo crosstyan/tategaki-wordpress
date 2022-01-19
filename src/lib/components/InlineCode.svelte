@@ -10,7 +10,7 @@
 <Tooltip title={codeElem.innerText}>
   <!-- there's no need to add margin, pangu will handle it -->
   <span
-    class="code text-gray-200 text-sm font-mono font-light py-2 bg-gray-600 no-underline"
+    class="code text-sm font-mono font-bold py-2 text-blue-600 no-underline"
     >{@html codeElem.outerHTML}</span
   >
 </Tooltip>

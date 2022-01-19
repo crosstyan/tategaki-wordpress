@@ -8,9 +8,10 @@
   export let title;
   export let content;
   let article:HTMLElement;
+  // TODO: Add a loading screen since pasring all of these takes too long
+  // https://stackoverflow.com/questions/65198268/what-is-a-svelte-approach-to-showing-a-loader-after-a-time-of-waiting
   // TODO: instead of putting the whole thing in the DOM,
-  // TODO: use https://use.typekit.net/ or https://fonts.gstatic.com/
-  // TODO: blockquote
+  // TODO: parse elements in nodejs and cache it to improve performance
   // https://tategaki.de/dementia-02-20
   // https://tategaki.de/%E6%92%AD%E5%AE%A2%E6%98%AF%E4%B8%80%E6%9D%A1%E6%B2%B3-12-05
   // https://blog.typlog.com/spring-theme
@@ -59,11 +60,14 @@
     })
   }
   onMount(async () => {
+    // TODO: table of content
     // TODO: build a interface to handle all the style
+    // TODO: support changing themes and color
+    addStyle(article, "blockquote", "border-t-4 border-black p-4 ml-4 font-serif text-sm")
     addStyle(article, "p", "ml-4")
-    addStyle(article, "a", "underline decoration-blue-500 decoration-2")
-    addStyle(article, "ul", "list-disc pt-7")
-    addStyle(article, "ol", "list-decimal pt-7")
+    addStyle(article, "a", "underline decoration-blue-500 decoration-2 hover:text-blue-500 transition-colors duration-200")
+    addStyle(article, "ul", "list-disc pt-7 ml-4")
+    addStyle(article, "ol", "list-decimal pt-7 ml-4")
     addStyle(article, "h1", "text-2xl ml-2 mr-8 font-bold")
     addStyle(article, "h2", "text-2xl ml-2 mr-8 font-bold")
     addStyle(article, "h3", "text-xl ml-2 mr-8 font-bold")
