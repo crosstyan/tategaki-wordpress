@@ -63,7 +63,7 @@
     // TODO: table of content
     // TODO: build a interface to handle all the style
     // TODO: support changing themes and color
-    addStyle(article, "blockquote", "border-t-4 border-black p-4 ml-4 font-serif text-sm")
+    addStyle(article, "blockquote", "border-t-4 border-black p-4 ml-4 font-serif text-sm leading-relaxed")
     addStyle(article, "p", "ml-4")
     addStyle(article, "a", "underline decoration-blue-500 decoration-2 hover:text-blue-500 transition-colors duration-200")
     addStyle(article, "ul", "list-disc pt-7 ml-4")
