@@ -28,14 +28,15 @@
     const replaceElement = [...paragraphElement, ...listElement]
     replaceElement.forEach(elem => {
       let text = elem.innerHTML
-      const regexPeriod = /(?<![a-z]|[A-Z]|[\!-9]|\>|\s)(\.)+/g
-      const regexComma = /(?<![a-z]|[A-Z]|[\!-9]|\>|\s)(,\s)+/g
-      const regexSemicolon = /(?<![a-z]|[A-Z]|[\!-9]|\>|\s)(;\s)+/g
-      const regexQuestionMark = /(?<![a-z]|[A-Z]|[\!-9]|[\<\>])(\?)+/g
-      const regexExclamationMark = /(?<![a-z]|[A-Z]|[\!-9]|[\<\>])(\!)+/g
+      // use [:ascii:] or [ -~] to match all ascii characters
+      const regexPeriod = /(?<![ -~])(\.)+/g
+      const regexComma = /(?<![ -~])(,\s)+/g
+      const regexSemicolon = /(?<![ -~])(;\s)+/g
+      const regexQuestionMark = /(?<![ -~])(\?)+/g
+      const regexExclamationMark = /(?<![ -~])(\!)+/g
       // const regexPara= /(?<![a-z]|[A-Z]|[\!-9])(\)\s)+|(\s\()+(?![a-z]|[A-Z]|[\!-9])/g
-      const regexLeftPara = /(\()+(?![a-z]|[A-Z]|[\!-9])/g
-      const regexRightPara = /(?<![a-z]|[A-Z]|[\!-9])(\))+/g
+      const regexLeftPara = /(\()+(?![ -~])/g
+      const regexRightPara = /(?<![ -~])(\))+/g
 
       text = text.replace(regexPeriod, "。")
       text = text.replace(regexComma, "，")
@@ -65,6 +66,7 @@
     // TODO: support changing themes and color
     addStyle(article, "blockquote", "border-t-4 border-black p-4 ml-4 font-serif text-sm leading-relaxed")
     addStyle(article, "p", "ml-4")
+    addStyle(article, "table", "table-zebra")
     addStyle(article, "a", "underline decoration-blue-500 decoration-2 hover:text-blue-500 transition-colors duration-200")
     addStyle(article, "ul", "list-disc pt-7 ml-4")
     addStyle(article, "ol", "list-decimal pt-7 ml-4")
@@ -73,7 +75,10 @@
     addStyle(article, "h3", "text-xl ml-2 mr-8 font-bold")
     addStyle(article, "h4", "text-lg ml-2 mr-8 font-bold")
     addStyle(article, "h5", "text-base ml-2 mr-8 font-bold")
-    addStyle(article, "img", "max-h-[80%] mx-8 my-auto")
+    // No prefix: mobile (under 640 px)
+    // sm: small break point (640 px)
+    // md ................
+    addStyle(article, "img", "max-h-[90%] md:max-h-[80%] mx-8 my-auto")
     parsePuctuation(article)
     pangu.spacingNode(article)
     let tategaki = new Tategaki(article, {
@@ -154,7 +159,6 @@
 
 <article lang="zh-Hant" class="font-serif pr-8 mr-8">
   <h1 class="text-4xl font-bold ml-16">{title}</h1>
-  <h2></h2>
   <content bind:this={article}>
     {@html content}
   </content>

@@ -19,24 +19,42 @@
       e.preventDefault()
     }
   }
-  let postList:Post[] = []
+  let postList: Post[] = []
+  // TODO: use a standalone config file
+  const api = new URL("https://blog.moe.wtf/wp-json/wp/v2/posts")
   // TODO: implement pagination
-  let page = 2
+  let page = 1
   // let PostList = []
-  onMount(async () => {
+  function fetchPosts(api, page) {
     // 'https://jsonplaceholder.typicode.com/posts'
-    const api = new URL("https://blog.moe.wtf/wp-json/wp/v2/posts")
     api.search = new URLSearchParams({
-        page: page.toString(),
-    }).toString ()
-    const data$ = fromFetch(api.toString()).pipe(
+      page: page.toString(),
+    }).toString()
+    const data = fromFetch(api.toString()).pipe(
       switchMap((res) => {
-        return res.json()
+        // I know I should check it
+        return res.json() as Promise<Post[]>
       }),
-      catchError((err) => of([]))
+      catchError((err) => {
+        console.error(err)
+        return of([] as Post[])
+      })
     )
-    data$.subscribe({
-      next: (result) => postList = result,
+    return data
+  }
+
+  function handleNextPage(){
+    page++
+    fetchPosts(api, page).subscribe({
+      next: (data) => (postList = postList.concat(data)),
+      complete: () => (console.log(`done ${page}`))
+    })
+  }
+
+  onMount(async () => {
+    const posts = await fetchPosts(api, page)
+    posts.subscribe({
+      next: (result) => (postList = postList.concat(result)),
       complete: () => console.log("done"),
     })
     document.body.addEventListener(
@@ -53,8 +71,15 @@
   <div class="flex flex-col" id="container">
     <div id="article-frame" class="flex flex-col divide-x-2 divide-x-reverse ">
       {#each postList as post}
-        <Article title={post.title.rendered} content={post.content.rendered}/>
+        <Article title={post.title.rendered} content={post.content.rendered} />
       {/each}
+
+      <a
+        on:click|preventDefault={handleNextPage}
+        class="flex bg-transparent text-gray-900 mt-3 px-1 py-3 h-auto w-auto justify-center hover:text-blue-600 font-sans transition-colors"
+        role="button"
+        href="#">Next Page</a
+      >
     </div>
   </div>
 </main>

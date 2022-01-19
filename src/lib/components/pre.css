@@ -1,9 +1,11 @@
 /* the styles for preformatted */
 pre {
   /* height: 95vh; */
+  height: 80vh;
+  width: 75vw;
   max-height: 80vh;
-  writing-mode: horizontal-tb;
   max-width: 480px;
+  writing-mode: horizontal-tb;
   overflow-x: auto;
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
@@ -11,6 +13,8 @@ pre {
 }
 
 .gist {
+  height: 80vh;
+  width: 75vw;
   max-height: 80vh;
   writing-mode: horizontal-tb;
   max-width: 480px;
@@ -24,28 +28,6 @@ pre {
   overflow-y: auto !important;
 }
 
-/* a small screen */
-@media screen and (min-width: 280px) {
-  pre {
-    height: 80vh;
-    width: 75vw;
-  }
-  .gist {
-    height: 80vh;
-    width: 75vw;
-  }
-}
-/* sm */
-@media screen and (min-width: 640px) {
-  pre {
-    height: 90vh;
-    width: 80vw;
-  }
-  .gist {
-    height: 90vh;
-    width: 80vw;
-  }
-}
 /* md */
 @media screen and (min-width: 768px) {
   pre {

@@ -17,6 +17,6 @@
   */
   font-family: 'STSong', 'SimSun', 'Georgia', 'serif';
 }
-/* .latin {
-  @apply my-1
-} */
+.latin {
+  text-orientation: sideways;
+}
