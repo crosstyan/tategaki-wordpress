@@ -5,3 +5,18 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+.to-fullwidth {
+  font-feature-settings: "fwid";
+  text-transform: none;
+}
+.cjk-punc {
+  /* 
+    There are some bug in https://fonts.adobe.com/ 
+    with upright-font
+    I know it's ugly, but I have to find another way to fix it
+  */
+  font-family: serif;
+}
+/* .latin {
+  @apply my-1
+} */

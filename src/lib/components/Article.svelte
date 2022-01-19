@@ -28,6 +28,7 @@
       let text = elem.innerHTML
       const regexPeriod = /(?<![a-z]|[A-Z]|[\!-9]|\>|\s)(\.)+/g
       const regexComma = /(?<![a-z]|[A-Z]|[\!-9]|\>|\s)(,\s)+/g
+      const regexSemicolon = /(?<![a-z]|[A-Z]|[\!-9]|\>|\s)(;\s)+/g
       const regexQuestionMark = /(?<![a-z]|[A-Z]|[\!-9]|[\<\>])(\?)+/g
       const regexExclamationMark = /(?<![a-z]|[A-Z]|[\!-9]|[\<\>])(\!)+/g
       // const regexPara= /(?<![a-z]|[A-Z]|[\!-9])(\)\s)+|(\s\()+(?![a-z]|[A-Z]|[\!-9])/g
@@ -38,6 +39,7 @@
       text = text.replace(regexComma, "，")
       text = text.replace(regexQuestionMark, "？")
       text = text.replace(regexExclamationMark, "！")
+      text = text.replace(regexSemicolon, "；")
       text = text.replace(regexLeftPara, "（")
       text = text.replace(regexRightPara, "）")
       text = text.replace(" （", "（")

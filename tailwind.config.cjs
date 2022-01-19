@@ -4,7 +4,9 @@ const config = {
   theme: {
     extend: {
       fontFamily: {
-        'serif': ['Noto Serif', 'Noto Serif CJK SC', 'Noto Serif CJK', 'Source Han Serif SC', 'Source Han Serif', 'source-han-serif-sc', 'Georgia', 'serif'],
+        'serif': ['source-han-serif-sc', 'Georgia', 'serif'],
+        'sans': ['source-han-sans-simplified-c', 'sans-serif'],
+        'mono': ['source-code-pro', 'source-han-sans-simplified-c', 'monospace']
       }
     },
   },
