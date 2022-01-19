@@ -24,7 +24,9 @@
   let postList: Post[] = []
   // TODO: use a standalone config file
   const api = new URL("https://blog.moe.wtf/wp-json/wp/v2/posts")
-  // TODO: implement pagination
+  // TODO: implement route
+  // TODO: implement single article page
+  // https://stackoverflow.com/questions/58287729/how-can-i-export-a-function-from-a-svelte-component-that-changes-a-value-in-the
   let page = 1
   // let PostList = []
   function fetchPosts(api, page) {
