@@ -6,6 +6,7 @@
   import { onMount } from "svelte"
   import { of } from "rxjs"
   import { fromFetch } from "rxjs/fetch"
+  import { Jumper } from 'svelte-loading-spinners'
   import { switchMap, catchError } from "rxjs/operators"
   const wheelHandler = (e: WheelEvent) => {
     if (e.deltaX == 0) {
@@ -19,6 +20,7 @@
       e.preventDefault()
     }
   }
+  let isLoading = true
   let postList: Post[] = []
   // TODO: use a standalone config file
   const api = new URL("https://blog.moe.wtf/wp-json/wp/v2/posts")
@@ -45,17 +47,25 @@
 
   function handleNextPage() {
     page++
+    isLoading = true
     fetchPosts(api, page).subscribe({
       next: (data) => (postList = postList.concat(data)),
-      complete: () => console.log(`done ${page}`),
+      complete: () => {
+        isLoading = false
+        console.log("done")
+      },
     })
   }
 
   onMount(async () => {
+    isLoading = true
     const posts = await fetchPosts(api, page)
     posts.subscribe({
       next: (result) => (postList = postList.concat(result)),
-      complete: () => console.log("done"),
+      complete: () => {
+        isLoading = false
+        console.log("done")
+      },
     })
     document.body.addEventListener("wheel", (e) => wheelHandler(e), {
       passive: false,
@@ -70,12 +80,18 @@
         <Article title={post.title.rendered} content={post.content.rendered} />
       {/each}
 
-      <a
-        on:click|preventDefault={handleNextPage}
-        class="flex bg-transparent text-gray-900 mt-3 px-1 py-3 h-auto w-auto justify-center hover:text-blue-600 font-sans transition-colors"
-        role="button"
-        href="#">Next Page</a
-      >
+      {#if isLoading}
+        <div class="flex bg-transparent px-4 py-3 justify-center">
+          <Jumper color="#2564eb"/>
+        </div>
+      {:else}
+        <a
+          on:click|preventDefault={handleNextPage}
+          class="flex bg-transparent text-gray-900 px-1 py-3 h-auto w-auto justify-center hover:text-blue-600 font-sans transition-colors"
+          role="button"
+          href="#">Next page</a>
+        >
+      {/if}
     </div>
   </div>
 </main>
