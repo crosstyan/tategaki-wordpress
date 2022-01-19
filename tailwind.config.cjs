@@ -4,7 +4,7 @@ const config = {
   theme: {
     extend: {
       fontFamily: {
-        'serif': ['source-han-serif-sc', 'STSong', 'SimSun', 'Georgia', 'serif'],
+        'serif': ['source-serif-pro', 'source-han-serif-sc', 'STSong', 'SimSun', 'Georgia', 'serif'],
         'sans': ['source-han-sans-simplified-c', 'sans-serif'],
         'mono': ['source-code-pro', 'source-han-sans-simplified-c', 'monospace'],
         'kai': ["楷体", "楷体_GB2312", 'source-han-serif-sc', 'STSong', 'SimSun', 'Georgia', 'serif'],

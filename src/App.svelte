@@ -90,7 +90,6 @@
           class="flex bg-transparent text-gray-900 px-1 py-3 h-auto w-auto justify-center hover:text-blue-600 font-sans transition-colors"
           role="button"
           href="#">Next page</a>
-        >
       {/if}
     </div>
   </div>
