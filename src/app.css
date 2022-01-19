@@ -15,7 +15,7 @@
     with upright-font
     I know it's ugly, but I have to find another way to fix it
   */
-  font-family: serif;
+  font-family: 'STSong', 'SimSun', 'Georgia', 'serif';
 }
 /* .latin {
   @apply my-1
