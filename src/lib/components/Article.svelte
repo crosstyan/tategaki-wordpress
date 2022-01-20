@@ -39,32 +39,42 @@
     const paragraphElement = Array.from(element.getElementsByTagName("p")) as HTMLElement[]
     const listElement = Array.from(element.getElementsByTagName("li"))
     const replaceElement = [...paragraphElement, ...listElement]
-    replaceElement.forEach(elem => {
-      let text = elem.innerHTML
-      // use [:ascii:] or [ -~] to match all ascii characters
-      const regexPeriod = /(?<![ -~])(\.)+/g
-      const regexComma = /(?<![ -~])(,\s)+/g
-      const regexSemicolon = /(?<![ -~])(;\s)+/g
-      const regexQuestionMark = /(?<![ -~])(\?)+/g
-      const regexExclamationMark = /(?<![ -~])(\!)+/g
-      // const regexPara= /(?<![a-z]|[A-Z]|[\!-9])(\)\s)+|(\s\()+(?![a-z]|[A-Z]|[\!-9])/g
-      const regexLeftPara = /(\()+(?![ -~])/g
-      const regexRightPara = /(?<![ -~])(\))+/g
+    try {
+      replaceElement.forEach(elem => {
+        let text = elem.innerHTML
+        // use [:ascii:] or [ -~] to match all ascii characters
+        // FUCK YOU SAFARI!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        // https://stackoverflow.com/questions/67987645/safari-evaluates-false-if-statement/70195355
+        // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RegExp
+        // use "new RegExp" instead of literal notation ("/<Your Regex>/") to avoid Safari bug
+        // or the RegExp error won't be captured
+        const regexPeriod = new RegExp("(?<![ -~])(\\.)+", "g")
+        const regexComma = new RegExp("(?<![ -~])(,\\s)+", "g")
+        const regexSemicolon = new RegExp("(?<![ -~])(;\\s)+", "g")
+        const regexQuestionMark = new RegExp("(?<![ -~])(\\?)+", "g")
+        const regexExclamationMark = new RegExp("(?<![ -~])(\\!)+", "g")
+        // const regexPara= /(?<![a-z]|[A-Z]|[\!-9])(\)\s)+|(\s\()+(?![a-z]|[A-Z]|[\!-9])/g
+        const regexLeftPara = new RegExp("(\\()+(?![ -~])", "g")
+        const regexRightPara = new RegExp("(?<![ -~])(\\))+", "g") 
 
-      text = text.replace(regexPeriod, "。")
-      text = text.replace(regexComma, "，")
-      text = text.replace(regexQuestionMark, "？")
-      text = text.replace(regexExclamationMark, "！")
-      text = text.replace(regexSemicolon, "；")
-      text = text.replace(regexLeftPara, "（")
-      text = text.replace(regexRightPara, "）")
-      text = text.replace(" （", "（")
-      text = text.replace("） ", "）")
-      text = text.replace("！ ", "！")
-      text = text.replace("？ ", "？")
-      text = text.replace("。 ", "。")
-      elem.innerHTML = text
-    })
+        text = text.replace(regexPeriod, "。")
+        text = text.replace(regexComma, "，")
+        text = text.replace(regexQuestionMark, "？")
+        text = text.replace(regexExclamationMark, "！")
+        text = text.replace(regexSemicolon, "；")
+        text = text.replace(regexLeftPara, "（")
+        text = text.replace(regexRightPara, "）")
+        text = text.replace(" （", "（")
+        text = text.replace("） ", "）")
+        text = text.replace("！ ", "！")
+        text = text.replace("？ ", "？")
+        text = text.replace("。 ", "。")
+        elem.innerHTML = text
+      })
+    } catch (error) {
+      // puncutation won't be parsed in Safari
+      console.error(error)
+    }
   }
   /// tailwind css
   function addStyle(elem: HTMLElement, tagName:string, style: string) {
