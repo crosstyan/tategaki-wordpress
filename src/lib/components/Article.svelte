@@ -10,8 +10,12 @@
   import "prismjs/plugins/autolinker/prism-autolinker"
   import "prismjs/plugins/autolinker/prism-autolinker.css"
   import "prismjs/plugins/line-numbers/prism-line-numbers.css"
+import { isEmpty } from "rxjs"
   export let title;
   export let content;
+  export let author = ""
+  const defaultDate = new Date(1970, 1, 1)
+  export let date: Date = defaultDate;
   let article:HTMLElement;
   // TODO: Add a loading screen since pasring all of these takes too long
   // https://stackoverflow.com/questions/65198268/what-is-a-svelte-approach-to-showing-a-loader-after-a-time-of-waiting
@@ -165,7 +169,15 @@
 </script>
 
 <article lang="zh-Hant" class="font-serif pr-8 mr-8">
-  <h1 class="text-4xl font-bold ml-16">{title}</h1>
+  <header class="ml-16">
+    <h1 class="text-4xl font-bold">{@html title}</h1>
+    {#if !(author.trim().length === 0)}
+      <h2 class="text-base font-normal text-gray-800">{author}</h2>
+    {/if}
+    {#if !(date === defaultDate)}
+      <h2 class="text-sm font-normal text-gray-800">{date.toLocaleDateString('zh-CN')}</h2>
+    {/if}
+  </header>
   <content bind:this={article}>
     {@html content}
   </content>
