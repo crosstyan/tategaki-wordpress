@@ -173,7 +173,8 @@
 <article lang="zh-Hant" class="font-serif pr-8 mr-8">
   <header class="ml-16">
     {#if !isSingle}
-      <Link to="post/{id}" replace={true}>
+    <!-- use replace={false} when possible to prevent back button not going back to the previous page -->
+      <Link to="post/{id}" replace={false}>
         <h1 class="text-4xl font-bold">
             {@html title}
         </h1>

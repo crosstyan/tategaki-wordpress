@@ -1,21 +1,24 @@
 <script lang="ts">
   import Article from "../components/Article.svelte"
+  import HitoKoto from "../components/HitoKoto.svelte"
   import { onMount } from "svelte"
   import { Router, Link, Route } from "svelte-routing"
   import { of, Observable } from "rxjs"
   import { switchMap, catchError } from "rxjs/operators"
   import { fromFetch } from "rxjs/fetch"
-  import {config, getPostApiUrl} from "../../config"
-  import type {Post} from "../utils/post"
+  import { config, getPostApiUrl } from "../../config"
+  import type { Post } from "../utils/post"
   import { Jumper } from "svelte-loading-spinners"
-  
-  export let id
+  import ErrorPrompt from "../components/ErrorPrompt.svelte"
+
+  export let id:string
   let isLoading = true
   let isError = false
-  let post:Post;
+  let errorMsg = ""
+  let post: Post
   const api = new URL(getPostApiUrl(config))
 
-  function fetchPostOnce(api: URL, id:number): Observable<Post|null> {
+  function fetchPostOnce(api: URL, id: string): Observable<Post | null> {
     api.href = api.href + `/${id}`
     api.search = new URLSearchParams({
       _fields: "id,title,content,date,date_gmt,_links,link",
@@ -25,13 +28,13 @@
     const data = fromFetch(api.toString()).pipe(
       switchMap((res) => {
         // I know I should check it
-        if (res.ok){
+        if (res.ok) {
           return res.json() as Promise<Post>
         } else {
           return of(null)
         }
       }),
-      catchError((err) => {
+      catchError((err: Error) => {
         console.error(err)
         return of(null)
       })
@@ -44,7 +47,7 @@
     const postObservable = await fetchPostOnce(api, id)
     postObservable.subscribe({
       next: (result) => {
-        if (result){
+        if (result) {
           post = result
           isError = false
         } else {
@@ -59,17 +62,14 @@
   })
 </script>
 
-<style>
-</style>
-
 <div id="article-frame" class="flex flex-col divide-x-2 divide-x-reverse ">
-
   {#if isLoading}
     <div class="flex bg-transparent px-4 py-3 justify-center">
       <Jumper color="#2564eb" />
     </div>
   {:else if isError}
-    <p class="text-red-500">Error</p>
+    <!-- TODO: Error interface -->
+    <ErrorPrompt code={404} msg={"找不到所请求的页面"}/>
   {:else}
     <Article
       id={post.id}
@@ -83,3 +83,6 @@
 </div>
 
 <!-- markup (zero or more items) goes here -->
+
+<style>
+</style>

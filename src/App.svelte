@@ -1,6 +1,7 @@
 <script lang="ts">
   import MultiplePosts from "./lib/pages/MultiplePosts.svelte"
   import PostPage from "./lib/pages/PostPage.svelte"
+  import ErrorPrompt from "./lib/components/ErrorPrompt.svelte"
   import { onMount } from "svelte"
   import { Router, Link, Route } from "svelte-routing"
 
@@ -34,8 +35,16 @@
       <Route path="/">
         <MultiplePosts/>
       </Route>
+      <Route path="/page/:page" let:params>
+        <MultiplePosts page={parseInt(params.page)}/>
+      </Route>
       <Route path="/post/:id" let:params>
         <PostPage id={params.id}/>
+      </Route>
+      <Route>
+        <div id="article-frame" class="font-serif pr-8 mr-8">
+          <ErrorPrompt code={400} msg="无效路由"/>
+        </div>
       </Route>
     </div>
   </main>

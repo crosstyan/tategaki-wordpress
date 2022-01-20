@@ -15,7 +15,7 @@
   // TODO: implement route
   // TODO: implement single article page
   // https://stackoverflow.com/questions/58287729/how-can-i-export-a-function-from-a-svelte-component-that-changes-a-value-in-the
-  let page = 1
+  export let page = 1
 
   function fetchPosts(api: URL, page: number) {
     // https://jsonplaceholder.typicode.com/posts
