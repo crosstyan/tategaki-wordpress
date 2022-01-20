@@ -27,23 +27,31 @@
 </script>
 
 <Router {url}>
-  <nav>
-    <div>This is a simple nav</div>
+  <nav
+    class="navbar my-2 md:my-8 md:px-8 md:mt-8 shadow-lg bg-neutral text-neutral-content rounded-box mr-4 font-sans"
+  >
+    <Link to="/">
+      <div class="flex-1 py-2 my-2 ">
+        <span class="text-lg md:text-4xl font-bold font-serif hover:text-neutral-focus opacity-90 transition-all duration-500">
+          Crosstyan のブログ</span
+        >
+      </div>
+    </Link>
   </nav>
   <main>
     <div class="flex flex-col" id="container">
       <Route path="/">
-        <MultiplePosts/>
+        <MultiplePosts />
       </Route>
       <Route path="/page/:page" let:params>
-        <MultiplePosts page={parseInt(params.page)}/>
+        <MultiplePosts page={parseInt(params.page)} />
       </Route>
       <Route path="/post/:id" let:params>
-        <PostPage id={params.id}/>
+        <PostPage id={params.id} />
       </Route>
       <Route>
         <div id="article-frame" class="font-serif pr-8 mr-8">
-          <ErrorPrompt code={400} msg="无效路由"/>
+          <ErrorPrompt code={400} msg="无效路由" />
         </div>
       </Route>
     </div>

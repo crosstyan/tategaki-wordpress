@@ -56,6 +56,9 @@
   }
 
   onMount(async () => {
+    if (page < 1) {
+      page = 1
+    }
     isLoading = true
     const posts = await fetchPosts(api, page)
     posts.subscribe({
