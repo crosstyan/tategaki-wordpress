@@ -175,7 +175,7 @@
     {#if !isSingle}
     <!-- use replace={false} when possible to prevent back button not going back to the previous page -->
       <Link to="post/{id}" replace={false}>
-        <h1 class="text-4xl font-bold">
+        <h1 class="text-4xl font-bold inline-block hover:text-blue-600 transition-colors duration-300">
             {@html title}
         </h1>
       </Link>
