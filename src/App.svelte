@@ -28,7 +28,7 @@
 
 <Router {url}>
   <nav
-    class="navbar my-4 mx-4 md:mr-8 md:my-8 md:px-8 shadow-lg bg-blue-400 text-neutral-content rounded-box font-sans"
+    class="navbar my-12 mx-4 md:mr-8 md:my-8 md:px-8 shadow-lg bg-blue-400 text-neutral-content rounded-box font-sans"
   >
     <Link to="/">
       <div class="flex-1 py-2 my-2 ">
@@ -86,7 +86,7 @@
       height: 98vh;
     }
     #article-frame {
-      padding-top: 3.5em;
+      padding-top: 4em;
       max-height: 76vh;
     }
   }
