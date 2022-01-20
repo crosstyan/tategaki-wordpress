@@ -86,7 +86,8 @@
       height: 98vh;
     }
     #article-frame {
-      max-height: 96vh;
+      padding-top: 3.5em;
+      max-height: 76vh;
     }
   }
   #container {
