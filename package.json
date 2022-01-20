@@ -32,6 +32,7 @@
     "pangu": "^4.0.7",
     "prismjs": "^1.26.0",
     "rxjs": "^7.5.2",
+    "svelte-routing": "^1.6.0",
     "tategaki": "./src/lib/tategaki"
   }
 }

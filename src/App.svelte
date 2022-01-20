@@ -1,13 +1,10 @@
 <script lang="ts">
-  // import Heti from "./lib/heti/js/heti-addon"
-  import Article from "./lib/components/Article.svelte"
-  // import { PostList } from "./lib/utils/dummy"
-  import type { Post } from "./lib/utils/post"
+  import MultiplePosts from "./lib/pages/MultiplePosts.svelte"
+  import PostPage from "./lib/pages/PostPage.svelte"
   import { onMount } from "svelte"
-  import { of } from "rxjs"
-  import { fromFetch } from "rxjs/fetch"
-  import { Jumper } from "svelte-loading-spinners"
-  import { switchMap, catchError } from "rxjs/operators"
+  import { Router, Link, Route } from "svelte-routing"
+
+  export let url = ""
   const wheelHandler = (e: WheelEvent) => {
     if (e.deltaX == 0) {
       // console.log(e.target)
@@ -20,91 +17,29 @@
       e.preventDefault()
     }
   }
-  let isLoading = true
-  let postList: Post[] = []
-  // TODO: use a standalone config file
-  const api = new URL("https://blog.moe.wtf/wp-json/wp/v2/posts")
-  // TODO: implement route
-  // TODO: implement single article page
-  // https://stackoverflow.com/questions/58287729/how-can-i-export-a-function-from-a-svelte-component-that-changes-a-value-in-the
-  let page = 1
-  // let PostList = []
-  function fetchPosts(api: URL, page: number) {
-    // https://jsonplaceholder.typicode.com/posts
-    // https://developer.wordpress.org/rest-api/using-the-rest-api/global-parameters/
-    api.search = new URLSearchParams({
-      page: page.toString(),
-      _fields: "id,title,content,date,date_gmt,_links,link",
-      _embed: "1",
-    }).toString()
-    // console.log(api)
-    const data = fromFetch(api.toString()).pipe(
-      switchMap((res) => {
-        // I know I should check it
-        return res.json() as Promise<Post[]>
-      }),
-      catchError((err) => {
-        console.error(err)
-        return of([] as Post[])
-      })
-    )
-    return data
-  }
-  
-  function handleNextPage() {
-    page++
-    isLoading = true
-    fetchPosts(api, page).subscribe({
-      next: (data) => (postList = postList.concat(data)),
-      complete: () => {
-        isLoading = false
-        console.log("done")
-      },
-    })
-  }
-
 
   onMount(async () => {
-    isLoading = true
-    const posts = await fetchPosts(api, page)
-    posts.subscribe({
-      next: (result) => {
-        // console.log(result)
-        postList = postList.concat(result)
-      },
-      complete: () => {
-        isLoading = false
-        console.log("done")
-      },
-    })
     document.body.addEventListener("wheel", (e) => wheelHandler(e), {
       passive: false,
     })
   })
 </script>
 
-<main>
-  <div class="flex flex-col" id="container">
-    <div id="article-frame" class="flex flex-col divide-x-2 divide-x-reverse ">
-      {#each postList as post}
-        <Article title={post.title.rendered} content={post.content.rendered} author={post._embedded.author[0].name} date={new Date(post.date)}/>
-      {/each}
-
-      {#if isLoading}
-        <div class="flex bg-transparent px-4 py-3 justify-center">
-          <Jumper color="#2564eb" />
-        </div>
-      {:else}
-        <a
-          on:click|preventDefault={handleNextPage}
-          class="flex bg-transparent text-gray-900 px-1 py-3 h-auto w-auto justify-center hover:text-blue-600 font-sans transition-colors"
-          role="button"
-          href="#">Next page</a
-        >
-      {/if}
+<Router {url}>
+  <nav>
+    <div>This is a simple nav</div>
+  </nav>
+  <main>
+    <div class="flex flex-col" id="container">
+      <Route path="/">
+        <MultiplePosts/>
+      </Route>
+      <Route path="/post/:id" let:params>
+        <PostPage id={params.id}/>
+      </Route>
     </div>
-  </div>
-</main>
+  </main>
+</Router>
 
 <style global lang="scss">
   #article-frame {
@@ -114,16 +49,12 @@
   // to solve user can scale the page
   // A bug/feature in Webkit based browsers
   html {
-    // position: absolute;
-    // top: 0;
-    // left: 0;
     max-height: 100vh;
-    min-height: 99vh;
-    overflow-y: hidden;
   }
   body {
     // set vertical-rl to make the initial scroll position
     // the most left
+    max-height: 100vh;
     overflow-y: hidden;
     writing-mode: vertical-rl;
   }

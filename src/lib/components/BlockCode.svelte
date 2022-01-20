@@ -57,6 +57,7 @@
 <!-- I know I should have use slot -->
 <div class="mx-4">
   <div class="button-group flex font-sans">
+    <!-- svelte-ignore a11y-invalid-attribute -->
     <a
       on:click|preventDefault={() => (isClosed = !isClosed)}
       class="{btnClassName}"
@@ -66,12 +67,14 @@
     <!-- TODO: implement a function to open another page to show the code -->
     <!-- it can be modal window or a standalone window -->
     {#if !isClosed}
+      <!-- svelte-ignore a11y-invalid-attribute -->
       <a
         on:click|preventDefault={doNothing}
         class="{btnClassName}"
         role="button"
         href="#">View Source</a
       >
+      <!-- svelte-ignore a11y-invalid-attribute -->
       <a
         on:click|preventDefault={()=>{
           copyTextToClipboard(copyInfo)
@@ -81,6 +84,7 @@
         href="#">{isCopied ? "Copied" : "Copy"} </a
       >
     {/if}
+    <!-- svelte-ignore a11y-invalid-attribute -->
     <a
       on:click|preventDefault={doNothing}
       class="{btnClassName + " font-mono lowercase"} "

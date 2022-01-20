@@ -1,6 +1,7 @@
 <script lang="ts">
   import { Tategaki } from "tategaki"
   import { onMount } from "svelte"
+  import { Router, Link, Route } from "svelte-routing"
   import BlockCode from "./BlockCode.svelte"
   import Gist from "./Gist.svelte"
   import InlineCode from "./InlineCode.svelte"
@@ -10,12 +11,13 @@
   import "prismjs/plugins/autolinker/prism-autolinker"
   import "prismjs/plugins/autolinker/prism-autolinker.css"
   import "prismjs/plugins/line-numbers/prism-line-numbers.css"
-import { isEmpty } from "rxjs"
+  export let id:number;
   export let title;
   export let content;
   export let author = ""
   const defaultDate = new Date(1970, 1, 1)
   export let date: Date = defaultDate;
+  export let isSingle = false;
   let article:HTMLElement;
   // TODO: Add a loading screen since pasring all of these takes too long
   // https://stackoverflow.com/questions/65198268/what-is-a-svelte-approach-to-showing-a-loader-after-a-time-of-waiting
@@ -170,7 +172,17 @@ import { isEmpty } from "rxjs"
 
 <article lang="zh-Hant" class="font-serif pr-8 mr-8">
   <header class="ml-16">
-    <h1 class="text-4xl font-bold">{@html title}</h1>
+    {#if !isSingle}
+      <Link to="post/{id}" replace={true}>
+        <h1 class="text-4xl font-bold">
+            {@html title}
+        </h1>
+      </Link>
+      {:else}
+        <h1 class="text-4xl font-bold">
+            {@html title}
+        </h1>
+    {/if}
     {#if !(author.trim().length === 0)}
       <h2 class="text-base font-normal text-gray-800">{author}</h2>
     {/if}

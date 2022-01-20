@@ -51,6 +51,7 @@
 <div class="mx-4">
   <div class="button-group flex font-sans">
     {#if !isError}
+      <!-- svelte-ignore a11y-invalid-attribute -->
       <a
         on:click|preventDefault={() => (isClosed = !isClosed)}
         class={btnClassName}
@@ -58,6 +59,7 @@
         href="#">{isClosed ? "Show" : "Hide"} Gist</a
       >
     {:else}
+      <!-- svelte-ignore a11y-invalid-attribute -->
       <a
         on:click|preventDefault={doNothing}
         class={btnClassName + " text-red-500 border-red-500"}
