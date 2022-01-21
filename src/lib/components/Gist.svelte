@@ -8,7 +8,7 @@
   let isClosed = false
   let isError = false
   let mediaQuery = window.matchMedia("(min-width: 640px)")
-  let mainCodeBlock: HTMLDivElement;
+  let mainCodeBlock: HTMLDivElement
   window.addEventListener(
     "resize",
     () => (mediaQuery = window.matchMedia("(min-width: 640px)")),
@@ -45,7 +45,8 @@
   })
 
   const doNothing = () => {}
-  const btnClassName = "flex btn bg-transparent text-gray-900 hover:text-gray-100 mb-2 px-1 py-3 h-auto w-auto"
+  const btnClassName =
+    "flex btn bg-transparent text-gray-900 hover:text-gray-100 mb-2 px-1 py-3 h-auto w-auto"
 </script>
 
 <div class="mx-4">
@@ -72,7 +73,7 @@
     <a
       class={btnClassName}
       role="button"
-      href="{`${githubGistsUrl}/${gistId}`}"
+      href={`${githubGistsUrl}/${gistId}`}
       target="_blank">View Gist</a
     >
   </div>

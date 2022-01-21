@@ -1,5 +1,4 @@
 <script lang="ts">
-
   import { onMount } from "svelte"
   import { Router, Link, Route } from "svelte-routing"
   import { of, Observable } from "rxjs"
@@ -23,18 +22,18 @@
   // "length": 19
   // }
   interface HitoKoto {
-    id: number;
-    uuid: string;
-    hitokoto: string;
-    type: string;
-    from: string;
-    from_who: string;
-    creator: string;
-    creator_uid: number;
-    reviewer: number;
-    commit_from: string;
-    created_at: number;
-    length: number;
+    id: number
+    uuid: string
+    hitokoto: string
+    type: string
+    from: string
+    from_who: string
+    creator: string
+    creator_uid: number
+    reviewer: number
+    commit_from: string
+    created_at: number
+    length: number
   }
 
   let isLoading = true
@@ -81,17 +80,14 @@
   })
 </script>
 
-<style lang="postcss">
-  /* your styles go here */
-</style>
-
-
 {#if isLoading}
   <div class="flex bg-transparent px-4 py-3 justify-center">
-    <Jellyfish/>
+    <Jellyfish />
   </div>
 {:else if isError}
-  <p class="text-red-500 font-serif font-bold">Error Loading <ruby>一言<rp>(</rp><rt>ひとこと</rt><rp>)</rp></ruby></p>
+  <p class="text-red-500 font-serif font-bold">
+    Error Loading <ruby>一言<rp>(</rp><rt>ひとこと</rt><rp>)</rp></ruby>
+  </p>
 {:else}
   <div class="flex flex-col">
     <p class="text-xl font-serif pt-24 font-bold">
@@ -102,3 +98,7 @@
     </p>
   </div>
 {/if}
+
+<style lang="postcss">
+  /* your styles go here */
+</style>
