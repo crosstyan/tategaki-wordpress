@@ -1,5 +1,4 @@
 <script lang="ts">
-  import { Jellyfish } from "svelte-loading-spinners"
   import HitoKoto from "./HitoKoto.svelte"
   export let code = -1
   export let msg = "Unknown error"

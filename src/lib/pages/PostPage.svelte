@@ -11,7 +11,7 @@
   import { Jumper } from "svelte-loading-spinners"
   import ErrorPrompt from "../components/ErrorPrompt.svelte"
 
-  export let id:string
+  export let id: string
   let isLoading = true
   let isError = false
   let errorMsg = ""
@@ -31,10 +31,19 @@
         if (res.ok) {
           return res.json() as Promise<Post>
         } else {
-          return of(null)
+          try {
+            res.json().then((data) => {
+              errorMsg = data.message
+            })
+          } catch (e) {
+            errorMsg = e.message
+            throw new Error(e.message as string)
+          }
+          of(null)
         }
       }),
       catchError((err: Error) => {
+        errorMsg = err.message
         console.error(err)
         return of(null)
       })
@@ -69,7 +78,7 @@
     </div>
   {:else if isError}
     <!-- TODO: Error interface -->
-    <ErrorPrompt code={404} msg={"找不到所请求的页面"}/>
+    <ErrorPrompt code={404} msg={errorMsg} />
   {:else}
     <Article
       id={post.id}
@@ -83,6 +92,5 @@
 </div>
 
 <!-- markup (zero or more items) goes here -->
-
 <style>
 </style>
