@@ -14,10 +14,7 @@
   const neutralColor = '#0ea5e9'
   let isLoading = true
   let postList: Post[] = []
-  // TODO: use a standalone config file
   const api = new URL(getPostApiUrl(config))
-  // TODO: implement route
-  // TODO: implement single article page
   // https://stackoverflow.com/questions/58287729/how-can-i-export-a-function-from-a-svelte-component-that-changes-a-value-in-the
   export let page = 1
   export let getNextPageUrl = (page: number):string => `/page/${page}`
@@ -109,7 +106,7 @@
     <!-- svelte-ignore a11y-invalid-attribute -->
     <a
       on:click|preventDefault={handleNextPage}
-      class="flex bg-transparent text-gray-900 px-1 py-3 h-auto w-auto justify-center hover:text-accent-focus font-sans transition-colors"
+      class="flex bg-transparent text-neutral-content px-1 py-3 h-auto w-auto justify-center hover:text-accent-focus font-sans transition-colors"
       role="button"
       href="#">Next page</a
     >

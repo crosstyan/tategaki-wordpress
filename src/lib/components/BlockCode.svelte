@@ -41,7 +41,6 @@
   )
   // change the value of isClosed automatically when the mediaQuery changes
   $: isClosed = mediaQuery.matches ? false : true
-  // TODO I can't fix the bug that IOS user can't scroll
   // the pre or other overflowed element
   // So I decide to give them another option
   // to open another page and display a alert message
@@ -95,7 +94,7 @@
   // TODO: why I don't let the button become a standalone component?
   // TODO: share style with inlineCode.svelte
   const btnClassName =
-    "flex btn bg-transparent text-gray-900 hover:text-gray-100 mb-2 px-1 py-3 h-auto w-auto"
+    "flex btn bg-transparent text-neutral-content hover:text-accent-focus border-neutral-content hover:border-accent-focus mb-2 px-1 py-3 h-auto w-auto"
 </script>
 
 <!-- I know I should have use slot -->

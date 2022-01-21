@@ -94,7 +94,7 @@
       {hitokoto.hitokoto}
     </p>
     <p class="text-sm font-serif text-right font-bold">
-      <span class="text-gray-700">──{hitokoto.from}</span>
+      <span class="text-neutral-content">──{hitokoto.from}</span>
     </p>
   </div>
 {/if}

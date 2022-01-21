@@ -189,7 +189,7 @@
 </script>
 
 <article lang="zh-Hant" class="font-serif pr-8 mr-8">
-  <header class="ml-16">
+  <header class="ml-16 text-neutral-content">
     {#if !isSingle}
       <!-- use replace={false} when possible to prevent back button not going back to the previous page -->
       <Link to="post/{id}" replace={false}>
@@ -205,10 +205,10 @@
       </h1>
     {/if}
     {#if !(author.trim().length === 0)}
-      <h2 class="text-base font-normal text-gray-800">{author}</h2>
+      <h2 class="text-base font-normal">{author}</h2>
     {/if}
     {#if !(date === defaultDate)}
-      <h2 class="text-sm font-normal text-gray-800">
+      <h2 class="text-sm font-normal">
         {date.toLocaleDateString("zh-CN")}
       </h2>
     {/if}

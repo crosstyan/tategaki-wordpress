@@ -33,11 +33,11 @@
 </svelte:head>
 <Router {url}>
   <nav
-    class="navbar my-12 mx-4 md:mr-8 md:my-8 md:px-8 shadow-lg bg-neutral text-neutral-content rounded-box font-sans"
+    class="navbar my-12 mx-4 md:mr-8 md:my-8 md:px-8 shadow-lg bg-primary text-primary-content rounded-box font-sans"
   >
     <Link to="/">
       <div class="flex-1 py-2 my-2 ">
-        <span class="text-lg md:text-4xl font-bold font-serif hover:text-neutral-focus opacity-90 transition-all duration-500">
+        <span class="text-lg md:text-4xl font-bold font-serif hover:text-primary-focus opacity-90 transition-all duration-500">
           Crosstyan のブログ</span
         >
       </div>
