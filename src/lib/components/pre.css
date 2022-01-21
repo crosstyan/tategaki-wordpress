@@ -1,9 +1,9 @@
 /* the styles for preformatted */
 pre {
   /* height: 95vh; */
-  height: 75vh;
+  height: 72vh;
+  max-height: 72vh;
   width: 75vw;
-  max-height: 75vh;
   max-width: 480px;
   writing-mode: horizontal-tb;
   overflow-x: auto;
@@ -13,11 +13,11 @@ pre {
 }
 
 .gist {
-  height: 80vh;
+  height: 72vh;
+  max-height: 72vh;
   width: 75vw;
-  max-height: 80vh;
-  writing-mode: horizontal-tb;
   max-width: 480px;
+  writing-mode: horizontal-tb;
   overflow-x: auto;
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;

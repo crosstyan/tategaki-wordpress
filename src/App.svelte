@@ -4,6 +4,7 @@
   import ErrorPrompt from "./lib/components/ErrorPrompt.svelte"
   import { onMount } from "svelte"
   import { Router, Link, Route } from "svelte-routing"
+  import { iOS } from "./lib/utils/utils"
 
   export let url = ""
   const wheelHandler = (e: WheelEvent) => {
@@ -38,6 +39,12 @@
       </div>
     </Link>
   </nav>
+  {#if iOS()}
+    <div class="my-16 mx-4 md:mr-8 md:my-8">
+      <p class="font-serif">致 iOS 用户：由于浏览器的限制，Safari 浏览器无法渲染本网页，若遇到代码或者表格无法滚动或标点渲染不正确，请不要惊慌，这是已知问题。</p>
+      <p class="font-serif text-sm">若欲查看源代码请点击 View Source 按钮，但目前未实装。</p>
+    </div>
+  {/if}
   <main>
     <div class="flex flex-col" id="container">
       <Route path="/">
@@ -49,8 +56,11 @@
       <Route path="/post/:id" let:params>
         <PostPage id={params.id} />
       </Route>
+      <Route path="/:year/:month/:id" let:params>
+        <PostPage id={params.id} />
+      </Route>
       <Route>
-        <div id="article-frame" class="font-serif pr-8 mr-8">
+        <div id="article-frame" class="font-serif flex flex-col divide-x-2 divide-x-reverse ">
           <ErrorPrompt code={400} msg="无效路由" />
         </div>
       </Route>
@@ -79,6 +89,12 @@
     padding: 4rem;
     height: 98vh;
     vertical-align: middle;
+  }
+  table {
+    writing-mode: horizontal-tb;
+    display: inline-block;
+    overflow: auto;
+    max-height: 70vh;
   }
   @media screen and (max-width: 640px) {
     main {

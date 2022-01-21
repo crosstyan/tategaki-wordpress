@@ -28,11 +28,17 @@
 </span>
 
 {#if isHovered}
-	<div style="top: {y}px; left: {x}px; writing-mode: horizontal-tb;" class="tooltip font-mono">{title}</div>
+	<!-- svelte-ignore a11y-mouse-events-have-key-events -->
+	<!-- mobile device/touch device -->
+	<div on:mouseover={mouseLeave} style="top: {y}px; left: {x}px; writing-mode: horizontal-tb;" class="tooltip font-mono">{title}</div>
 {/if}
 
 <style>
 	.tooltip {
+		text-align: left;
+		text-justify: inter-word;
+		hyphens: none;
+		max-width: 95vw;
     display: inline-block;
 		border: 1px solid #ddd;
 		box-shadow: 1px 1px 1px #ddd;

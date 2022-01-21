@@ -51,12 +51,12 @@
   const doNothing = () => {}
   // TODO: why I don't let the button become a standalone component?
   // TODO: share style with inlineCode.svelte
-  const btnClassName = "flex btn bg-transparent text-gray-900 hover:text-gray-100 mt-3 px-1 py-3 h-auto w-auto"
+  const btnClassName = "flex btn bg-transparent text-gray-900 hover:text-gray-100 mb-2 px-1 py-3 h-auto w-auto"
 </script>
 
 <!-- I know I should have use slot -->
 <div class="mx-4">
-  <div class="button-group flex font-sans">
+  <div class="button-group flex font-sans mx-1">
     <!-- svelte-ignore a11y-invalid-attribute -->
     <a
       on:click|preventDefault={() => (isClosed = !isClosed)}

@@ -19,6 +19,7 @@
   export let date: Date = defaultDate;
   export let isSingle = false;
   let article:HTMLElement;
+
   // TODO: Add a loading screen since pasring all of these takes too long
   // https://stackoverflow.com/questions/65198268/what-is-a-svelte-approach-to-showing-a-loader-after-a-time-of-waiting
   // TODO: instead of putting the whole thing in the DOM,
@@ -44,6 +45,7 @@
         let text = elem.innerHTML
         // use [:ascii:] or [ -~] to match all ascii characters
         // FUCK YOU SAFARI!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        // https://caniuse.com/js-regexp-lookbehind
         // https://stackoverflow.com/questions/67987645/safari-evaluates-false-if-statement/70195355
         // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RegExp
         // use "new RegExp" instead of literal notation ("/<Your Regex>/") to avoid Safari bug
@@ -86,7 +88,7 @@
     // TODO: table of content
     // TODO: build a interface to handle all the style
     // TODO: support changing themes and color
-    addStyle(article, "blockquote", "border-t-4 border-black p-4 ml-4 font-serif text-sm leading-relaxed")
+    addStyle(article, "blockquote", "border-t-4 border-red-300 p-4 ml-4 font-serif text-sm leading-relaxed")
     addStyle(article, "p", "ml-4")
     addStyle(article, "table", "table-zebra")
     addStyle(article, "a", "underline decoration-blue-500 decoration-2 hover:text-blue-500 transition-colors duration-200")

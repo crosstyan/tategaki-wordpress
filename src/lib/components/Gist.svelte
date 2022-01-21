@@ -49,7 +49,7 @@
 </script>
 
 <div class="mx-4">
-  <div class="button-group flex font-sans">
+  <div class="button-group flex font-sans mx-1">
     {#if !isError}
       <!-- svelte-ignore a11y-invalid-attribute -->
       <a
