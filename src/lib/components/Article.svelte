@@ -11,14 +11,14 @@
   import "prismjs/plugins/autolinker/prism-autolinker"
   import "prismjs/plugins/autolinker/prism-autolinker.css"
   import "prismjs/plugins/line-numbers/prism-line-numbers.css"
-  export let id:number;
-  export let title;
-  export let content;
+  export let id: number
+  export let title
+  export let content
   export let author = ""
   const defaultDate = new Date(1970, 1, 1)
-  export let date: Date = defaultDate;
-  export let isSingle = false;
-  let article:HTMLElement;
+  export let date: Date = defaultDate
+  export let isSingle = false
+  let article: HTMLElement
 
   // TODO: Add a loading screen since pasring all of these takes too long
   // https://stackoverflow.com/questions/65198268/what-is-a-svelte-approach-to-showing-a-loader-after-a-time-of-waiting
@@ -34,14 +34,16 @@
   // https://tate-young.github.io/2020/08/26/css-font-face.html
   // We should traverse the DOM and put them in a array then render them
   // I'm not sure which one is better
-  const dataSelectorName = 'data-github-gist'
+  const dataSelectorName = "data-github-gist"
   // Not a pure function because it mutates the DOM
-  function parsePuctuation(element:HTMLElement) {
-    const paragraphElement = Array.from(element.getElementsByTagName("p")) as HTMLElement[]
+  function parsePuctuation(element: HTMLElement) {
+    const paragraphElement = Array.from(
+      element.getElementsByTagName("p")
+    ) as HTMLElement[]
     const listElement = Array.from(element.getElementsByTagName("li"))
     const replaceElement = [...paragraphElement, ...listElement]
     try {
-      replaceElement.forEach(elem => {
+      replaceElement.forEach((elem) => {
         let text = elem.innerHTML
         // use [:ascii:] or [ -~] to match all ascii characters
         // FUCK YOU SAFARI!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
@@ -56,7 +58,7 @@
         const regexQuestionMark = new RegExp("(?<![ -~])(\\?)+", "g")
         const regexExclamationMark = new RegExp("(?<![ -~])(\\!)+", "g")
         const regexLeftParentheses = new RegExp("(\\()+(?![ -~])", "g")
-        const regexRightParentheses = new RegExp("(?<![ -~])(\\))+", "g") 
+        const regexRightParentheses = new RegExp("(?<![ -~])(\\))+", "g")
 
         text = text.replace(regexPeriod, "。")
         text = text.replace(regexComma, "，")
@@ -78,9 +80,9 @@
     }
   }
   /// tailwind css
-  function addStyle(elem: HTMLElement, tagName:string, style: string) {
+  function addStyle(elem: HTMLElement, tagName: string, style: string) {
     const styles = style.split(" ")
-    Array.from(elem.getElementsByTagName(tagName)).forEach(elem => {
+    Array.from(elem.getElementsByTagName(tagName)).forEach((elem) => {
       elem.classList.add(...styles)
     })
   }
@@ -88,10 +90,18 @@
     // TODO: table of content
     // TODO: build a interface to handle all the style
     // TODO: support changing themes and color
-    addStyle(article, "blockquote", "border-t-4 border-red-300 p-4 ml-4 font-serif text-sm leading-relaxed")
+    addStyle(
+      article,
+      "blockquote",
+      "border-t-4 border-red-300 p-4 ml-4 font-serif text-sm leading-relaxed"
+    )
     addStyle(article, "p", "ml-4")
     addStyle(article, "table", "table-zebra")
-    addStyle(article, "a", "underline decoration-blue-500 decoration-2 hover:text-blue-500 transition-colors duration-200")
+    addStyle(
+      article,
+      "a",
+      "underline decoration-blue-500 decoration-2 hover:text-blue-500 transition-colors duration-200"
+    )
     addStyle(article, "ul", "list-disc pt-7 ml-4")
     addStyle(article, "ol", "list-decimal pt-7 ml-4")
     addStyle(article, "h1", "text-2xl ml-2 mr-8 font-bold")
@@ -118,7 +128,7 @@
     // https://svelte.dev/repl/28996f04783542ceafed7cc6a85128b9?version=3.23.0
     // Wrap all preformatted code in BlockCode component
     const inlineCode = article.getElementsByTagName("code")
-    Array.from(inlineCode).forEach(code => {
+    Array.from(inlineCode).forEach((code) => {
       const parent = code.parentElement
       if (parent.tagName !== "PRE") {
         const dummy = document.createElement("span")
@@ -136,7 +146,7 @@
     // TODO: use slot instead of passing HTMLElement as props
     // See the issues here
     // https://github.com/sveltejs/svelte/issues/2588
-    Array.from( preformatteds ).forEach((pre)=>{
+    Array.from(preformatteds).forEach((pre) => {
       const parent = pre.parentElement
       const newBlock = document.createElement("div")
       newBlock.classList.add("dummy-pre-code")
@@ -148,14 +158,14 @@
         anchor: null, // the component renders in the target directly
         props: {
           code: pre,
-        }
+        },
       })
       pre.remove()
     })
     Prism.highlightAllUnder(article)
     // Find all github gist
     const gists = article.getElementsByTagName("script")
-    Array.from(gists).forEach((script)=>{
+    Array.from(gists).forEach((script) => {
       const src = script.getAttribute("src")
       const gistId = src.split("gist.github.com/")[1].split(".js")[0]
       const parent = script.parentElement
@@ -167,7 +177,7 @@
     })
     // TODO: support configure the url of gist
     // It's strange that svelte won't load the script in @html macro
-    const gistsLoadingElements = article.querySelectorAll('[data-github-gist]')
+    const gistsLoadingElements = article.querySelectorAll("[data-github-gist]")
     Array.from(gistsLoadingElements).forEach((gistLoadingElement) => {
       const gistId = gistLoadingElement.getAttribute(dataSelectorName)
       const gist = new Gist({
@@ -175,7 +185,7 @@
         anchor: null,
         props: {
           gistId: gistId,
-        }
+        },
       })
     })
   })
@@ -184,22 +194,26 @@
 <article lang="zh-Hant" class="font-serif pr-8 mr-8">
   <header class="ml-16">
     {#if !isSingle}
-    <!-- use replace={false} when possible to prevent back button not going back to the previous page -->
+      <!-- use replace={false} when possible to prevent back button not going back to the previous page -->
       <Link to="post/{id}" replace={false}>
-        <h1 class="text-4xl font-bold inline-block hover:text-blue-600 transition-colors duration-300">
-            {@html title}
+        <h1
+          class="text-4xl ml-2 font-bold inline-block hover:text-blue-600 transition-colors duration-300 decoration-red-300 underline decoration-4 hover:decoration-blue-600"
+        >
+          {@html title}
         </h1>
       </Link>
-      {:else}
-        <h1 class="text-4xl font-bold">
-            {@html title}
-        </h1>
+    {:else}
+      <h1 class="text-4xl font-bold">
+        {@html title}
+      </h1>
     {/if}
     {#if !(author.trim().length === 0)}
       <h2 class="text-base font-normal text-gray-800">{author}</h2>
     {/if}
     {#if !(date === defaultDate)}
-      <h2 class="text-sm font-normal text-gray-800">{date.toLocaleDateString('zh-CN')}</h2>
+      <h2 class="text-sm font-normal text-gray-800">
+        {date.toLocaleDateString("zh-CN")}
+      </h2>
     {/if}
   </header>
   <content bind:this={article}>
