@@ -85,7 +85,7 @@
     <Jellyfish />
   </div>
 {:else if isError}
-  <p class="text-red-500 font-serif font-bold">
+  <p class="text-error font-serif font-bold">
     Error Loading <ruby>一言<rp>(</rp><rt>ひとこと</rt><rp>)</rp></ruby>
   </p>
 {:else}

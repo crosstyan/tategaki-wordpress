@@ -8,6 +8,10 @@
   import { switchMap, catchError } from "rxjs/operators"
   import { Router, Link, Route } from "svelte-routing"
   import { config, getPostApiUrl } from "../../config"
+
+  // FIXME: change this each time the theme is changed
+  // blue-500: '#0ea5e9'
+  const neutralColor = '#0ea5e9'
   let isLoading = true
   let postList: Post[] = []
   // TODO: use a standalone config file
@@ -99,13 +103,13 @@
 
   {#if isLoading}
     <div class="flex bg-transparent px-4 py-3 justify-center">
-      <Jumper color="#2564eb" />
+      <Jumper color="{neutralColor}" />
     </div>
   {:else}
     <!-- svelte-ignore a11y-invalid-attribute -->
     <a
       on:click|preventDefault={handleNextPage}
-      class="flex bg-transparent text-gray-900 px-1 py-3 h-auto w-auto justify-center hover:text-blue-600 font-sans transition-colors"
+      class="flex bg-transparent text-gray-900 px-1 py-3 h-auto w-auto justify-center hover:text-accent-focus font-sans transition-colors"
       role="button"
       href="#">Next page</a
     >

@@ -63,12 +63,12 @@
       <!-- svelte-ignore a11y-invalid-attribute -->
       <a
         on:click|preventDefault={doNothing}
-        class={btnClassName + " text-red-500 border-red-500"}
+        class={btnClassName + " text-error border-error"}
         role="button"
         href="#">Loading Error</a
       >
     {/if}
-    <!-- TODO: implement a function to open another page to show the code -->
+    <!-- TODO: share component with Gist.svelte -->
     <!-- it can be modal window or a standalone window -->
     <a
       class={btnClassName}
