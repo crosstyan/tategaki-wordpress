@@ -106,7 +106,7 @@
     <!-- svelte-ignore a11y-invalid-attribute -->
     <a
       on:click|preventDefault={handleNextPage}
-      class="flex bg-transparent text-base-content px-1 py-3 h-auto w-auto justify-center hover:text-accent-focus font-sans transition-colors"
+      class="flex bg-transparent text-base-content px-4 mr-2 py-3 h-auto w-auto hover:text-accent font-sans transition-colors"
       role="button"
       href="#">Next page</a
     >

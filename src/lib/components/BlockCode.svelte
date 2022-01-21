@@ -47,7 +47,7 @@
   // So I decide to give them another option
   // to open another page and display a alert message
   onMount(() => {
-    addStyle(codeContainer, "pre", "border-2 rounded-md mr-2 bg-base-100")
+    addStyle(codeContainer, "pre", "border-2 border-base-200 shadow-sm shadow-base-content rounded-md mr-2 bg-base-300")
     // console.log("Plugin", Prism.plugins.lineNumbers)
     // get the language of the code
     try {
@@ -97,7 +97,7 @@
   // TODO: why I don't let the button become a standalone component?
   // TODO: share style with inlineCode.svelte
   const btnClassName =
-    "flex btn bg-transparent text-base-content hover:text-accent-focus border-base-content hover:border-accent-focus mb-2 px-1 py-3 h-auto w-auto"
+    "flex btn bg-transparent hover:bg-transparent text-base-content hover:text-accent-focus border-base-content hover:border-accent-focus mb-2 px-1 py-3 h-auto w-auto"
 </script>
 
 <!-- I know I should have use slot -->

@@ -7,7 +7,8 @@
   import { config } from "./config"
   import { iOS } from "./lib/utils/utils"
   import { themeChange } from 'theme-change'
-
+  // NOTE: about theme color
+  // https://github.com/saadeghi/daisyui/blob/master/src/colors/themes.js
   export let url = ""
   const wheelHandler = (e: WheelEvent) => {
     if (e.deltaX == 0) {

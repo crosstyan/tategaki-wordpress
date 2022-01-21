@@ -188,7 +188,7 @@
       <!-- use replace={false} when possible to prevent back button not going back to the previous page -->
       <Link to="post/{id}" replace={false}>
         <h1
-          class="text-4xl ml-2 font-bold inline-block hover:text-accent-focus transition-colors duration-300 decoration-primary underline decoration-4 hover:decoration-accent-focus"
+          class="text-4xl ml-2 font-bold inline-block hover:text-primary transition-colors duration-300 decoration-primary underline decoration-4"
         >
           {@html title}
         </h1>
