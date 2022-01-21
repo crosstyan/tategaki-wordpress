@@ -6,6 +6,7 @@
   import { Router, Link, Route } from "svelte-routing"
   import { config } from "./config"
   import { iOS } from "./lib/utils/utils"
+  import { themeChange } from 'theme-change'
 
   export let url = ""
   const wheelHandler = (e: WheelEvent) => {
@@ -22,6 +23,7 @@
   }
 
   onMount(async () => {
+    themeChange(false)
     document.body.addEventListener("wheel", (e) => wheelHandler(e), {
       passive: false,
     })
@@ -33,7 +35,7 @@
 </svelte:head>
 <Router {url}>
   <nav
-    class="navbar my-12 mx-4 md:mr-8 md:my-8 md:px-8 shadow-lg bg-primary text-primary-content rounded-box font-sans"
+    class="navbar my-12 mr-8 md:mr-8 md:my-8 md:px-8 shadow-lg bg-primary text-primary-content rounded-box font-sans justify-between"
   >
     <Link to="/">
       <div class="flex-1 py-2 my-2 ">
@@ -42,6 +44,20 @@
         >
       </div>
     </Link>
+    <div class="dropdown dropdown-top dropdown-left" style="writing-mode: horizontal-tb;">
+      <div class="flex-none">
+        <button class="btn btn-square btn-ghost">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="inline-block w-6 h-6 stroke-current">      
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h.01M12 12h.01M19 12h.01M6 12a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0z"></path>                    
+          </svg>
+        </button>
+      </div>
+      <ul tabindex="0" class="p-2 shadow menu dropdown-content bg-secondary text-secondary-content rounded-box w-52">
+        <li>
+          <a data-toggle-theme="dark,light">Toggle Dark mode</a>
+        </li> 
+      </ul>
+    </div>
   </nav>
   {#if iOS()}
     <div class="my-16 mx-4 md:mr-8 md:my-8">

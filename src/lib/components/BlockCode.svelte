@@ -8,6 +8,7 @@
   // the o../utils/prism-autoloader
   // https://github.com/PrismJS/prism/blob/master/plugins/autoloader/prism-autoloader.js
   import "../utils/prism-autoloader"
+  import { addStyle } from "../utils/utils"
   import { Pulse } from "svelte-loading-spinners"
 
   let isCopied = false
@@ -30,6 +31,7 @@
   //   </code>
   // </pre>
   export let code: HTMLElement
+  let codeContainer: HTMLElement
   let isRequesting = false
   let language = "language-none"
   let isClosed = false
@@ -45,6 +47,7 @@
   // So I decide to give them another option
   // to open another page and display a alert message
   onMount(() => {
+    addStyle(codeContainer, "pre", "border-2 rounded-md mr-2 bg-base-100")
     // console.log("Plugin", Prism.plugins.lineNumbers)
     // get the language of the code
     try {
@@ -94,7 +97,7 @@
   // TODO: why I don't let the button become a standalone component?
   // TODO: share style with inlineCode.svelte
   const btnClassName =
-    "flex btn bg-transparent text-neutral-content hover:text-accent-focus border-neutral-content hover:border-accent-focus mb-2 px-1 py-3 h-auto w-auto"
+    "flex btn bg-transparent text-base-content hover:text-accent-focus border-base-content hover:border-accent-focus mb-2 px-1 py-3 h-auto w-auto"
 </script>
 
 <!-- I know I should have use slot -->
@@ -145,9 +148,10 @@
     >
   </div>
   <div
-    class="code-block transition-all {isClosed
+    class="transition-all {isClosed
       ? 'invisible w-0 opacity-0'
       : 'visible opacity-100'}"
+    bind:this={codeContainer}
   >
     {@html code.outerHTML}
   </div>

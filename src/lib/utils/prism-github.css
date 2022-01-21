@@ -6,8 +6,6 @@ https://github.com/crosstyan
 */
 
 code[class*="language-"], pre[class*="language-"] {
-  color: #333;
-  background: none;
   font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace;
   text-align: left;
   white-space: pre;
@@ -29,10 +27,7 @@ code[class*="language-"], pre[class*="language-"] {
 
 pre[class*="language-"] {
   padding: .8em;
-  overflow: auto;
-  border: 1px solid #ddd;
   border-radius: 3px;
-  background: #fff;
 }
 
 /* Inline code */
@@ -45,15 +40,15 @@ pre[class*="language-"] {
 }
 
 .token.comment, .token.blockquote {
-  color: #6a737d;
+  color: #799770;
 }
 
 .token.cdata {
-  color: #183691;
+  color: #475991;
 }
 
-.token.doctype, .token.punctuation, .token.variable, .token.macro.property {
-  color: #333;
+.token.doctype, .token.variable, .token.macro.property {
+  color: #519f2f;
 }
 
 .token.important, .token.keyword, .token.rule, .token.builtin {
@@ -61,11 +56,11 @@ pre[class*="language-"] {
 }
 
 .token.string, .token.url, .token.regex, .token.attr-value {
-  color: #183691;
+  color: #475991;
 }
 
 .token.operator, .token.property, .token.number, .token.boolean, .token.entity, .token.atrule, .token.constant, .token.symbol, .token.command, .token.code {
-  color: #005cc5;
+  color: #4f75a1;
 }
 
 .token.tag, .token.selector, .token.prolog {
@@ -73,7 +68,7 @@ pre[class*="language-"] {
 }
 
 .token.function, .token.namespace, .token.pseudo-element, .token.class, .token.class-name, .token.pseudo-class, .token.id, .token.url-reference .token.variable, .token.attr-name {
-  color: #6f42c1;
+  color: #8363bf;
 }
 
 .token.entity {
@@ -110,17 +105,17 @@ pre[class*="language-"] {
 /* JSON */
 
 .language-json .token.property {
-  color: #183691;
+  color: #ad634e;
 }
 
 .language-markup .token.tag .token.punctuation {
-  color: #333;
+  color: #519f2f;
 }
 
 /* CSS */
 
 code.language-css, .language-css .token.function {
-  color: #005cc5;
+  color: #4f75a1;
 }
 
 /* YAML */
@@ -130,13 +125,13 @@ code.language-css, .language-css .token.function {
 }
 
 code.language-yaml {
-  color: #183691;
+  color: #475991;
 }
 
 /* Ruby */
 
 .language-ruby .token.function {
-  color: #333;
+  color: #519f2f;
 }
 
 /* Markdown */
@@ -152,15 +147,15 @@ code.language-yaml {
 }
 
 .language-makefile .token.variable {
-  color: #183691;
+  color: #475991;
 }
 
 .language-makefile .token.builtin {
-  color: #005cc5;
+  color: #4f75a1;
 }
 
 /* Bash */
 
 .language-bash .token.keyword {
-  color: #005cc5;
+  color: #4f75a1;
 }

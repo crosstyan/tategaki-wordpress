@@ -33,6 +33,7 @@
     "prismjs": "^1.26.0",
     "rxjs": "^7.5.2",
     "svelte-routing": "^1.6.0",
-    "tategaki": "./src/lib/tategaki"
+    "tategaki": "./src/lib/tategaki",
+    "theme-change": "^2.0.2"
   }
 }

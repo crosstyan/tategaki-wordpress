@@ -7,6 +7,7 @@
   import InlineCode from "./InlineCode.svelte"
   import pangu from "pangu/src/browser/pangu"
   import Prism from "prismjs"
+  import { addStyle } from "../utils/utils"
   import "prismjs/plugins/line-numbers/prism-line-numbers"
   import "prismjs/plugins/autolinker/prism-autolinker"
   import "prismjs/plugins/autolinker/prism-autolinker.css"
@@ -77,13 +78,6 @@
       // puncutation won't be parsed in Safari
       console.error(error)
     }
-  }
-  /// tailwind css
-  function addStyle(elem: HTMLElement, tagName: string, style: string) {
-    const styles = style.split(" ")
-    Array.from(elem.getElementsByTagName(tagName)).forEach((elem) => {
-      elem.classList.add(...styles)
-    })
   }
   onMount(async () => {
     // TODO: table of content
@@ -189,7 +183,7 @@
 </script>
 
 <article lang="zh-Hant" class="font-serif pr-8 mr-8">
-  <header class="ml-16 text-neutral-content">
+  <header class="ml-16 text-base-content">
     {#if !isSingle}
       <!-- use replace={false} when possible to prevent back button not going back to the previous page -->
       <Link to="post/{id}" replace={false}>
