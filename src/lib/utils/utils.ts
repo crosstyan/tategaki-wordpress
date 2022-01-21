@@ -11,3 +11,11 @@ export function iOS():boolean {
   // iPad on iOS 13 detection
   || (navigator.userAgent.includes("Mac") && "ontouchend" in document)
 }
+
+/// tailwind css
+export function addStyle(elem: HTMLElement, tagName: string, style: string) {
+  const styles = style.split(" ")
+  Array.from(elem.getElementsByTagName(tagName)).forEach((elem) => {
+    elem.classList.add(...styles)
+  })
+}

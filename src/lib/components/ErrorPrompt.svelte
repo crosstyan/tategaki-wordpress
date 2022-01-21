@@ -1,17 +1,16 @@
 <script lang="ts">
-  import { Jellyfish } from "svelte-loading-spinners"
   import HitoKoto from "./HitoKoto.svelte"
   export let code = -1
   export let msg = "Unknown error"
 </script>
 
-<style lang="postcss">
-</style>
-
 <div class="ml-16 px-4">
-  <h1 class="text-red-800 font-serif font-bold text-3xl ml-2">{code}</h1>
-  <p class="text-grey-800 font-bold font-serif">{msg}</p>
+  <h1 class="text-error font-serif font-bold text-3xl ml-2">{code}</h1>
+  <p class="font-bold font-serif">{msg}</p>
 </div>
 <div class="px-16">
-  <HitoKoto/>
+  <HitoKoto />
 </div>
+
+<style lang="postcss">
+</style>

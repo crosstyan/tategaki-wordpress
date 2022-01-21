@@ -8,7 +8,7 @@
   let isClosed = false
   let isError = false
   let mediaQuery = window.matchMedia("(min-width: 640px)")
-  let mainCodeBlock: HTMLDivElement;
+  let mainCodeBlock: HTMLDivElement
   window.addEventListener(
     "resize",
     () => (mediaQuery = window.matchMedia("(min-width: 640px)")),
@@ -45,7 +45,8 @@
   })
 
   const doNothing = () => {}
-  const btnClassName = "flex btn bg-transparent text-gray-900 hover:text-gray-100 mb-2 px-1 py-3 h-auto w-auto"
+  const btnClassName =
+    "flex btn bg-transparent hover:bg-transparent text-base-content hover:text-accent-focus border-base-content hover:border-accent-focus mb-2 px-1 py-3 h-auto w-auto"
 </script>
 
 <div class="mx-4">
@@ -62,17 +63,17 @@
       <!-- svelte-ignore a11y-invalid-attribute -->
       <a
         on:click|preventDefault={doNothing}
-        class={btnClassName + " text-red-500 border-red-500"}
+        class={btnClassName + " text-error border-error"}
         role="button"
         href="#">Loading Error</a
       >
     {/if}
-    <!-- TODO: implement a function to open another page to show the code -->
+    <!-- TODO: share component with Gist.svelte -->
     <!-- it can be modal window or a standalone window -->
     <a
       class={btnClassName}
       role="button"
-      href="{`${githubGistsUrl}/${gistId}`}"
+      href={`${githubGistsUrl}/${gistId}`}
       target="_blank">View Gist</a
     >
   </div>

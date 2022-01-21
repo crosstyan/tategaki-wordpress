@@ -7,6 +7,7 @@
   import InlineCode from "./InlineCode.svelte"
   import pangu from "pangu/src/browser/pangu"
   import Prism from "prismjs"
+  import { addStyle } from "../utils/utils"
   import "prismjs/plugins/line-numbers/prism-line-numbers"
   import "prismjs/plugins/autolinker/prism-autolinker"
   import "prismjs/plugins/autolinker/prism-autolinker.css"
@@ -20,7 +21,6 @@
   export let isSingle = false
   let article: HTMLElement
 
-  // TODO: Add a loading screen since pasring all of these takes too long
   // https://stackoverflow.com/questions/65198268/what-is-a-svelte-approach-to-showing-a-loader-after-a-time-of-waiting
   // TODO: instead of putting the whole thing in the DOM,
   // TODO: parse elements in nodejs and cache it to improve performance
@@ -79,28 +79,20 @@
       console.error(error)
     }
   }
-  /// tailwind css
-  function addStyle(elem: HTMLElement, tagName: string, style: string) {
-    const styles = style.split(" ")
-    Array.from(elem.getElementsByTagName(tagName)).forEach((elem) => {
-      elem.classList.add(...styles)
-    })
-  }
   onMount(async () => {
     // TODO: table of content
     // TODO: build a interface to handle all the style
-    // TODO: support changing themes and color
     addStyle(
       article,
       "blockquote",
-      "border-t-4 border-red-300 p-4 ml-4 font-serif text-sm leading-relaxed"
+      "border-t-4 border-primary p-4 ml-4 font-serif text-sm leading-relaxed"
     )
     addStyle(article, "p", "ml-4")
     addStyle(article, "table", "table-zebra")
     addStyle(
       article,
       "a",
-      "underline decoration-blue-500 decoration-2 hover:text-blue-500 transition-colors duration-200"
+      "underline decoration-accent decoration-2 hover:text-accent transition-colors duration-200"
     )
     addStyle(article, "ul", "list-disc pt-7 ml-4")
     addStyle(article, "ol", "list-decimal pt-7 ml-4")
@@ -175,7 +167,6 @@
       newBlock.setAttribute(dataSelectorName, gistId)
       script.remove()
     })
-    // TODO: support configure the url of gist
     // It's strange that svelte won't load the script in @html macro
     const gistsLoadingElements = article.querySelectorAll("[data-github-gist]")
     Array.from(gistsLoadingElements).forEach((gistLoadingElement) => {
@@ -192,12 +183,12 @@
 </script>
 
 <article lang="zh-Hant" class="font-serif pr-8 mr-8">
-  <header class="ml-16">
+  <header class="ml-16 text-base-content">
     {#if !isSingle}
       <!-- use replace={false} when possible to prevent back button not going back to the previous page -->
       <Link to="post/{id}" replace={false}>
         <h1
-          class="text-4xl ml-2 font-bold inline-block hover:text-blue-600 transition-colors duration-300 decoration-red-300 underline decoration-4 hover:decoration-blue-600"
+          class="text-4xl ml-2 font-bold inline-block hover:text-primary transition-colors duration-300 decoration-primary underline decoration-4"
         >
           {@html title}
         </h1>
@@ -208,10 +199,10 @@
       </h1>
     {/if}
     {#if !(author.trim().length === 0)}
-      <h2 class="text-base font-normal text-gray-800">{author}</h2>
+      <h2 class="text-base font-normal">{author}</h2>
     {/if}
     {#if !(date === defaultDate)}
-      <h2 class="text-sm font-normal text-gray-800">
+      <h2 class="text-sm font-normal">
         {date.toLocaleDateString("zh-CN")}
       </h2>
     {/if}

@@ -1,8 +1,6 @@
 <script lang="ts">
   import Article from "../components/Article.svelte"
-  import HitoKoto from "../components/HitoKoto.svelte"
   import { onMount } from "svelte"
-  import { Router, Link, Route } from "svelte-routing"
   import { of, Observable } from "rxjs"
   import { switchMap, catchError } from "rxjs/operators"
   import { fromFetch } from "rxjs/fetch"
@@ -11,9 +9,10 @@
   import { Jumper } from "svelte-loading-spinners"
   import ErrorPrompt from "../components/ErrorPrompt.svelte"
 
-  export let id:string
+  export let id: string
   let isLoading = true
   let isError = false
+  let articleTitle = "Unknown"
   let errorMsg = ""
   let post: Post
   const api = new URL(getPostApiUrl(config))
@@ -31,10 +30,19 @@
         if (res.ok) {
           return res.json() as Promise<Post>
         } else {
-          return of(null)
+          try {
+            res.json().then((data) => {
+              errorMsg = data.message
+            })
+          } catch (e) {
+            errorMsg = e.message
+            throw new Error(e.message as string)
+          }
+          of(null)
         }
       }),
       catchError((err: Error) => {
+        errorMsg = err.message
         console.error(err)
         return of(null)
       })
@@ -49,6 +57,7 @@
       next: (result) => {
         if (result) {
           post = result
+          articleTitle = post.title.rendered
           isError = false
         } else {
           isError = true
@@ -62,6 +71,9 @@
   })
 </script>
 
+<svelte:head>
+	<title>{`${config.blogName} - ${articleTitle}`}</title>
+</svelte:head>
 <div id="article-frame" class="flex flex-col divide-x-2 divide-x-reverse ">
   {#if isLoading}
     <div class="flex bg-transparent px-4 py-3 justify-center">
@@ -69,7 +81,7 @@
     </div>
   {:else if isError}
     <!-- TODO: Error interface -->
-    <ErrorPrompt code={404} msg={"找不到所请求的页面"}/>
+    <ErrorPrompt code={404} msg={errorMsg} />
   {:else}
     <Article
       id={post.id}
@@ -83,6 +95,5 @@
 </div>
 
 <!-- markup (zero or more items) goes here -->
-
 <style>
 </style>

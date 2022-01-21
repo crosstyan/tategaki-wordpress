@@ -8,14 +8,17 @@
   import { switchMap, catchError } from "rxjs/operators"
   import { Router, Link, Route } from "svelte-routing"
   import { config, getPostApiUrl } from "../../config"
+
+  // FIXME: change this each time the theme is changed
+  // blue-500: '#0ea5e9'
+  const neutralColor = '#0ea5e9'
   let isLoading = true
   let postList: Post[] = []
-  // TODO: use a standalone config file
   const api = new URL(getPostApiUrl(config))
-  // TODO: implement route
-  // TODO: implement single article page
   // https://stackoverflow.com/questions/58287729/how-can-i-export-a-function-from-a-svelte-component-that-changes-a-value-in-the
   export let page = 1
+  export let getNextPageUrl = (page: number):string => `/page/${page}`
+  let nextPageUrl = getNextPageUrl(page)
 
   function fetchPosts(api: URL, page: number) {
     // https://jsonplaceholder.typicode.com/posts
@@ -53,6 +56,13 @@
         console.log("done")
       },
     })
+    // Only change the display URL. The router won't do anything. 
+    try {
+      nextPageUrl = getNextPageUrl(page)
+      window.history.replaceState('', '', nextPageUrl)
+    } catch (err) {
+      console.error(err)
+    }
   }
 
   onMount(async () => {
@@ -74,6 +84,9 @@
   })
 </script>
 
+<svelte:head>
+	<title>{config.blogName}</title>
+</svelte:head>
 <div id="article-frame" class="flex flex-col divide-x-2 divide-x-reverse ">
   {#each postList as post}
     <Article
@@ -87,13 +100,13 @@
 
   {#if isLoading}
     <div class="flex bg-transparent px-4 py-3 justify-center">
-      <Jumper color="#2564eb" />
+      <Jumper color="{neutralColor}" />
     </div>
   {:else}
     <!-- svelte-ignore a11y-invalid-attribute -->
     <a
       on:click|preventDefault={handleNextPage}
-      class="flex bg-transparent text-gray-900 px-1 py-3 h-auto w-auto justify-center hover:text-blue-600 font-sans transition-colors"
+      class="flex bg-transparent text-base-content px-4 mr-2 py-3 h-auto w-auto hover:text-accent font-sans transition-colors"
       role="button"
       href="#">Next page</a
     >
