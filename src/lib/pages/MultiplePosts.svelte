@@ -16,6 +16,8 @@
   // TODO: implement single article page
   // https://stackoverflow.com/questions/58287729/how-can-i-export-a-function-from-a-svelte-component-that-changes-a-value-in-the
   export let page = 1
+  export let getNextPageUrl = (page: number):string => `/page/${page}`
+  let nextPageUrl = getNextPageUrl(page)
 
   function fetchPosts(api: URL, page: number) {
     // https://jsonplaceholder.typicode.com/posts
@@ -53,6 +55,13 @@
         console.log("done")
       },
     })
+    // Only change the display URL. The router won't do anything. 
+    try {
+      nextPageUrl = getNextPageUrl(page)
+      window.history.replaceState('', '', nextPageUrl)
+    } catch (err) {
+      console.error(err)
+    }
   }
 
   onMount(async () => {
