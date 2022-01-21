@@ -32,7 +32,6 @@
   // </pre>
   export let code: HTMLElement
   let codeContainer: HTMLElement
-  let isRequesting = false
   let language = "language-none"
   let isClosed = false
   let mediaQuery = window.matchMedia("(min-width: 640px)")
@@ -64,35 +63,7 @@
       console.log(err)
     }
   })
-  // https://stackoverflow.com/questions/35192841/how-do-i-post-with-multipart-form-data-using-fetch
-  // CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.
-  const postToIxIo = (content: string) => {
-    const ixio = "http://ix.io/"
-    const formData = new FormData()
-    formData.append("f:1", content)
-    return fromFetch(ixio, {
-      method: "POST",
-      body: formData
-    }).pipe(
-      switchMap((res) => {
-        return res.text()
-      }),
-      catchError((err) => {
-        console.error(err)
-        return of(null)
-      })
-    )
-  }
-  const handleViewSource = ()=>{
-    isRequesting = true
-    const ixioResp = postToIxIo(code.textContent)
-    ixioResp.subscribe((res)=>{
-      if(res){
-        console.log(res)
-        window.open(res)
-      }
-    })
-  }
+
   const doNothing = () => {}
   // TODO: why I don't let the button become a standalone component?
   // TODO: share style with inlineCode.svelte
@@ -115,17 +86,11 @@
     {#if !isClosed}
       <!-- svelte-ignore a11y-invalid-attribute -->
       <a
-        on:click|preventDefault|once={handleViewSource}
+        on:click|preventDefault|once={doNothing}
         class={btnClassName}
         role="button"
         href="#">
-        {#if !isRequesting}
           View Source
-        {:else}
-          <span class="rotate-90">
-            <Pulse unit="rem" size={1} />
-          </span>
-        {/if}
         </a
       >
       <!-- svelte-ignore a11y-invalid-attribute -->
