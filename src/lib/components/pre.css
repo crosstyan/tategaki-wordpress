@@ -2,7 +2,6 @@
 pre {
   /* height: 95vh; */
   height: 72vh;
-  max-height: 72vh;
   width: 75vw;
   max-width: 480px;
   writing-mode: horizontal-tb;
@@ -14,7 +13,6 @@ pre {
 
 .gist {
   height: 72vh;
-  max-height: 72vh;
   width: 75vw;
   max-width: 480px;
   writing-mode: horizontal-tb;
@@ -33,9 +31,11 @@ pre {
 @media screen and (min-width: 640px) {
   pre {
     width: 40vw;
+    height: 80vh;
   }
   .gist {
     width: 40vw;
+    height: 80vh;
   }
 }
 

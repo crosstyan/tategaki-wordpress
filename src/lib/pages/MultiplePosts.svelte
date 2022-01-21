@@ -83,6 +83,9 @@
   })
 </script>
 
+<svelte:head>
+	<title>{config.blogName}</title>
+</svelte:head>
 <div id="article-frame" class="flex flex-col divide-x-2 divide-x-reverse ">
   {#each postList as post}
     <Article

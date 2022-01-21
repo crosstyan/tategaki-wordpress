@@ -1,9 +1,10 @@
 <script lang="ts">
   import MultiplePosts from "./lib/pages/MultiplePosts.svelte"
-  import PostPage from "./lib/pages/PostPage.svelte"
+  import SinglePost from "./lib/pages/SinglePost.svelte"
   import ErrorPrompt from "./lib/components/ErrorPrompt.svelte"
   import { onMount } from "svelte"
   import { Router, Link, Route } from "svelte-routing"
+  import { config } from "./config"
   import { iOS } from "./lib/utils/utils"
 
   export let url = ""
@@ -27,6 +28,9 @@
   })
 </script>
 
+<svelte:head>
+	<title>{config.blogName}</title>
+</svelte:head>
 <Router {url}>
   <nav
     class="navbar my-12 mx-4 md:mr-8 md:my-8 md:px-8 shadow-lg bg-blue-400 text-neutral-content rounded-box font-sans"
@@ -54,10 +58,10 @@
         <MultiplePosts page={parseInt(params.page)} />
       </Route>
       <Route path="/post/:id" let:params>
-        <PostPage id={params.id} />
+        <SinglePost id={params.id} />
       </Route>
       <Route path="/:year/:month/:id" let:params>
-        <PostPage id={params.id} />
+        <SinglePost id={params.id} />
       </Route>
       <Route>
         <div id="article-frame" class="font-serif flex flex-col divide-x-2 divide-x-reverse ">
