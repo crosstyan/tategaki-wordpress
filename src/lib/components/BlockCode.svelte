@@ -34,18 +34,16 @@
   let codeContainer: HTMLElement
   let language = "language-none"
   let isClosed = false
-  let mediaQuery = window.matchMedia("(min-width: 640px)")
-  window.addEventListener(
-    "resize",
-    () => (mediaQuery = window.matchMedia("(min-width: 640px)")),
-    true
-  )
+  let mediaQuery = false
   // change the value of isClosed automatically when the mediaQuery changes
-  $: isClosed = mediaQuery.matches ? false : true
+  $: isClosed = mediaQuery ? false : true
   // the pre or other overflowed element
   // So I decide to give them another option
   // to open another page and display a alert message
   onMount(() => {
+    // Not use listeners anymore
+    // Only detect if tab is close by initial state
+    mediaQuery = window.matchMedia("(min-width: 640px)").matches
     addStyle(codeContainer, "pre", "border-2 border-base-200 shadow-sm shadow-base-content rounded-md mr-2 bg-base-300")
     // console.log("Plugin", Prism.plugins.lineNumbers)
     // get the language of the code
