@@ -37,9 +37,11 @@ interface Links {
   // 'version-history': Link[]
   // 'predecessor-version': Link[]
 }
+
 interface Link {
   href:string
 }
+
 interface Author {
   description:string
   id:number
@@ -48,6 +50,23 @@ interface Author {
   slug:string
   url:string
 }
+
 interface Embed {
   author: Author[]
+  'wp:featuredmedia'?: FeaturedMedia
+}
+
+interface FeaturedMedia {
+  id:number
+  date:string
+  slug:string
+  type:string
+  link:string
+  title:Content
+  author:number
+  caption:Content
+  alt_text:string
+  media_type:string
+  mime_type:string
+  source_url:string
 }
