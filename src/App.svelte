@@ -49,7 +49,7 @@
       <Link to="/">
         <div class="flex-1 py-2 my-2 ">
           <span class="text-lg md:text-4xl font-bold font-serif hover:text-primary-focus opacity-90 transition-all duration-500">
-            Crosstyan のブログ</span
+            {config.blogName}</span
           >
         </div>
       </Link>
