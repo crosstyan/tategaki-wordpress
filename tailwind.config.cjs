@@ -13,10 +13,9 @@ const config = {
   theme: {
     extend: {
       fontFamily: {
-        'serif': ['source-serif-pro', 'source-han-serif-sc', 'STSong', 'SimSun', 'Georgia', 'serif'],
+        'serif': ['source-serif-pro', 'source-han-serif-sc', 'Georgia', "Noto Serif CJK SC", "Source Han Serif SC", "Source Han Serif CN", "游明朝", "Yu Mincho", "游明朝体", 'YuMincho', "ヒラギノ明朝 Pro", "Hiragino Mincho ProN", "MS P明朝", "MS PMincho", 'HGS明朝E', "MS Mincho", "AR PL New Sung", "AR PL SungtiL GB", 'STSong', 'NSimSun', 'SimSun', "WenQuanYi Bitmap Song", "AR PL UMing CN", "AR PL UMing HK", "AR PL UMing TW", "AR PL UMing TW MBE", 'PMingLiU', 'MingLiU', 'serif'],
         'sans': ['source-han-sans-simplified-c', 'sans-serif'],
         'mono': ['source-code-pro', 'source-han-sans-simplified-c', 'monospace'],
-        'kai': ["楷体", "楷体_GB2312", 'source-han-serif-sc', 'STSong', 'SimSun', 'Georgia', 'serif'],
       }
     },
   },
