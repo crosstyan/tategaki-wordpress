@@ -30,7 +30,7 @@
       </div>
       <ul tabindex="0" class="z-50 p-2 shadow menu dropdown-content bg-secondary text-secondary-content rounded-box w-52">
         <li>
-          <a data-toggle-theme="dark,light">Toggle Dark mode</a>
+          <a class="active:bg-secondary-focus active:text-secondary" data-toggle-theme="dark,light">Toggle Dark mode</a>
         </li> 
         <!-- <li>
           <a href="#" on:click|preventDefault={doNothing}>Do Nothing</a>
