@@ -53,7 +53,7 @@ interface Author {
 
 interface Embed {
   author: Author[]
-  'wp:featuredmedia'?: FeaturedMedia
+  'wp:featuredmedia'?: FeaturedMedia[]
 }
 
 interface FeaturedMedia {
