@@ -40,9 +40,11 @@
 	<title>{config.blogName}</title>
 </svelte:head>
 <Router {url}>
-  <header tabindex="-1">
+  <header>
+    <!-- a dummy div to give some space -->
+    <div class="pr-8"></div>
     <nav
-      class="navbar my-12 mr-8 md:mr-8 md:my-8 md:px-8 shadow-lg bg-primary text-primary-content rounded-box font-sans justify-between"
+      class="navbar my-12 md:my-8 md:px-8 shadow-lg bg-primary text-primary-content rounded-box font-sans justify-between"
     >
       <Link to="/">
         <div class="flex-1 py-2 my-2 ">
@@ -76,7 +78,7 @@
       </div>
     {/if}
   </header>
-  <main tabindex="-1">
+  <main>
     <div class="flex flex-col" id="container">
       <Route path="/">
         <MultiplePosts />
