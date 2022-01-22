@@ -1,15 +1,12 @@
 <script lang="ts">
   import { onMount } from "svelte"
   import { CopyInfo, copyTextToClipboard } from "../utils/clipboard"
-  import { of, Observable } from "rxjs"
-  import { fromFetch } from "rxjs/fetch"
-  import { switchMap, catchError } from "rxjs/operators"
   // Modified autoloader which use CDN
   // the o../utils/prism-autoloader
   // https://github.com/PrismJS/prism/blob/master/plugins/autoloader/prism-autoloader.js
   import "../utils/prism-autoloader"
-  import { addStyle } from "../utils/utils"
-  import { Pulse } from "svelte-loading-spinners"
+  import { addStyle, doNothing } from "../utils/utils"
+  import { styles } from './sharedStyle'
 
   let isCopied = false
   const copyInfo: CopyInfo = {
@@ -62,11 +59,6 @@
     }
   })
 
-  const doNothing = () => {}
-  // TODO: why I don't let the button become a standalone component?
-  // TODO: share style with inlineCode.svelte
-  const btnClassName =
-    "flex btn bg-transparent hover:bg-transparent text-base-content hover:text-accent-focus border-base-content hover:border-accent-focus mb-2 px-1 py-3 h-auto w-auto"
 </script>
 
 <!-- I know I should have use slot -->
@@ -75,7 +67,7 @@
     <!-- svelte-ignore a11y-invalid-attribute -->
     <a
       on:click|preventDefault={() => (isClosed = !isClosed)}
-      class={btnClassName}
+      class={styles.button}
       role="button"
       href="#">{isClosed ? "Show" : "Hide"} Code</a
     >
@@ -85,7 +77,7 @@
       <!-- svelte-ignore a11y-invalid-attribute -->
       <a
         on:click|preventDefault|once={doNothing}
-        class={btnClassName}
+        class={styles.button}
         role="button"
         href="#">
           View Source
@@ -96,7 +88,7 @@
         on:click|preventDefault={() => {
           copyTextToClipboard(copyInfo)
         }}
-        class={btnClassName}
+        class={styles.button}
         role="button"
         href="#"
         >{isCopied ? "Copied" : "Copy"}
@@ -105,7 +97,7 @@
     <!-- svelte-ignore a11y-invalid-attribute -->
     <a
       on:click|preventDefault={doNothing}
-      class="{btnClassName + ' font-mono lowercase'} "
+      class="{styles.button + ' font-mono lowercase'} "
       role="button"
       href="#">{language}</a
     >

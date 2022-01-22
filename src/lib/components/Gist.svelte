@@ -4,6 +4,9 @@
     scriptElementType = "text/javascript"
   // https://gist.github.com/crosstyan/14ada68b4cea063d40198df7af5152b7
   import { onMount } from "svelte"
+  import { doNothing } from "../utils/utils"
+  import { styles } from "./sharedStyle"
+
   export let gistId
   let isClosed = false
   let isError = false
@@ -44,9 +47,6 @@
     })
   })
 
-  const doNothing = () => {}
-  const btnClassName =
-    "flex btn bg-transparent hover:bg-transparent text-base-content hover:text-accent-focus border-base-content hover:border-accent-focus mb-2 px-1 py-3 h-auto w-auto"
 </script>
 
 <div class="mx-4">
@@ -55,7 +55,7 @@
       <!-- svelte-ignore a11y-invalid-attribute -->
       <a
         on:click|preventDefault={() => (isClosed = !isClosed)}
-        class={btnClassName}
+        class={styles.button}
         role="button"
         href="#">{isClosed ? "Show" : "Hide"} Gist</a
       >
@@ -63,7 +63,7 @@
       <!-- svelte-ignore a11y-invalid-attribute -->
       <a
         on:click|preventDefault={doNothing}
-        class={btnClassName + " text-error border-error"}
+        class={styles.button + " text-error border-error"}
         role="button"
         href="#">Loading Error</a
       >
@@ -71,7 +71,7 @@
     <!-- TODO: share component with Gist.svelte -->
     <!-- it can be modal window or a standalone window -->
     <a
-      class={btnClassName}
+      class={styles.button}
       role="button"
       href={`${githubGistsUrl}/${gistId}`}
       target="_blank">View Gist</a

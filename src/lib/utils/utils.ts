@@ -19,3 +19,5 @@ export function addStyle(elem: HTMLElement, tagName: string, style: string) {
     elem.classList.add(...styles)
   })
 }
+
+export const doNothing = () => {}
