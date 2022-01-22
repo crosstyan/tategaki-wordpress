@@ -71,7 +71,7 @@
     </nav>
     {#if iOS()}
       <div class="my-16 mx-4 md:mr-8 md:my-8">
-        <p class="font-serif">致 iOS 用户：由于浏览器的限制，Safari 浏览器无法正确渲染本网页，若遇到代码或者表格无法滚动或标点渲染不正确，亦或是按钮渲染不正确，请勿惊慌，此乃已知问题。</p>
+        <p class="font-serif">致 iOS 用户：由于浏览器的限制，Safari 浏览器无法正确渲染本网页，若遇到代码或者表格无法滚动或标点渲染异常，亦或是按钮渲染错误，请勿惊慌，此乃已知问题。</p>
         <p class="font-serif text-sm">若欲查看源代码请点击 View Source 按钮，但目前未实装。</p>
       </div>
     {/if}
