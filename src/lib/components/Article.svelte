@@ -25,6 +25,7 @@
   // TODO: instead of putting the whole thing in the DOM,
   // TODO: parse elements in nodejs and cache it to improve performance
   // TODO: use promise instead of changing DOM directly
+  // TODO: feature media
   // We can render it first
   // https://tategaki.de/dementia-02-20
   // https://tategaki.de/%E6%92%AD%E5%AE%A2%E6%98%AF%E4%B8%80%E6%9D%A1%E6%B2%B3-12-05
@@ -35,6 +36,7 @@
   // We should traverse the DOM and put them in a array then render them
   // I'm not sure which one is better
   const dataSelectorName = "data-github-gist"
+
   // Not a pure function because it mutates the DOM
   function parsePuctuation(element: HTMLElement) {
     const paragraphElement = Array.from(
@@ -57,6 +59,9 @@
         const regexSemicolon = new RegExp("(?<![ -~])(;\\s)+", "g")
         const regexQuestionMark = new RegExp("(?<![ -~])(\\?)+", "g")
         const regexExclamationMark = new RegExp("(?<![ -~])(\\!)+", "g")
+        // TODO: fix parentheses in some cases
+        // avoid half-width parentheses matching with full-width one
+        // which is really ugly
         const regexLeftParentheses = new RegExp("(\\()+(?![ -~])", "g")
         const regexRightParentheses = new RegExp("(?<![ -~])(\\))+", "g")
 
@@ -79,47 +84,12 @@
       console.error(error)
     }
   }
-  onMount(async () => {
-    // TODO: table of content
-    // TODO: build a interface to handle all the style
-    addStyle(
-      article,
-      "blockquote",
-      "border-t-4 border-primary p-4 ml-4 font-serif text-sm leading-relaxed"
-    )
-    addStyle(article, "p", "ml-4")
-    addStyle(article, "table", "table-zebra")
-    addStyle(
-      article,
-      "a",
-      "underline decoration-accent decoration-2 hover:text-accent transition-colors duration-200"
-    )
-    addStyle(article, "ul", "list-disc pt-7 ml-4")
-    addStyle(article, "ol", "list-decimal pt-7 ml-4")
-    addStyle(article, "h1", "text-2xl ml-2 mr-8 font-bold")
-    addStyle(article, "h2", "text-2xl ml-2 mr-8 font-bold")
-    addStyle(article, "h3", "text-xl ml-2 mr-8 font-bold")
-    addStyle(article, "h4", "text-lg ml-2 mr-8 font-bold")
-    addStyle(article, "h5", "text-base ml-2 mr-8 font-bold")
-    // No prefix: mobile (under 640 px)
-    // sm: small break point (640 px)
-    // md ................
-    addStyle(article, "img", "max-h-[90%] md:max-h-[80%] mx-8 my-auto")
-    parsePuctuation(article)
-    pangu.spacingNode(article)
-    let tategaki = new Tategaki(article, {
-      shouldPcS: true,
-      imitatePcS: false,
-      imitateTransfromToFullWidth: false,
-      shouldRemoveStyle: false,
-      convertNewlineCustom: false,
-    })
-    tategaki.parse()
-    // TODO: latin class tooltip
+
+  function addTooltipInline(element: HTMLElement){
     // COMMENT: I don't know if there is a better way to do this
     // https://svelte.dev/repl/28996f04783542ceafed7cc6a85128b9?version=3.23.0
     // Wrap all preformatted code in BlockCode component
-    const inlineCode = article.getElementsByTagName("code")
+    const inlineCode = element.getElementsByTagName("code")
     Array.from(inlineCode).forEach((code) => {
       const parent = code.parentElement
       if (parent.tagName !== "PRE") {
@@ -134,10 +104,13 @@
         code.remove()
       }
     })
-    const preformatteds = article.getElementsByTagName("pre")
+  }
+
+  function addCodeBlock(element: HTMLElement){
     // TODO: use slot instead of passing HTMLElement as props
     // See the issues here
     // https://github.com/sveltejs/svelte/issues/2588
+    const preformatteds = element.getElementsByTagName("pre")
     Array.from(preformatteds).forEach((pre) => {
       const parent = pre.parentElement
       const newBlock = document.createElement("div")
@@ -154,9 +127,11 @@
       })
       pre.remove()
     })
-    Prism.highlightAllUnder(article)
+  }
+
+  function swapGistScript(element: HTMLElement){
     // Find all github gist
-    const gists = article.getElementsByTagName("script")
+    const gists = element.getElementsByTagName("script")
     Array.from(gists).forEach((script) => {
       const src = script.getAttribute("src")
       const gistId = src.split("gist.github.com/")[1].split(".js")[0]
@@ -167,8 +142,12 @@
       newBlock.setAttribute(dataSelectorName, gistId)
       script.remove()
     })
+  }
+
+  function addGistComponent(element: HTMLElement){
     // It's strange that svelte won't load the script in @html macro
-    const gistsLoadingElements = article.querySelectorAll("[data-github-gist]")
+    swapGistScript(element)
+    const gistsLoadingElements = element.querySelectorAll("[data-github-gist]")
     Array.from(gistsLoadingElements).forEach((gistLoadingElement) => {
       const gistId = gistLoadingElement.getAttribute(dataSelectorName)
       const gist = new Gist({
@@ -179,6 +158,51 @@
         },
       })
     })
+  }
+
+  function addStyles(element: HTMLElement){
+    addStyle(
+      element,
+      "blockquote",
+      "border-t-4 border-primary p-4 ml-4 font-serif text-sm leading-relaxed"
+    )
+    addStyle(element, "p", "ml-4")
+    addStyle(element, "table", "table-zebra")
+    addStyle(
+      element,
+      "a",
+      "underline decoration-accent decoration-2 hover:text-accent transition-colors duration-200"
+    )
+    addStyle(element, "ul", "list-disc pt-7 ml-4")
+    addStyle(element, "ol", "list-decimal pt-7 ml-4")
+    addStyle(element, "h1", "text-2xl ml-2 mr-8 font-bold")
+    addStyle(element, "h2", "text-2xl ml-2 mr-8 font-bold")
+    addStyle(element, "h3", "text-xl ml-2 mr-8 font-bold")
+    addStyle(element, "h4", "text-lg ml-2 mr-8 font-bold")
+    addStyle(element, "h5", "text-base ml-2 mr-8 font-bold")
+    // No prefix: mobile (under 640 px)
+    // sm: small break point (640 px)
+    // md ................
+    addStyle(element, "img", "max-h-[90%] md:max-h-[80%] mx-8 my-auto")
+  }
+
+  onMount(async () => {
+    // TODO: table of content
+    parsePuctuation(article)
+    addStyles(article)
+    pangu.spacingNode(article)
+    let tategaki = new Tategaki(article, {
+      shouldPcS: true,
+      imitatePcS: false,
+      imitateTransfromToFullWidth: false,
+      shouldRemoveStyle: false,
+      convertNewlineCustom: false,
+    })
+    tategaki.parse()
+    addTooltipInline(article)
+    addCodeBlock(article)
+    Prism.highlightAllUnder(article)
+    addGistComponent(article)
   })
 </script>
 
