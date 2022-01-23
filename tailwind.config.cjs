@@ -1,3 +1,4 @@
+// https://github.com/saadeghi/daisyui/discussions/401
 const {
   "[data-theme=dark]": darkTheme,
 } = require("daisyui/colors/themes");

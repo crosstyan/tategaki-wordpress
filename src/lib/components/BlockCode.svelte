@@ -6,7 +6,7 @@
   // https://github.com/PrismJS/prism/blob/master/plugins/autoloader/prism-autoloader.js
   import "../utils/prism-autoloader"
   import { addStyle, doNothing } from "../utils/utils"
-  import { styles } from './sharedStyle'
+  import { styles } from '../styles/sharedStyle'
 
   let isCopied = false
   const copyInfo: CopyInfo = {
@@ -113,6 +113,6 @@
 </div>
 
 <style lang="postcss">
-  @import "./pre";
-  @import "../utils/prism-github";
+  @import "../styles/pre";
+  @import "../styles/prism-github";
 </style>

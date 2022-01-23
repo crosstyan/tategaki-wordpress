@@ -8,10 +8,9 @@
   import { switchMap, catchError } from "rxjs/operators"
   import { Router, Link, Route } from "svelte-routing"
   import { config, getPostApiUrl } from "../../config"
+  import { colors } from "../styles/sharedStyle"
 
   // FIXME: change this each time the theme is changed
-  // blue-500: '#0ea5e9'
-  const neutralColor = '#0ea5e9'
   let isLoading = true
   let postList: Post[] = []
   const api = new URL(getPostApiUrl(config))
@@ -100,7 +99,7 @@
 
   {#if isLoading}
     <div class="flex bg-transparent px-4 py-3 justify-center">
-      <Jumper color="{neutralColor}" />
+      <Jumper color="{colors.loading}" />
     </div>
   {:else}
     <!-- svelte-ignore a11y-invalid-attribute -->

@@ -1,5 +1,5 @@
 /* import from tategaki style */
-@import "./lib/tategaki/assets/tategaki";
+@import "../tategaki/assets/tategaki";
 
 /* tailwind */
 @tailwind base;

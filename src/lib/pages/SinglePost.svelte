@@ -7,6 +7,7 @@
   import { config, getPostApiUrl } from "../../config"
   import type { Post } from "../utils/post"
   import { Jumper } from "svelte-loading-spinners"
+  import { colors } from "../styles/sharedStyle"
   import ErrorPrompt from "../components/ErrorPrompt.svelte"
 
   export let id: string
@@ -77,7 +78,7 @@
 <div id="article-frame" class="flex flex-col divide-x-2 divide-x-reverse ">
   {#if isLoading}
     <div class="flex bg-transparent px-4 py-3 justify-center">
-      <Jumper color="#2564eb" />
+      <Jumper color={colors.loading} />
     </div>
   {:else if isError}
     <!-- TODO: Error interface -->

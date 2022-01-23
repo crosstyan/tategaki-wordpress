@@ -13,8 +13,8 @@
   import "prismjs/plugins/autolinker/prism-autolinker.css"
   import "prismjs/plugins/line-numbers/prism-line-numbers.css"
   export let id: number
-  export let title
-  export let content
+  export let title: string
+  export let content: string
   export let author = ""
   const defaultDate = new Date(1970, 1, 1)
   export let date: Date = defaultDate
