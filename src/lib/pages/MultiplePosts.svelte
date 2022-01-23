@@ -86,31 +86,29 @@
 <svelte:head>
 	<title>{config.blogName}</title>
 </svelte:head>
-<div id="article-frame" class="flex flex-col divide-x-2 divide-x-reverse ">
-  {#each postList as post}
-    <Article
-      id={post.id}
-      title={post.title.rendered}
-      content={post.content.rendered}
-      author={post._embedded.author[0].name}
-      date={new Date(post.date)}
-    />
-  {/each}
+{#each postList as post}
+  <Article
+    id={post.id}
+    title={post.title.rendered}
+    content={post.content.rendered}
+    author={post._embedded.author[0].name}
+    date={new Date(post.date)}
+  />
+{/each}
 
-  {#if isLoading}
-    <div class="flex bg-transparent px-4 py-3 justify-center">
-      <Jumper color="{colors.loading}" />
-    </div>
-  {:else}
-    <!-- svelte-ignore a11y-invalid-attribute -->
-    <a
-      on:click|preventDefault={handleNextPage}
-      class="flex bg-transparent text-base-content px-4 mr-2 py-3 h-auto w-auto hover:text-accent font-sans transition-colors"
-      role="button"
-      href="#">Next page</a
-    >
-  {/if}
-</div>
+{#if isLoading}
+  <div class="flex bg-transparent px-4 py-3 justify-center">
+    <Jumper color="{colors.loading}" />
+  </div>
+{:else}
+  <!-- svelte-ignore a11y-invalid-attribute -->
+  <a
+    on:click|preventDefault={handleNextPage}
+    class="flex bg-transparent text-base-content px-4 mr-2 py-3 h-auto w-auto hover:text-accent font-sans transition-colors"
+    role="button"
+    href="#">Next page</a
+  >
+{/if}
 
 <style lang="postcss">
 </style>

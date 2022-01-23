@@ -2,8 +2,10 @@
   import MultiplePosts from "./lib/pages/MultiplePosts.svelte"
   import SinglePost from "./lib/pages/SinglePost.svelte"
   import ErrorPrompt from "./lib/components/ErrorPrompt.svelte"
+  import CodeView from "./lib/pages/CodeView.svelte"
+  import Frame from "./lib/pages/Frame.svelte"
   import { onMount } from "svelte"
-  import { Router, Route } from "svelte-routing"
+  import { Router, Route, navigate } from "svelte-routing"
   import { config } from "./config"
   import { themeChange } from "theme-change"
   import Nav from "./lib/components/Nav.svelte"
@@ -39,73 +41,33 @@
   <title>{config.blogName}</title>
 </svelte:head>
 <Router {url}>
-  <Nav />
-  <main>
-    <div class="flex flex-col" id="container">
-      <Route path="/">
-        <MultiplePosts />
-      </Route>
-      <Route path="/page/:page" let:params>
-        <MultiplePosts page={parseInt(params.page)} />
-      </Route>
-      <Route path="/post/:id" let:params>
-        <SinglePost id={params.id} />
-      </Route>
-      <Route path="/:year/:month/:id" let:params>
-        <SinglePost id={params.id} />
-      </Route>
-      <Route>
-        <div
-          id="article-frame"
-          class="font-serif flex flex-col divide-x-2 divide-x-reverse "
-        >
+  <Route path="/code">
+    <CodeView code="test" />
+  </Route>
+  <Route path="/*">
+    <Nav />
+    <Frame>
+      <Router>
+        <!-- Maybe I should redirect to /page/:page -->
+        <Route path="/">
+          <MultiplePosts />
+        </Route>
+        <Route path="page/:page" let:params>
+          <MultiplePosts page={parseInt(params.page)} />
+        </Route>
+        <Route path="post/:id" let:params>
+          <SinglePost id={params.id} />
+        </Route>
+        <Route path=":year/:month/:id" let:params>
+          <SinglePost id={params.id} />
+        </Route>
+        <Route>
           <ErrorPrompt code={400} msg="无效路由" />
-        </div>
-      </Route>
-    </div>
-  </main>
+        </Route>
+      </Router>
+    </Frame>
+  </Route>
 </Router>
 
-<style global lang="scss">
-  #article-frame {
-    max-height: 70vh;
-  }
-  // use "user-scalable" in "viewport" meta
-  // to solve user can scale the page
-  // A bug/feature in Webkit based browsers
-  body {
-    // set vertical-rl to make the initial scroll position
-    // the most left
-    max-height: 100vh;
-    overflow-y: hidden;
-    writing-mode: vertical-rl;
-  }
-  main {
-    padding: 4rem;
-    height: 98vh;
-    vertical-align: middle;
-  }
-
-  table {
-    writing-mode: horizontal-tb;
-    display: inline-block;
-    overflow: auto;
-    max-height: 70vh;
-  }
-
-  @media screen and (max-width: 640px) {
-    main {
-      padding: 0.5em;
-      height: 98vh;
-    }
-    #article-frame {
-      padding-top: 4em;
-      max-height: 76vh;
-    }
-  }
-
-  #container {
-    // writing-mode: vertical-rl;
-    height: 95vh;
-  }
+<style lang="scss">
 </style>

@@ -75,25 +75,23 @@
 <svelte:head>
 	<title>{`${config.blogName} - ${articleTitle}`}</title>
 </svelte:head>
-<div id="article-frame" class="flex flex-col divide-x-2 divide-x-reverse ">
-  {#if isLoading}
-    <div class="flex bg-transparent px-4 py-3 justify-center">
-      <Jumper color={colors.loading} />
-    </div>
-  {:else if isError}
-    <!-- TODO: Error interface -->
-    <ErrorPrompt code={404} msg={errorMsg} />
-  {:else}
-    <Article
-      id={post.id}
-      title={post.title.rendered}
-      content={post.content.rendered}
-      author={post._embedded.author[0].name}
-      date={new Date(post.date)}
-      isSingle={true}
-    />
-  {/if}
-</div>
+{#if isLoading}
+  <div class="flex bg-transparent px-4 py-3 justify-center">
+    <Jumper color={colors.loading} />
+  </div>
+{:else if isError}
+  <!-- TODO: Error interface -->
+  <ErrorPrompt code={404} msg={errorMsg} />
+{:else}
+  <Article
+    id={post.id}
+    title={post.title.rendered}
+    content={post.content.rendered}
+    author={post._embedded.author[0].name}
+    date={new Date(post.date)}
+    isSingle={true}
+  />
+{/if}
 
 <!-- markup (zero or more items) goes here -->
 <style>
