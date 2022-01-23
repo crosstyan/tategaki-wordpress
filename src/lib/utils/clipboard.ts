@@ -1,3 +1,5 @@
+// Modified https://github.com/PrismJS/prism/blob/master/plugins/copy-to-clipboard/prism-copy-to-clipboard.js
+
 /**
  * When the given elements is clicked by the user, the given text will be copied to clipboard.
  *
