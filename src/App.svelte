@@ -5,7 +5,7 @@
   import { onMount } from "svelte"
   import { Router, Route } from "svelte-routing"
   import { config } from "./config"
-  import { themeChange } from 'theme-change'
+  import { themeChange } from "theme-change"
   import Nav from "./lib/components/Nav.svelte"
   // NOTE: about theme color
   // https://github.com/saadeghi/daisyui/blob/master/src/colors/themes.js
@@ -36,7 +36,7 @@
 </script>
 
 <svelte:head>
-	<title>{config.blogName}</title>
+  <title>{config.blogName}</title>
 </svelte:head>
 <Router {url}>
   <Nav />
@@ -55,7 +55,10 @@
         <SinglePost id={params.id} />
       </Route>
       <Route>
-        <div id="article-frame" class="font-serif flex flex-col divide-x-2 divide-x-reverse ">
+        <div
+          id="article-frame"
+          class="font-serif flex flex-col divide-x-2 divide-x-reverse "
+        >
           <ErrorPrompt code={400} msg="无效路由" />
         </div>
       </Route>
@@ -70,9 +73,6 @@
   // use "user-scalable" in "viewport" meta
   // to solve user can scale the page
   // A bug/feature in Webkit based browsers
-  html {
-    max-height: 100vh;
-  }
   body {
     // set vertical-rl to make the initial scroll position
     // the most left
@@ -85,12 +85,14 @@
     height: 98vh;
     vertical-align: middle;
   }
+
   table {
     writing-mode: horizontal-tb;
     display: inline-block;
     overflow: auto;
     max-height: 70vh;
   }
+
   @media screen and (max-width: 640px) {
     main {
       padding: 0.5em;
@@ -101,11 +103,9 @@
       max-height: 76vh;
     }
   }
+
   #container {
     // writing-mode: vertical-rl;
     height: 95vh;
-  }
-  .to-fullwidth {
-    text-orientation: upright;
   }
 </style>
