@@ -54,8 +54,4 @@
 
 <style lang="postcss">
   @import "../styles/prism-github";
-  #codeSection pre {
-    width: auto !important;
-    height: auto !important;
-  }
 </style>
