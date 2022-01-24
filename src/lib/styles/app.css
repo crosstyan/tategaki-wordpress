@@ -9,6 +9,15 @@
   font-feature-settings: "fwid";
   text-transform: none;
 }
+/* A bug in Tategaki */
+/* https://helpx.adobe.com/fonts/using/open-type-syntax.html */
+/* It's the fault of OpenType feature */
+.opentype-pcs .squeeze-out:last-child {
+  font-feature-settings: unset;
+}
+/* still these are bugs in close parenthesis, but personally I believe it's the fault of font
+which is Source Han Serif */
+
 .cjk-punc {
   /* 
     There are some bug in https://fonts.adobe.com/ 
@@ -17,6 +26,8 @@
     Maybe it's the problem of Source Serif, which has spacial characters
     for tategaki
   */
+  text-orientation: upright;
+  font-feature-settings: "vert" 0, "vkna" 0;
   font-family: 'Georgia', "游明朝", "Yu Mincho", "游明朝体", YuMincho, "ヒラギノ明朝 Pro", "Hiragino Mincho ProN", "MS P明朝", "MS PMincho", 'HGS明朝E', "MS Mincho", "AR PL New Sung", "AR PL SungtiL GB", 'STSong', 'NSimSun', 'SimSun', "WenQuanYi Bitmap Song", "AR PL UMing CN", "AR PL UMing HK", "AR PL UMing TW", "AR PL UMing TW MBE", PMingLiU, MingLiU, 'serif';
 }
 .latin {

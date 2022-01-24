@@ -31,6 +31,7 @@
     body {
       /* set vertical-rl to make the initial scroll position
       the most right */
+      font-feature-settings: "vkna";
       max-height: 100vh;
       overflow-y: hidden;
       writing-mode: vertical-rl;
