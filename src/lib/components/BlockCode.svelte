@@ -8,7 +8,7 @@
   import { addStyle, doNothing } from "../utils/utils"
   import { styles } from '../styles/sharedStyle'
   import { codeStore } from '../store/Code'
-  import { navigate } from "svelte-routing";
+  import { navigate } from "svelte-navigator";
 
   let isCopied = false
   const copyInfo: CopyInfo = {

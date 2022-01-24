@@ -8,7 +8,7 @@
   import type { Post } from "../utils/post"
   import { Jumper } from "svelte-loading-spinners"
   import { colors } from "../styles/sharedStyle"
-  import { Link } from 'svelte-routing'
+  import { Link } from 'svelte-navigator'
   import ErrorPrompt from "../components/ErrorPrompt.svelte"
 
   export let id: string
@@ -67,7 +67,6 @@
       },
       complete: () => {
         isLoading = false
-        console.log("done")
       },
     })
   })

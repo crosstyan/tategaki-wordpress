@@ -5,7 +5,7 @@
   import CodeView from "./lib/pages/CodeView.svelte"
   import Frame from "./lib/pages/Frame.svelte"
   import { onMount } from "svelte"
-  import { Router, Route, navigate } from "svelte-routing"
+  import { Router, Route, navigate } from "svelte-navigator"
   import { config } from "./config"
   import { themeChange } from "theme-change"
   import Nav from "./lib/components/Nav.svelte"
@@ -22,7 +22,7 @@
   <title>{config.blogName}</title>
 </svelte:head>
 <Router {url}>
-  <Route path="/code">
+  <Route path="/code" primary={false} >
     <CodeView />
   </Route>
   <Route path="/*">
@@ -30,19 +30,19 @@
     <Frame>
       <Router>
         <!-- Maybe I should redirect to /page/:page -->
-        <Route path="/">
+        <Route path="/" primary={false}>
           <MultiplePosts />
         </Route>
-        <Route path="page/:page" let:params>
+        <Route path="page/:page" primary={false} let:params>
           <MultiplePosts page={parseInt(params.page)} />
         </Route>
-        <Route path="post/:id" let:params>
+        <Route path="post/:id" primary={false}  let:params>
           <SinglePost id={params.id} />
         </Route>
-        <Route path=":year/:month/:id" let:params>
+        <Route path=":year/:month/:id" primary={false}  let:params>
           <SinglePost id={params.id} />
         </Route>
-        <Route>
+        <Route primary={false} >
           <ErrorPrompt code={400} msg="无效路由" />
         </Route>
       </Router>

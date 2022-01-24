@@ -1,7 +1,7 @@
 <script lang="ts">
   import { Tategaki } from "tategaki"
   import { onMount } from "svelte"
-  import { Link } from "svelte-routing"
+  import { Link } from "svelte-navigator"
   import pangu from "pangu/src/browser/pangu"
   import Prism from "prismjs"
   import { addStyle } from "../utils/utils"

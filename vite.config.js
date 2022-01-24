@@ -8,5 +8,5 @@ export default defineConfig({
     host: '0.0.0.0',
     port: '36001'
   },
-  optimizeDeps: {exclude: ["svelte-routing"]}
+  optimizeDeps: {exclude: ["svelte-navigator"]}
 })

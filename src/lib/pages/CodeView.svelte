@@ -8,7 +8,7 @@
   import { onMount } from "svelte"
   import { get } from 'svelte/store'
   import { codeStore } from '../store/Code'
-  import { Link } from 'svelte-routing'
+  import { Link } from 'svelte-navigator'
   import { styles } from '../styles/sharedStyle'
   import { addStyle } from "../utils/utils";
   // your script goes here

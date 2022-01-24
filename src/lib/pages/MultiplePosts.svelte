@@ -6,7 +6,7 @@
   import { fromFetch } from "rxjs/fetch"
   import { Jumper } from "svelte-loading-spinners"
   import { switchMap, catchError } from "rxjs/operators"
-  import { Router, Link, Route } from "svelte-routing"
+  import { Router, Link, Route } from "svelte-navigator"
   import { config, getPostApiUrl } from "../../config"
   import { colors } from "../styles/sharedStyle"
 
@@ -52,7 +52,6 @@
       next: (data) => (postList = postList.concat(data)),
       complete: () => {
         isLoading = false
-        console.log("done")
       },
     })
     // Only change the display URL. The router won't do anything. 
@@ -77,7 +76,6 @@
       },
       complete: () => {
         isLoading = false
-        console.log("done")
       },
     })
   })

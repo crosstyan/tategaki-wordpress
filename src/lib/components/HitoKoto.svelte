@@ -1,6 +1,6 @@
 <script lang="ts">
   import { onMount } from "svelte"
-  import { Router, Link, Route } from "svelte-routing"
+  import { Router, Link, Route } from "svelte-navigator"
   import { of, Observable } from "rxjs"
   import { switchMap, catchError } from "rxjs/operators"
   import { fromFetch } from "rxjs/fetch"
@@ -74,7 +74,6 @@
       },
       complete: () => {
         isLoading = false
-        console.log("done")
       },
     })
   })

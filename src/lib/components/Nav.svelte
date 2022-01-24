@@ -1,6 +1,6 @@
 <script lang="ts">
   import {config} from "../../config"
-  import { Link } from "svelte-routing"
+  import { Link } from "svelte-navigator"
   import { iOS } from "../utils/utils"
 </script>
 
