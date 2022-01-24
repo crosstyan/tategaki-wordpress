@@ -25,7 +25,7 @@
   <Route path="/code" primary={false} >
     <CodeView />
   </Route>
-  <Route path="/*">
+  <Route path="/*" primary={false}>
     <Nav />
     <Frame>
       <Router>

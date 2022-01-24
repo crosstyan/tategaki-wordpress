@@ -1,7 +1,24 @@
 <script lang="ts">
   import {config} from "../../config"
-  import { Link } from "svelte-navigator"
   import { iOS } from "../utils/utils"
+  import Breadcrumbs from "./Breadcrumbs.svelte"
+  import { globalHistory, Link } from 'svelte-navigator'
+  import { onMount, onDestroy } from 'svelte'
+
+  let pathname:string
+  const historyStore = { subscribe: globalHistory.listen }
+
+  function subscribePathname({location, action}) {
+    pathname = location.pathname
+  }
+
+  historyStore.subscribe(subscribePathname)
+
+  const unsubscribeStore = historyStore.subscribe(() => {
+    close();
+  })
+  onDestroy(unsubscribeStore)
+
 </script>
 
 <style lang="postcss">
@@ -39,6 +56,10 @@
       </ul>
     </div>
   </nav>
+
+  <div class="my-16 mr-2 md:mr-4 md:my-16 font-sans">
+    <Breadcrumbs {pathname} />
+  </div>
   {#if iOS()}
     <div class="my-16 mx-4 md:mr-8 md:my-8">
       <p class="font-serif">致 iOS 用户：由于浏览器的限制，Safari 浏览器无法正确渲染本网页，若遇到代码或者表格无法滚动或标点渲染异常，亦或是按钮渲染错误，请勿惊慌，此乃已知问题。</p>
