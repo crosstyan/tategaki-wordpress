@@ -43,6 +43,16 @@
     }
   </style>
 </svelte:head>
+<main>
+  <div class="flex flex-col" id="container">
+    <div
+      id="article-frame"
+      class="font-serif flex flex-col divide-x-2 divide-x-reverse "
+    >
+      <slot></slot>
+    </div>
+  </div>
+</main>
 
 <style lang="scss">
   // use "user-scalable" in "viewport" meta
@@ -78,15 +88,3 @@
   }
 </style>
 
-<!-- markup (zero or more items) goes here -->
-
-<main>
-  <div class="flex flex-col" id="container">
-    <div
-      id="article-frame"
-      class="font-serif flex flex-col divide-x-2 divide-x-reverse "
-    >
-      <slot></slot>
-    </div>
-  </div>
-</main>
