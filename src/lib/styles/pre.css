@@ -1,5 +1,5 @@
 /* the styles for preformatted */
-pre {
+pre.blockcode {
   /* height: 95vh; */
   height: 72vh;
   width: 75vw;
@@ -29,7 +29,7 @@ pre {
 /* sm */
 /* iPad mini 2021 (vertical) is 744px */
 @media screen and (min-width: 640px) {
-  pre {
+  pre.blockcode {
     width: 40vw;
     height: 80vh;
   }
@@ -41,7 +41,7 @@ pre {
 
 /* md */
 @media screen and (min-width: 768px) {
-  pre {
+  pre.blockcode {
     width: 33vw;
   }
   .gist {

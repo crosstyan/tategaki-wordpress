@@ -7,6 +7,8 @@
   import "../utils/prism-autoloader"
   import { addStyle, doNothing } from "../utils/utils"
   import { styles } from '../styles/sharedStyle'
+  import { codeStore } from '../store/Code'
+  import { navigate } from "svelte-routing";
 
   let isCopied = false
   const copyInfo: CopyInfo = {
@@ -28,6 +30,7 @@
   //   </code>
   // </pre>
   export let code: HTMLElement
+  export let postId: number
   let codeContainer: HTMLElement
   let language = "language-none"
   let isClosed = false
@@ -41,7 +44,7 @@
     // Not use listeners anymore
     // Only detect if tab is close by initial state
     mediaQuery = window.matchMedia("(min-width: 640px)").matches
-    addStyle(codeContainer, "pre", "border-2 border-base-200 shadow-sm shadow-base-content rounded-md mr-2 bg-base-300")
+    addStyle(codeContainer, "pre", "border-2 border-base-200 shadow-sm shadow-base-content rounded-md mr-2 bg-base-300 blockcode")
     // console.log("Plugin", Prism.plugins.lineNumbers)
     // get the language of the code
     try {
@@ -58,6 +61,14 @@
       console.log(err)
     }
   })
+
+  const handleViewCode = ()=>{
+    codeStore.set({
+      content: code.outerHTML,
+      fromId: postId,
+    })
+    window.open('/code', '_blank');
+  }
 
 </script>
 
@@ -76,10 +87,11 @@
     {#if !isClosed}
       <!-- svelte-ignore a11y-invalid-attribute -->
       <a
-        on:click|preventDefault|once={doNothing}
+        on:click|preventDefault={handleViewCode}
         class={styles.button}
         role="button"
-        href="#">
+        target=”_blank”
+        href="/code">
           View Source
         </a
       >

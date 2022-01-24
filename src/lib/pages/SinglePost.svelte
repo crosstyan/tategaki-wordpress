@@ -8,6 +8,7 @@
   import type { Post } from "../utils/post"
   import { Jumper } from "svelte-loading-spinners"
   import { colors } from "../styles/sharedStyle"
+  import { Link } from 'svelte-routing'
   import ErrorPrompt from "../components/ErrorPrompt.svelte"
 
   export let id: string
@@ -73,7 +74,7 @@
 </script>
 
 <svelte:head>
-	<title>{`${config.blogName} - ${articleTitle}`}</title>
+  <title>{`${config.blogName} - ${articleTitle}`}</title>
 </svelte:head>
 {#if isLoading}
   <div class="flex bg-transparent px-4 py-3 justify-center">
@@ -91,6 +92,17 @@
     date={new Date(post.date)}
     isSingle={true}
   />
+
+  <!-- svelte-ignore a11y-invalid-attribute -->
+  <Link to="/">
+    <div
+      class="flex bg-transparent text-base-content px-4 mr-2 py-3 h-auto w-auto hover:text-accent font-sans transition-colors"
+      role="button"
+      href="#"
+    >
+      Back to Home
+    </div>
+  </Link>
 {/if}
 
 <!-- markup (zero or more items) goes here -->

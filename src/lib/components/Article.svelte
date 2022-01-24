@@ -10,6 +10,7 @@
     addTooltipInline,
     addCodeBlock,
     addGistComponent,
+    addTargetBlank,
   } from "./ParseArticle"
   import "prismjs/plugins/line-numbers/prism-line-numbers"
   import "prismjs/plugins/autolinker/prism-autolinker"
@@ -56,6 +57,7 @@
     // TODO: table of content
     parsePuctuation(article)
     addStyles(article)
+    addTargetBlank(article)
     pangu.spacingNode(article)
     let tategaki = new Tategaki(article, {
       shouldPcS: true,
@@ -66,7 +68,7 @@
     })
     tategaki.parse()
     addTooltipInline(article)
-    addCodeBlock(article)
+    addCodeBlock(article, id)
     Prism.highlightAllUnder(article)
     addGistComponent(article, dataSelectorName)
   })

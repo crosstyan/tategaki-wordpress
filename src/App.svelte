@@ -12,28 +12,9 @@
   // NOTE: about theme color
   // https://github.com/saadeghi/daisyui/blob/master/src/colors/themes.js
   export let url = ""
-  const wheelHandler = (e: WheelEvent) => {
-    if (e.deltaX == 0) {
-      // console.log(e.target)
-      let delta = (e.deltaY || e.detail) >> 10 || 1
-      // let delta = ((e.deltaY ) >> 10) || 1;
-      delta = delta * 100
-      document.documentElement.scrollLeft -= delta
-      // safari needs also this
-      document.body.scrollLeft -= delta
-      e.preventDefault()
-    }
-  }
 
   onMount(async () => {
     themeChange(false)
-    // https://stackoverflow.com/questions/40469948/safari-ios-input-doesnt-lose-focus-on-click-outside-blur-dont-trigger
-    // @ts-ignore
-    // mainFrame.tabIndex = -1
-    // navFrame.tabIndex = -1
-    document.body.addEventListener("wheel", (e) => wheelHandler(e), {
-      passive: false,
-    })
   })
 </script>
 
@@ -42,7 +23,7 @@
 </svelte:head>
 <Router {url}>
   <Route path="/code">
-    <CodeView code="test" />
+    <CodeView />
   </Route>
   <Route path="/*">
     <Nav />

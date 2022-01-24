@@ -87,7 +87,7 @@ export function addTooltipInline(element: HTMLElement){
   })
 }
 
-export function addCodeBlock(element: HTMLElement){
+export function addCodeBlock(element: HTMLElement, postId: number) {
   // TODO: use slot instead of passing HTMLElement as props
   // See the issues here
   // https://github.com/sveltejs/svelte/issues/2588
@@ -104,6 +104,7 @@ export function addCodeBlock(element: HTMLElement){
       anchor: null, // the component renders in the target directly
       props: {
         code: pre,
+        postId: postId
       },
     })
     pre.remove()
@@ -139,5 +140,15 @@ export function addGistComponent(element: HTMLElement, dataSelectorName: string)
         gistId: gistId,
       },
     })
+  })
+}
+
+export function addTargetBlank(element: HTMLElement){
+  const links = element.getElementsByTagName("a")
+  Array.from(links).forEach((link) => {
+    const href = link.getAttribute("href")
+    if (href && href.startsWith("http")) {
+      link.setAttribute("target", "_blank")
+    }
   })
 }

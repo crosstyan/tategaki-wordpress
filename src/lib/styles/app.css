@@ -20,7 +20,11 @@
   font-family: 'Georgia', "游明朝", "Yu Mincho", "游明朝体", YuMincho, "ヒラギノ明朝 Pro", "Hiragino Mincho ProN", "MS P明朝", "MS PMincho", 'HGS明朝E', "MS Mincho", "AR PL New Sung", "AR PL SungtiL GB", 'STSong', 'NSimSun', 'SimSun', "WenQuanYi Bitmap Song", "AR PL UMing CN", "AR PL UMing HK", "AR PL UMing TW", "AR PL UMing TW MBE", PMingLiU, MingLiU, 'serif';
 }
 .latin {
+  /* hyphens rendering incorrectly in Chrome if not set to sideways
+  but Firefox will rendering incorrectly as well if set to sideways */
+  /* So I decide to disable hyphens */
   text-orientation: mixed;
+  hyphens: none;
   /* -moz-text-orientation: mixed; */
 }
 .to-fullwidth {

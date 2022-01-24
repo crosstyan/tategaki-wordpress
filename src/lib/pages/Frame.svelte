@@ -1,7 +1,32 @@
 <script lang="ts">
+  import { onDestroy, onMount } from "svelte"
+
+  const wheelHandler = (e: WheelEvent) => {
+    if (e.deltaX == 0) {
+      // console.log(e.target)
+      let delta = (e.deltaY || e.detail) >> 10 || 1
+      // let delta = ((e.deltaY ) >> 10) || 1;
+      delta = delta * 100
+      document.documentElement.scrollLeft -= delta
+      // safari needs also this
+      document.body.scrollLeft -= delta
+      e.preventDefault()
+    }
+  }
+
+  onMount(async () => {
+    document.body.addEventListener("wheel", (e) => wheelHandler(e), {
+      passive: false,
+    })
+  })
+  onDestroy(() => {
+    document.body.removeEventListener("wheel", (e) => wheelHandler(e))
+  })
 </script>
 
 <svelte:head>
+  <meta name="viewport"
+    content="width=device-width, height=device-height, initial-scale=0.96, viewport-fit=cover, user-scalable=0" />
   <style>
     body {
       /* set vertical-rl to make the initial scroll position
