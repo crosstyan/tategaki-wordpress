@@ -1,9 +1,26 @@
 <script lang="ts">
-  import { Link } from 'svelte-navigator'
+  import { globalHistory, Link } from 'svelte-navigator'
+  import { onMount, onDestroy } from 'svelte'
 
-  export let pathname:string
+  let pathname:string
   let paths: string[]
   $: paths = pathname.split('/')
+
+  // https://github.com/mefechoel/svelte-navigator/issues/40
+  const historyStore = { subscribe: globalHistory.listen }
+
+  function subscribePathname({location, action}) {
+    pathname = location.pathname
+  }
+
+  /**
+   * Unsubscribe a listener function.
+   * It won't be called on any future updates
+   */
+  // type Unlisten = () => void;
+  const unlisten = historyStore.subscribe(subscribePathname)
+
+  onDestroy(unlisten)
 
 </script>
 

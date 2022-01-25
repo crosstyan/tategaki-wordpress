@@ -3,25 +3,6 @@
   import { iOS } from "../utils/utils"
   import Breadcrumbs from "./Breadcrumbs.svelte"
   import { globalHistory, Link } from 'svelte-navigator'
-  import { onMount, onDestroy } from 'svelte'
-
-  let pathname:string
-  // https://github.com/mefechoel/svelte-navigator/issues/40
-  const historyStore = { subscribe: globalHistory.listen }
-
-  function subscribePathname({location, action}) {
-    pathname = location.pathname
-  }
-
-  /**
-   * Unsubscribe a listener function.
-   * It won't be called on any future updates
-   */
-  // type Unlisten = () => void;
-  const unlisten = historyStore.subscribe(subscribePathname)
-
-  onDestroy(unlisten)
-
 </script>
 
 <style lang="postcss">
@@ -61,7 +42,7 @@
   </nav>
 
   <div class="my-16 mr-2 md:mr-4 md:my-16 font-sans">
-    <Breadcrumbs {pathname} />
+    <Breadcrumbs />
   </div>
   {#if iOS()}
     <div class="alert my-16 mx-4 md:mr-8 md:my-8 flex-row">
