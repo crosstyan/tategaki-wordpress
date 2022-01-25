@@ -15,12 +15,12 @@
   }
 
   onMount(async () => {
-    document.body.addEventListener("wheel", (e) => wheelHandler(e), {
+    document.body.addEventListener("wheel", wheelHandler, {
       passive: false,
     })
   })
   onDestroy(() => {
-    document.body.removeEventListener("wheel", (e) => wheelHandler(e))
+    document.body.removeEventListener("wheel", wheelHandler)
   })
 </script>
 
@@ -48,7 +48,7 @@
   <div class="flex flex-col" id="container">
     <div
       id="article-frame"
-      class="font-serif flex flex-col divide-x-2 divide-x-reverse "
+      class="font-serif flex flex-col divide-x-2  divide-dashed"
     >
       <slot></slot>
     </div>

@@ -74,7 +74,7 @@
   })
 </script>
 
-<article lang="zh-Hant" class="font-serif pr-8 mr-8">
+<article lang="zh-Hant" class="font-serif pr-8 pl-8">
   <header class="ml-16 text-base-content">
     {#if !isSingle}
       <!-- use replace={false} when possible to prevent back button not going back to the previous page -->
