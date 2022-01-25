@@ -6,18 +6,21 @@
   import { onMount, onDestroy } from 'svelte'
 
   let pathname:string
+  // https://github.com/mefechoel/svelte-navigator/issues/40
   const historyStore = { subscribe: globalHistory.listen }
 
   function subscribePathname({location, action}) {
     pathname = location.pathname
   }
 
-  historyStore.subscribe(subscribePathname)
+  /**
+   * Unsubscribe a listener function.
+   * It won't be called on any future updates
+   */
+  // type Unlisten = () => void;
+  const unlisten = historyStore.subscribe(subscribePathname)
 
-  const unsubscribeStore = historyStore.subscribe(() => {
-    close();
-  })
-  onDestroy(unsubscribeStore)
+  onDestroy(unlisten)
 
 </script>
 
