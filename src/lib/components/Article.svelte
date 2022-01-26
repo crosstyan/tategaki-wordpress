@@ -2,6 +2,7 @@
   import { Tategaki } from "tategaki"
   import { onMount } from "svelte"
   import { Link } from "svelte-navigator"
+  import Toc from './Toc.svelte'
   import pangu from "pangu/src/browser/pangu"
   import Prism from "prismjs"
   import { addStyle } from "../utils/utils"
@@ -24,6 +25,7 @@
   export let date: Date = defaultDate
   export let isSingle = false
   let article: HTMLElement
+  let toc: HTMLElement
 
   const dataSelectorName = "data-github-gist"
 
@@ -54,7 +56,16 @@
   }
 
   onMount(async () => {
-    // TODO: table of content
+    // if (isSingle) {
+      const headingElements = Array.from(article.querySelectorAll("h2, h3"))
+      const tocComponent = new Toc({
+        target: toc,
+        props: {
+          // @ts-ignore
+          headingElements: headingElements
+        },
+      })
+    // }
     parsePuctuation(article)
     addStyles(article)
     addTargetBlank(article)
@@ -75,7 +86,7 @@
 </script>
 
 <article lang="zh-Hant" class="font-serif pr-8 pl-8">
-  <header class="ml-16 text-base-content">
+  <header class="ml-8 md:ml-4 text-base-content">
     {#if !isSingle}
       <!-- use replace={false} when possible to prevent back button not going back to the previous page -->
       <Link to="post/{id}" replace={false}>
@@ -98,6 +109,7 @@
         {date.toLocaleDateString("zh-CN")}
       </h2>
     {/if}
+    <header bind:this={toc} class="overflow-auto w-4/5 md:w-[33%] max-h-full md:max-h-[60%]"></header>
   </header>
   <content bind:this={article}>
     {@html content}

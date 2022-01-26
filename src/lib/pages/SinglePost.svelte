@@ -1,5 +1,6 @@
 <script lang="ts">
   import Article from "../components/Article.svelte"
+  import ErrorPrompt from "../components/ErrorPrompt.svelte"
   import { onMount } from "svelte"
   import { of, Observable } from "rxjs"
   import { switchMap, catchError } from "rxjs/operators"
@@ -9,7 +10,6 @@
   import { Jumper } from "svelte-loading-spinners"
   import { colors } from "../styles/sharedStyle"
   import { Link } from 'svelte-navigator'
-  import ErrorPrompt from "../components/ErrorPrompt.svelte"
 
   export let id: string
   let isLoading = true
