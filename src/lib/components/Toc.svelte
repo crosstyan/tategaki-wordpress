@@ -8,6 +8,7 @@
   import { generateRandomFixedLengthString } from "../utils/utils"
   import { onMount } from 'svelte'
   export let headingElements: HTMLElement[] = []
+  export let isForcedOpen = false
   let headings:Heading[] = []
 
   onMount(async () => {
@@ -86,13 +87,13 @@
 
 
 {#if headingElements.length > 0}
-<div class="collapse border rounded-box border-base-content collapse-plus">
+<div class="collapse border rounded-box border-base-content collapse-plus {isForcedOpen? " collapse-open" : ""}">
   <input type="checkbox"> 
   <div class="collapse-title font-bold text-xl">
     目录
   </div>
   <div class="collapse-content">
-    <ul class="font-bold">
+    <ul class="marker:text-accent marker:text-sm font-bold">
       {#each headings as heading}
         <li>
           <a class="hover:text-accent transition-colors" href="#{heading.id}" on:click={(e) => smoothScrollToPosition(e, heading.id)}>{heading.text}</a>

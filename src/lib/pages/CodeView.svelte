@@ -46,7 +46,7 @@
 <!-- button group -->
 <div class="btn-group mx-3 my-4">
   <button class="{styles.horizontalButton}">
-    <Link to={`post/${id}`}>Back to Post</Link>
+    <Link to={`/post/${id}`}>Back to Post</Link>
   </button>
 </div>
 
