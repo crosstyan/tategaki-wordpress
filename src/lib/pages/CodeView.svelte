@@ -10,7 +10,7 @@
   import { codeStore } from '../store/Code'
   import { Link } from 'svelte-navigator'
   import { styles } from '../styles/sharedStyle'
-  import { addStyle } from "../utils/utils";
+  import { addStyle } from "../utils/utils"
   // your script goes here
   let code: string
   let id: number

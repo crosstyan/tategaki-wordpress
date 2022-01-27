@@ -38,6 +38,7 @@
   }
 
   // TODO: recursive?
+  // Only support h2 and h3 for now
   function getHeadings(headingElements: HTMLElement[]) {
     const headings: Heading[] = []
     headingElements.forEach((headingElement) => {
@@ -59,26 +60,47 @@
     return headings
   }
 </script>
-
+<!-- svelte-ignore css-unused-selector -->
 <style lang="postcss">
+.collapse-content {
+  max-height: none;
+  padding: 0;
+  padding-top: 2rem;
+  padding-button: 2rem;
+  padding-left: 0;
+  max-width: 0;
+}
+.collapse-open .collapse-content,.collapse:focus:not(.collapse-close) .collapse-content,.collapse:not(.collapse-close) input[type=checkbox]:checked~.collapse-content {
+  max-width: 9000px;
+  padding-left: 1rem;
+}
+
+.collapse-title, .collapse>input[type=checkbox] {
+  padding: 3rem 1rem 1rem 1rem;
+}
+.collapse-plus .collapse-title:after {
+  top: 1.5rem;
+  right: 0.9rem;
+}
 </style>
 
 
 {#if headingElements.length > 0}
-<div class="card card-bordered mr-4">
-  <div class="card-body columns:3">
-    <!-- <div class="card-title font-bold text-2xl">
-      Table of Contents
-    </div> -->
+<div class="collapse border rounded-box border-base-content collapse-plus">
+  <input type="checkbox"> 
+  <div class="collapse-title font-bold text-xl">
+    目录
+  </div>
+  <div class="collapse-content">
     <ul class="font-bold">
       {#each headings as heading}
         <li>
-          <a href="#{heading.id}" on:click={(e) => smoothScrollToPosition(e, heading.id)}>{heading.text}</a>
+          <a class="hover:text-accent transition-colors" href="#{heading.id}" on:click={(e) => smoothScrollToPosition(e, heading.id)}>{heading.text}</a>
           {#if heading.childs.length > 0}
             <ul class="list-disc pt-6 font-normal">
               {#each heading.childs as child}
                 <li>
-                  <a href="#{child.id}" on:click={(e) => smoothScrollToPosition(e, child.id)}>{child.text}</a>
+                  <a class="hover:text-accent transition-colors" href="#{child.id}" on:click={(e) => smoothScrollToPosition(e, child.id)}>{child.text}</a>
                 </li>
               {/each}
             </ul>

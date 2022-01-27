@@ -109,7 +109,7 @@
         {date.toLocaleDateString("zh-CN")}
       </h2>
     {/if}
-    <header bind:this={toc} class="overflow-auto w-4/5 md:w-[33%] max-h-full md:max-h-[60%]"></header>
+    <header bind:this={toc} class="overflow-auto w-4/5 md:w-[33%] max-h-full md:max-h-[60%] mr-4"></header>
   </header>
   <content bind:this={article}>
     {@html content}

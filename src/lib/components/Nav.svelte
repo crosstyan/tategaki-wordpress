@@ -3,6 +3,7 @@
   import { iOS } from "../utils/utils"
   import Breadcrumbs from "./Breadcrumbs.svelte"
   import { globalHistory, Link } from 'svelte-navigator'
+  // TODO: switch to dark theme/light theme automatically
 </script>
 
 <style lang="postcss">
