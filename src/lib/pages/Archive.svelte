@@ -23,6 +23,7 @@
   interface DateTitle {
     id: number
     title: string
+    date: Date
     day: string
     month: string
     year: string
@@ -35,6 +36,7 @@
     const year = date.getFullYear()
     return {
       id: post.id,
+      date: date,
       title: post.title.rendered,
       day: day.toString(),
       month: month.toString(),
@@ -63,7 +65,9 @@
     return yearPosts
   }
 
+  // ATTENTION: This is not a pure function. origPosts and newPosts are mutated.
   function concatYearPosts(origPosts: YearPosts[], newPosts: YearPosts[]): YearPosts[] {
+    newPosts.reverse()
     while (newPosts.length > 0) {
       const tempYearPost = newPosts.pop()
       let isConcat = false
