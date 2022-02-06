@@ -67,7 +67,7 @@
   max-height: none;
   padding: 0;
   padding-top: 2rem;
-  padding-button: 2rem;
+  padding-bottom: 2rem;
   padding-left: 0;
   max-width: 0;
 }
