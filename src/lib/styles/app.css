@@ -61,12 +61,12 @@ strong {
   font-style: normal;
 }
 
-.latin strong {
+strong.latin  {
   -webkit-text-emphasis-style: none;
   text-emphasis-style: none;
 }
 
-.latin em {
+em.latin {
   font-style: italic;
   -webkit-text-emphasis-style: none;
   text-emphasis-style: none;
