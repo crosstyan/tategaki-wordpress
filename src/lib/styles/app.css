@@ -55,6 +55,17 @@ em {
   font-style: normal;
 }
 
+strong {
+  -webkit-text-emphasis-style: dot;
+  text-emphasis-style: dot;
+  font-style: normal;
+}
+
+.latin strong {
+  -webkit-text-emphasis-style: none;
+  text-emphasis-style: none;
+}
+
 .latin em {
   font-style: italic;
   -webkit-text-emphasis-style: none;

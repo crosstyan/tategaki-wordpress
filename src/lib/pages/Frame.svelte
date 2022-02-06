@@ -64,7 +64,6 @@
   main {
     padding: 4rem;
     height: 98vh;
-    vertical-align: middle;
   }
 
 
@@ -84,8 +83,10 @@
   }
 
   #container {
-    // writing-mode: vertical-rl;
+    writing-mode: vertical-rl;
     height: 95vh;
+    hanging-punctuation: allow-end last;
+    text-align: justify;
   }
 </style>
 
