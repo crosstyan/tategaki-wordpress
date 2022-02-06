@@ -41,3 +41,15 @@ which is Source Han Serif */
 .to-fullwidth {
   text-orientation: upright;
 }
+
+em {
+  -webkit-text-emphasis-style: circle;
+  text-emphasis-style: circle;
+  font-style: normal;
+}
+
+.latin em {
+  font-style: italic;
+  -webkit-text-emphasis-style: none;
+  text-emphasis-style: none;
+}
