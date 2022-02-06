@@ -1,5 +1,5 @@
 /* import from tategaki style */
-@import "../tategaki/assets/tategaki";
+@import "tategaki/assets/tategaki";
 
 /* tailwind */
 @tailwind base;
@@ -33,11 +33,18 @@ which is Source Han Serif */
 .latin {
   /* hyphens rendering incorrectly in Chrome if not set to sideways
   but Firefox will rendering incorrectly as well if set to sideways */
-  /* So I decide to disable hyphens */
-  text-orientation: mixed;
-  hyphens: none;
-  /* -moz-text-orientation: mixed; */
+  text-orientation: sideways;
 }
+
+/* https://stackoverflow.com/questions/32547370/is-there-a-way-to-set-any-style-for-a-specific-browser-in-css */
+/* A hack for firefox specific property */
+@-moz-document url-prefix(){
+  .latin {
+    text-orientation: mixed;
+  }
+}
+
+
 .to-fullwidth {
   text-orientation: upright;
 }

@@ -52,7 +52,7 @@
     // No prefix: mobile (under 640 px)
     // sm: small break point (640 px)
     // md ................
-    addStyle(element, "img", "max-h-[90%] md:max-h-[80%] mx-8 my-auto")
+    addStyle(element, "img", "max-h-[90%] sm:max-h-[80%] mx-8 my-auto")
   }
 
   onMount(async () => {
@@ -87,7 +87,7 @@
 </script>
 
 <article lang="zh-Hant" class="font-serif pr-8 pl-8">
-  <header class="ml-8 md:ml-4 text-base-content">
+  <header class="ml-8 sm:ml-4 text-base-content">
     {#if !isSingle}
       <!-- use replace={false} when possible to prevent back button not going back to the previous page -->
       <Link to="/post/{id}" replace={false}>
@@ -110,7 +110,7 @@
         {date.toLocaleDateString("zh-CN")}
       </h2>
     {/if}
-    <header bind:this={toc} class="overflow-auto w-4/5 md:w-[33%] max-h-full md:max-h-[60%] mr-4"></header>
+    <header bind:this={toc} class="overflow-auto w-4/5 sm:w-[33%] max-h-full sm:max-h-[60%] mr-4"></header>
   </header>
   <content bind:this={article}>
     {@html content}

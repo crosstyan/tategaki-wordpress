@@ -173,7 +173,7 @@
     <div class="flex flex-col ml-4">
       {#each yearPost.posts as post}
         <header class="inline-flex items-center mb-4">
-          <h2 class="text-sm font-light mb-1">
+          <h2 class="text-sm font-light mb-1 flex">
             <span class="tcy">{post.month}</span>
             <span>月</span>
             <span class="tcy">{post.day}</span>
