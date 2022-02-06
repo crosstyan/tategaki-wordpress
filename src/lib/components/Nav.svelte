@@ -3,6 +3,8 @@
   import { iOS } from "../utils/utils"
   import Breadcrumbs from "./Breadcrumbs.svelte"
   import { globalHistory, Link } from 'svelte-navigator'
+  import Archive from "svelte-material-icons/Archive.svelte"
+  import Brightness4 from "svelte-material-icons/Brightness4.svelte"
   // TODO: switch to dark theme/light theme automatically
 </script>
 
@@ -22,23 +24,22 @@
         >
       </div>
     </Link>
-    <div class="dropdown dropdown-top dropdown-end" style="writing-mode: horizontal-tb;">
-      <div tabindex="0" class="flex-none">
+    <div>
+      <div>
         <button class="btn btn-square btn-ghost">
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="inline-block w-6 h-6 stroke-current">      
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h.01M12 12h.01M19 12h.01M6 12a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0z"></path>                    
-          </svg>
+          <Link to="/archive">
+            <Archive size="1.5em"/>
+          </Link>
         </button>
       </div>
-      <ul tabindex="0" class="z-50 p-2 shadow menu dropdown-content bg-secondary text-secondary-content rounded-box w-52">
-        <li>
+      <div>
+        <button class="btn btn-square btn-ghost">
           <!-- svelte-ignore a11y-missing-attribute -->
-          <a class="active:bg-secondary-focus active:text-secondary" data-toggle-theme="dark,light">Toggle Dark mode</a>
-        </li> 
-        <!-- <li>
-          <a href="#" on:click|preventDefault={doNothing}>Do Nothing</a>
-        </li>  -->
-      </ul>
+          <a data-toggle-theme="dark,light">
+            <Brightness4 size="1.5em"/>
+          </a>
+        </button>
+      </div>
     </div>
   </nav>
 

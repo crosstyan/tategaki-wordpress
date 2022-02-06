@@ -87,7 +87,7 @@
 
 
 {#if headingElements.length > 0}
-<div class="collapse border rounded-box border-base-content collapse-plus {isForcedOpen? " collapse-open" : ""}">
+<div class="collapse border rounded-box border-base-content {isForcedOpen? " collapse-open" : " collapse-plus"}">
   <input type="checkbox"> 
   <div class="collapse-title font-bold text-xl">
     目录

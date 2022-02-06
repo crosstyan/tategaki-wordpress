@@ -1,6 +1,7 @@
 <script lang="ts">
   import MultiplePosts from "./lib/pages/MultiplePosts.svelte"
   import SinglePost from "./lib/pages/SinglePost.svelte"
+  import Archive from "./lib/pages/Archive.svelte"
   import ErrorPrompt from "./lib/components/ErrorPrompt.svelte"
   import CodeView from "./lib/pages/CodeView.svelte"
   import Frame from "./lib/pages/Frame.svelte"
@@ -41,6 +42,9 @@
         </Route>
         <Route path=":year/:month/:id" primary={false}  let:params>
           <SinglePost id={params.id} />
+        </Route>
+        <Route path="archive" primary={false}>
+          <Archive/>
         </Route>
         <Route primary={false} >
           <ErrorPrompt code={400} msg="无效路由" />

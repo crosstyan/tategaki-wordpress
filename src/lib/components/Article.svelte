@@ -98,7 +98,7 @@
         </h1>
       </Link>
     {:else}
-      <h1 class="text-4xl font-bold">
+      <h1 class="text-4xl font-bold" lang="jp">
         {@html title}
       </h1>
     {/if}
