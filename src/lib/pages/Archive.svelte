@@ -169,7 +169,6 @@
 
 <div class="divide-x-0">
   {#each yearPosts as yearPost}
-    <h1 class="text-2xl sm:text-4xl ml-2 font-sans">{yearPost.year}</h1>
     <div class="flex flex-col ml-4">
       {#each yearPost.posts as post}
         <header class="inline-flex items-center mb-4">
@@ -189,6 +188,7 @@
           </Link>
         </header>
       {/each}
+      <h1 class="text-2xl sm:text-4xl mr-2 font-sans">{yearPost.year}</h1>
     </div>
     <!-- <Link to={`/post/${post.id}`}>
       </Link> -->
