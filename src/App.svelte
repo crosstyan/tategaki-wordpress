@@ -1,15 +1,15 @@
 <script lang="ts">
-  import MultiplePosts from "../lib/pages/MultiplePosts.svelte"
-  import SinglePost from "../lib/pages/SinglePost.svelte"
-  import Archive from "../lib/pages/Archive.svelte"
-  import ErrorPrompt from "../lib/components/ErrorPrompt.svelte"
-  import CodeView from "../lib/pages/CodeView.svelte"
-  import Frame from "../lib/pages/Frame.svelte"
-  import Nav from "../lib/components/Nav.svelte"
+  import MultiplePosts from "./lib/pages/MultiplePosts.svelte"
+  import SinglePost from "./lib/pages/SinglePost.svelte"
+  import Archive from "./lib/pages/Archive.svelte"
+  import ErrorPrompt from "./lib/components/ErrorPrompt.svelte"
+  import CodeView from "./lib/pages/CodeView.svelte"
+  import Frame from "./lib/pages/Frame.svelte"
   import { onMount } from "svelte"
   import { Router, Route, navigate } from "svelte-navigator"
-  import { config } from "../config"
+  import { config } from "./config"
   import { themeChange } from "theme-change"
+  import Nav from "./lib/components/Nav.svelte"
   // NOTE: about theme color
   // https://github.com/saadeghi/daisyui/blob/master/src/colors/themes.js
   export let url = ""

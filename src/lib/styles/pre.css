@@ -1,0 +1,50 @@
+/* the styles for preformatted */
+pre.blockcode {
+  /* height: 95vh; */
+  height: 72vh;
+  width: 75vw;
+  max-width: 480px;
+  writing-mode: horizontal-tb;
+  overflow-x: auto;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  @apply mx-2;
+}
+
+.gist {
+  height: 72vh;
+  width: 75vw;
+  max-width: 480px;
+  writing-mode: horizontal-tb;
+  overflow-x: auto;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  @apply mx-2;
+}
+
+.gist .blob-wrapper{
+  overflow-y: auto !important;
+}
+
+/* sm */
+/* iPad mini 2021 (vertical) is 744px */
+@media screen and (min-width: 640px) {
+  pre.blockcode {
+    width: 40vw;
+    height: 80vh;
+  }
+  .gist {
+    width: 40vw;
+    height: 80vh;
+  }
+}
+
+/* md */
+@media screen and (min-width: 768px) {
+  pre.blockcode {
+    width: 33vw;
+  }
+  .gist {
+    width: 33vw;
+  }
+}
