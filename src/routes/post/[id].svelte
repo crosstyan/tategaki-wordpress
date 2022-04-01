@@ -45,7 +45,7 @@
 </script>
 
 <svelte:head>
-  <title>{`${config.blogName} - ${post.title}`}</title>
+  <title>{`${config.blogName} - ${post.title.rendered}`}</title>
 </svelte:head>
   <Article
     id={post.id}
