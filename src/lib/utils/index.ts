@@ -1,16 +1,21 @@
+import { browser } from '$app/env'
 // https://stackoverflow.com/questions/9038625/detect-if-device-is-ios
-// export function iOS():boolean {
-//   return [
-//     'iPad Simulator',
-//     'iPhone Simulator',
-//     'iPod Simulator',
-//     'iPad',
-//     'iPhone',
-//     'iPod'
-//   ].includes(navigator.platform)
-//   // iPad on iOS 13 detection
-//   || (navigator.userAgent.includes("Mac") && "ontouchend" in document)
-// }
+export function iOS():boolean {
+  if(browser){
+    return [
+      'iPad Simulator',
+      'iPhone Simulator',
+      'iPod Simulator',
+      'iPad',
+      'iPhone',
+      'iPod'
+    ].includes(navigator.platform)
+    // iPad on iOS 13 detection
+    || (navigator.userAgent.includes("Mac") && "ontouchend" in document)
+  } else {
+    return false
+  }
+}
 
 /// tailwind css
 export function addStyle(elem: HTMLElement, tagName: string, style: string) {
@@ -37,7 +42,7 @@ export function generateHex (len:number):string {
 
 // Fixed length of 5
 export function generateRandomFixedLengthString():string {
-  return Math.random().toString(36).substr(2, 5);
+  return Math.random().toString(36).substr(2, 5)
 }
 
 export const doNothing = () => {

@@ -1,6 +1,7 @@
 <script lang="ts">
   import { onDestroy, onMount } from "svelte"
-  import { browser } from '$app/env';
+  import { browser } from '$app/env'
+  import { themeChange } from "theme-change"
 
   const wheelHandler = (e: WheelEvent) => {
     if (e.deltaX == 0) {
@@ -19,10 +20,12 @@
     document.body.addEventListener("wheel", wheelHandler, {
       passive: false,
     })
+    themeChange(false)
   })
   onDestroy(() => {
     if (browser) {
       document.body.removeEventListener("wheel", wheelHandler)
+      themeChange(true)
     }
   })
 </script>

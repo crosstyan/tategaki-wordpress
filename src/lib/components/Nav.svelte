@@ -1,7 +1,6 @@
 <script lang="ts">
   import {config} from "../../config"
-  // import { iOS } from "../utils"
-  import Breadcrumbs from "./Breadcrumbs.svelte"
+  import { iOS } from "../utils"
   import Archive from "svelte-material-icons/Archive.svelte"
   import Brightness4 from "svelte-material-icons/Brightness4.svelte"
   // TODO: switch to dark theme/light theme automatically
@@ -42,10 +41,7 @@
     </div>
   </nav>
 
-  <div class="my-16 mr-2 md:mr-4 md:my-16 font-sans">
-    <Breadcrumbs />
-  </div>
-  <!-- {#if iOS()}
+  {#if iOS()}
     <div class="alert my-16 mx-4 md:mr-8 md:my-8 flex-row">
       <div class="flex-1">
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="#2196f3" class="w-6 h-6 mx-2">
@@ -57,5 +53,5 @@
         <span class="font-serif text-sm">若欲查看源代码请点击 View Source 按钮。</span>
       </div>
     </div>
-  {/if} -->
+  {/if}
 </header>

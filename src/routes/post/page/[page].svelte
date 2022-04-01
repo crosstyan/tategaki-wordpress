@@ -21,11 +21,19 @@
       _embed: "1",
     }).toString()
     const resp = await fetch(api.toString())
-    const postList: Post[] = await resp.json()
-    return {
-      props:{
-        postList: postList
+    if (resp.ok){
+      const postList: Post[] = await resp.json()
+      return {
+        props:{
+          postList: postList
+        }
       }
+    }
+    // https://kit.svelte.dev/docs/loading#output-status
+    const errorMsg = (await resp.json()).message
+    return {
+      error: errorMsg,
+      status: resp.status
     }
   }
 </script>

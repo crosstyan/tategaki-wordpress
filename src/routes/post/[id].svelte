@@ -1,19 +1,11 @@
 <script lang="ts">
   // https://svelte.dev/tutorial/module-exports
   // https://stackoverflow.com/questions/65930303/sveltekit-how-do-i-do-slug-based-dynamic-routing
-  import { page } from '$app/stores';
   import Article from "@/lib/components/Article.svelte"
-  import ErrorPrompt from "@/lib/components/ErrorPrompt.svelte"
   import type { Post } from "@/lib/utils/post"
-  import { of, Observable } from "rxjs"
-  import { fromFetch } from "rxjs/fetch"
-  import { switchMap, catchError } from "rxjs/operators"
   import { onMount } from "svelte"
   import { config, getPostApiUrl } from "@/config"
   import type { FetchFunction } from "@/lib/utils"
-  // import { themeChange } from "theme-change"
-  import { Jumper } from "svelte-loading-spinners"
-  import { colors } from "@/lib/styles/sharedStyle"
   // NOTE: about theme color
   // https://kit.svelte.dev/docs/loading
   // https://github.com/saadeghi/daisyui/blob/master/src/colors/themes.js
@@ -21,6 +13,7 @@
   export let post: Post
 
   onMount(async () => {
+    // nothing
   })
 </script>
 
@@ -35,11 +28,18 @@
       _embed: "1",
     }).toString()
     const resp = await fetch(api.toString())
-    const post: Post = await resp.json()
-    return {
-      props:{
-        post: post
+    if (resp.ok){
+      const post: Post = await resp.json()
+      return {
+        props:{
+          post: post
+        }
       }
+    }
+    const errorMsg = (await resp.json()).message
+    return {
+      error: errorMsg,
+      status: resp.status
     }
   }
 </script>

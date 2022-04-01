@@ -1,9 +1,5 @@
 <script lang="ts">
-  import { config, getPostApiUrl } from "@/config"
   import type { FetchFunction } from "@/lib/utils"
-
-  // NOTE: about theme color
-  // https://github.com/saadeghi/daisyui/blob/master/src/colors/themes.js
 
 </script>
 <script context="module" lang="ts">
@@ -15,7 +11,3 @@
     }
   }
 </script>
-
-<svelte:head>
-	<title>{config.blogName}</title>
-</svelte:head>
