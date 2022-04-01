@@ -1,6 +1,8 @@
-import adapter from '@sveltejs/adapter-auto';
-import preprocess from 'svelte-preprocess';
-import path from 'path';
+// https://kit.svelte.dev/docs/adapters
+// import adapter from '@sveltejs/adapter-static'
+import adapter from '@sveltejs/adapter-node'
+import preprocess from 'svelte-preprocess'
+import path from 'path'
 
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
@@ -23,6 +25,6 @@ const config = {
 			allowed: ['PATCH', 'DELETE']
 		}
 	}
-};
+}
 
-export default config;
+export default config

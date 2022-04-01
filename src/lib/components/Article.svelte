@@ -2,7 +2,7 @@
   import { Tategaki } from "tategaki"
   import { onMount } from "svelte"
   import Toc from './Toc.svelte'
-  import pangu from "pangu/src/browser/pangu"
+  import pangu from "pangu/src/browser/pangu.js"
   import Prism from "prismjs"
   import { addStyle } from "../utils"
   import {
@@ -12,8 +12,8 @@
     addGistComponent,
     addTargetBlank,
   } from "./ParseArticle"
-  import "prismjs/plugins/line-numbers/prism-line-numbers"
-  import "prismjs/plugins/autolinker/prism-autolinker"
+  import "prismjs/plugins/line-numbers/prism-line-numbers.js"
+  import "prismjs/plugins/autolinker/prism-autolinker.js"
   import "prismjs/plugins/autolinker/prism-autolinker.css"
   import "prismjs/plugins/line-numbers/prism-line-numbers.css"
   export let id: number
