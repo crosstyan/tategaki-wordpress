@@ -1,7 +1,7 @@
 <script lang="ts">
   import Prism from "prismjs"
-  import "prismjs/plugins/line-numbers/prism-line-numbers"
-  import "prismjs/plugins/autolinker/prism-autolinker"
+  import "prismjs/plugins/line-numbers/prism-line-numbers.js"
+  import "prismjs/plugins/autolinker/prism-autolinker.js"
   import "prismjs/plugins/autolinker/prism-autolinker.css"
   import "prismjs/plugins/line-numbers/prism-line-numbers.css"
   import "@/lib/utils/prism-autoloader"
