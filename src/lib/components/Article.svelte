@@ -1,7 +1,6 @@
 <script lang="ts">
   import { Tategaki } from "tategaki"
   import { onMount } from "svelte"
-  import { Link } from "svelte-navigator"
   import Toc from './Toc.svelte'
   import pangu from "pangu/src/browser/pangu"
   import Prism from "prismjs"
@@ -90,13 +89,13 @@
   <header class="ml-8 sm:ml-4 text-base-content">
     {#if !isSingle}
       <!-- use replace={false} when possible to prevent back button not going back to the previous page -->
-      <Link to="/post/{id}" replace={false}>
-        <h1
-          class="text-4xl ml-2 font-bold inline-block hover:text-primary transition-colors duration-300 decoration-primary underline decoration-4"
-        >
-          {@html title}
-        </h1>
-      </Link>
+    <a href="/post/{id}">
+      <h1
+        class="text-4xl ml-2 font-bold inline-block hover:text-primary transition-colors duration-300 decoration-primary underline decoration-4"
+      >
+        {@html title}
+      </h1>
+    </a>
     {:else}
       <h1 class="text-4xl font-bold" lang="jp">
         {@html title}

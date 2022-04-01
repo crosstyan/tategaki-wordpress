@@ -8,7 +8,6 @@
   import { onMount } from "svelte"
   import { get } from 'svelte/store'
   import { codeStore } from '../store/Code'
-  import { Link } from 'svelte-navigator'
   import { styles } from '../styles/sharedStyle'
   import { addStyle } from "../utils/utils"
   // your script goes here
@@ -46,7 +45,7 @@
 <!-- button group -->
 <div class="btn-group mx-3 my-4">
   <button class="{styles.horizontalButton}">
-    <Link to={`/post/${id}`}>Back to Post</Link>
+    <a href={`/post/${id}`}>Back to Post</a>
   </button>
 </div>
 

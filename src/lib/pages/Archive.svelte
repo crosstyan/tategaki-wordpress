@@ -9,7 +9,6 @@
   import type { Post } from "../utils/post"
   import { Jumper } from "svelte-loading-spinners"
   import { colors } from "../styles/sharedStyle"
-  import { Link } from "svelte-navigator"
 
   let errorMsg = ""
   let page = 1
@@ -178,14 +177,14 @@
             <span class="tcy">{post.day}</span>
             <span>日</span>
           </h2>
-          <Link to={`/post/${post.id}`}>
+          <a href={`/post/${post.id}`}>
             <h1
               lang="jp"
               class="text-base font-bold hover:text-accent transition-colors duration-200"
             >
               {@html post.title}
             </h1>
-          </Link>
+          </a>
         </header>
       {/each}
       <h1 class="text-2xl sm:text-4xl mr-2 font-sans">{yearPost.year}</h1>

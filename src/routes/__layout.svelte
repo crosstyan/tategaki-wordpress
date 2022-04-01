@@ -1,10 +1,16 @@
 <script lang="ts">
+  import Nav from "../lib/components/Nav.svelte"
+  import Frame from "../lib/pages/Frame.svelte"
 	import '../app.css';
 </script>
 
-<main>
-	<slot />
-</main>
+<Nav />
+
+<Frame>
+	<main>
+		<slot />
+	</main>
+</Frame>
 
 <style>
 </style>

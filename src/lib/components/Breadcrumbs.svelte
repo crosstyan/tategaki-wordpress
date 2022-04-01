@@ -1,13 +1,9 @@
 <script lang="ts">
-  import { globalHistory, Link } from 'svelte-navigator'
   import { onMount, onDestroy } from 'svelte'
 
   let pathname:string
   let paths: string[]
-  $: paths = pathname.split('/')
-
-  // https://github.com/mefechoel/svelte-navigator/issues/40
-  const historyStore = { subscribe: globalHistory.listen }
+  // $: paths = pathname.split('/')
 
   function subscribePathname({location, action}) {
     pathname = location.pathname
@@ -18,14 +14,14 @@
    * It won't be called on any future updates
    */
   // type Unlisten = () => void;
-  const unlisten = historyStore.subscribe(subscribePathname)
+  // const unlisten = historyStore.subscribe(subscribePathname)
 
-  onDestroy(unlisten)
+  // onDestroy(unlisten)
 
 </script>
 
 <div class='breadcrumbs'>
-  {#if paths.length > 2}
+  <!-- {#if paths.length > 2}
     <ul>
       <li>
         <Link to="/"><span class="text-accent hover:text-accent-focus transition-all underline decoration-transparent hover:decoration-accent-focus duration-300">Home</span></Link>
@@ -36,7 +32,7 @@
         {/if}
       {/each}
     </ul>
-  {/if}
+  {/if} -->
 </div>
 
 <style lang="postcss">

@@ -6,7 +6,6 @@
   import { fromFetch } from "rxjs/fetch"
   import { Jumper } from "svelte-loading-spinners"
   import { switchMap, catchError } from "rxjs/operators"
-  import { Router, Link, Route } from "svelte-navigator"
   import { config, getPostApiUrl } from "../../config"
   import { colors } from "../styles/sharedStyle"
 

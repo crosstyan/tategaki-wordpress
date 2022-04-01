@@ -2,7 +2,6 @@
   import {config} from "../../config"
   // import { iOS } from "../utils/utils"
   import Breadcrumbs from "./Breadcrumbs.svelte"
-  import { globalHistory, Link } from 'svelte-navigator'
   import Archive from "svelte-material-icons/Archive.svelte"
   import Brightness4 from "svelte-material-icons/Brightness4.svelte"
   // TODO: switch to dark theme/light theme automatically
@@ -17,19 +16,19 @@
   <nav
     class="navbar my-12 md:my-8 md:px-8 shadow-lg bg-primary text-primary-content rounded-box font-sans justify-between"
   >
-    <Link to="/">
+    <a href="/">
       <div class="flex-1 py-2 my-2 ">
         <span class="text-lg md:text-4xl font-bold font-serif hover:text-primary-focus opacity-90 transition-all duration-500">
           {config.blogName}</span
         >
       </div>
-    </Link>
+    </a>
     <div>
       <div>
         <button class="btn btn-square btn-ghost">
-          <Link to="/archive">
+          <a href="/archive">
             <Archive size="1.5em"/>
-          </Link>
+          </a>
         </button>
       </div>
       <div>

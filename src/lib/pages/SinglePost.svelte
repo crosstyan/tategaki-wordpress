@@ -9,7 +9,6 @@
   import type { Post } from "../utils/post"
   import { Jumper } from "svelte-loading-spinners"
   import { colors } from "../styles/sharedStyle"
-  import { Link } from 'svelte-navigator'
 
   export let id: string
   let isLoading = true
@@ -93,7 +92,7 @@
   />
 
   <!-- svelte-ignore a11y-invalid-attribute -->
-  <Link to="/">
+  <a href="/">
     <div
       class="flex bg-transparent text-base-content px-4 mr-2 py-3 h-auto w-auto hover:text-accent font-sans transition-colors"
       role="button"
@@ -101,7 +100,7 @@
     >
       Back to Home
     </div>
-  </Link>
+  </a>
 {/if}
 
 <!-- markup (zero or more items) goes here -->
