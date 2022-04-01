@@ -4,12 +4,12 @@
   import "prismjs/plugins/autolinker/prism-autolinker"
   import "prismjs/plugins/autolinker/prism-autolinker.css"
   import "prismjs/plugins/line-numbers/prism-line-numbers.css"
-  import "../utils/prism-autoloader"
+  import "@/lib/utils/prism-autoloader"
   import { onMount } from "svelte"
   import { get } from 'svelte/store'
-  import { codeStore } from '../store/Code'
-  import { styles } from '../styles/sharedStyle'
-  import { addStyle } from "../utils/utils"
+  import { codeStore } from '@/lib/store/Code'
+  import { styles } from '@/lib/styles/sharedStyle'
+  import { addStyle } from "@/lib/utils"
   // your script goes here
   let code: string
   let id: number
@@ -52,5 +52,5 @@
 <!-- markup (zero or more items) goes here -->
 
 <style lang="postcss">
-  @import "../styles/prism-github";
+  @import "@/lib/styles/prism-github";
 </style>

@@ -5,7 +5,7 @@
   // the o../utils/prism-autoloader
   // https://github.com/PrismJS/prism/blob/master/plugins/autoloader/prism-autoloader.js
   import "../utils/prism-autoloader"
-  import { addStyle, doNothing } from "../utils/utils"
+  import { addStyle, doNothing } from "../utils"
   import { styles } from '../styles/sharedStyle'
   import { codeStore } from '../store/Code'
 

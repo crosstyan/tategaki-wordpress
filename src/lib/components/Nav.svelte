@@ -1,6 +1,6 @@
 <script lang="ts">
   import {config} from "../../config"
-  // import { iOS } from "../utils/utils"
+  // import { iOS } from "../utils"
   import Breadcrumbs from "./Breadcrumbs.svelte"
   import Archive from "svelte-material-icons/Archive.svelte"
   import Brightness4 from "svelte-material-icons/Brightness4.svelte"

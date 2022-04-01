@@ -2,6 +2,9 @@
   import { config, getPostApiUrl } from "@/config"
   import type { FetchFunction } from "@/lib/utils"
 
+  // NOTE: about theme color
+  // https://github.com/saadeghi/daisyui/blob/master/src/colors/themes.js
+
 </script>
 <script context="module" lang="ts">
   export async function load( { fetch }: 

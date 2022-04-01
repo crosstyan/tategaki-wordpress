@@ -4,7 +4,7 @@
     scriptElementType = "text/javascript"
   // https://gist.github.com/crosstyan/14ada68b4cea063d40198df7af5152b7
   import { onMount } from "svelte"
-  import { doNothing } from "../utils/utils"
+  import { doNothing } from "../utils"
   import { styles } from "../styles/sharedStyle"
 
   export let gistId

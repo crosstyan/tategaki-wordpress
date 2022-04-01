@@ -4,7 +4,7 @@
   import Toc from './Toc.svelte'
   import pangu from "pangu/src/browser/pangu"
   import Prism from "prismjs"
-  import { addStyle } from "../utils/utils"
+  import { addStyle } from "../utils"
   import {
     parsePuctuation,
     addTooltipInline,

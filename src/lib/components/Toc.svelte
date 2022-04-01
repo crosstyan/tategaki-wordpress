@@ -5,7 +5,7 @@
   // No floating TOC, just a fixed one
   // No IntersectionObserver
   // https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API
-  import { generateRandomFixedLengthString } from "../utils/utils"
+  import { generateRandomFixedLengthString } from "../utils"
   import { onMount } from 'svelte'
   export let headingElements: HTMLElement[] = []
   export let isForcedOpen = false
