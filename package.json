@@ -15,8 +15,8 @@
   },
   "devDependencies": {
     "@playwright/test": "^1.20.0",
-    "@sveltejs/adapter-auto": "next",
-    "@sveltejs/kit": "next",
+    "@sveltejs/adapter-auto": "^1.0.0-next.34",
+    "@sveltejs/kit": "^1.0.0-next.316",
     "@tsconfig/svelte": "^2.0.1",
     "@types/cookie": "^0.4.1",
     "@types/prismjs": "^1.16.6",

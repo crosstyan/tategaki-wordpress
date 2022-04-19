@@ -16,6 +16,7 @@
   let codeSection: HTMLElement
   code = get(codeStore).content
   id = get(codeStore).fromId
+  // https://kit.svelte.dev/docs/layouts#named-layouts
   // TODO: assign a ID to block code
 
   onMount(async () => {
