@@ -2,8 +2,28 @@
   import {config} from "../../config"
   import { iOS } from "../utils"
   import Archive from "svelte-material-icons/Archive.svelte"
-  import Brightness4 from "svelte-material-icons/Brightness4.svelte"
-  // TODO: switch to dark theme/light theme automatically
+  import { themeStore, type ThemeName, themeList } from "$lib/store/Theme"
+  import { get } from 'svelte/store'
+  import Brightness4 from "svelte-material-icons/Brightness4.svelte" // Auto
+  import Brightness3 from "svelte-material-icons/Brightness3.svelte" // Dark
+  import Brightness7 from "svelte-material-icons/Brightness7.svelte" // Bright
+
+  let themeName: ThemeName
+  let unsubscribe = themeStore.subscribe(({theme}) => {
+    themeName = theme
+  })
+  // theme = get(themeStore).theme
+  const getCurrentTheme = () => {
+    return get(themeStore).theme
+  }
+  const next = (list, current) => {
+    const index = list.indexOf(current)
+    return list[(index + 1) % list.length]
+  }
+  const setNextTheme = (currentTheme: ThemeName) => {
+    const nextTheme = next(themeList, currentTheme)
+    themeStore.set({theme: nextTheme})
+  }
 </script>
 
 <style lang="postcss">
@@ -31,11 +51,15 @@
         </button>
       </div>
       <div>
-        <button class="btn btn-square btn-ghost">
+        <button class="btn btn-square btn-ghost" on:click={()=> setNextTheme(getCurrentTheme())}>
           <!-- svelte-ignore a11y-missing-attribute -->
-          <a data-toggle-theme="dark,light">
+          {#if themeName == "dark"}
+            <Brightness3 size="1.5em"/>
+          {:else if themeName == "light"}
+            <Brightness7 size="1.5em"/>
+          {:else}
             <Brightness4 size="1.5em"/>
-          </a>
+          {/if}
         </button>
       </div>
     </div>

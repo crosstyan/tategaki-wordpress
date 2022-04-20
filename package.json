@@ -52,7 +52,6 @@
     "prismjs": "^1.26.0",
     "rxjs": "^7.5.2",
     "svelte-material-icons": "^1.0.3",
-    "tategaki": "^1.0.3",
-    "theme-change": "^2.0.2"
+    "tategaki": "^1.0.3"
   }
 }

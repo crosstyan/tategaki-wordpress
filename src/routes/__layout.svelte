@@ -5,6 +5,27 @@
 	import { navigating } from "$app/stores"
   import { Jumper } from "svelte-loading-spinners"
   import { colors } from "@/lib/styles/sharedStyle"
+	import { onDestroy, onMount } from "svelte"
+  import { browser } from '$app/env'
+	import { themeStore, type ThemeName } from "$lib/store/Theme"
+
+	const setTheme = (themeName: ThemeName) => {
+		if (browser){
+			const isDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+			let theme : ThemeName = (themeName == "auto") ? ((isDark) ? 'dark' : 'light') : themeName
+			document.documentElement.setAttribute("data-theme", theme)
+		}}
+
+	let unsubscribe = themeStore.subscribe(({theme}) => {
+		setTheme(theme)
+	})
+
+	onDestroy(() => {
+		if(browser) {
+			unsubscribe()
+		}
+	})
+
 </script>
 
 <Nav />
