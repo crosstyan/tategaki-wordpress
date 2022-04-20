@@ -1,5 +1,14 @@
 import { browser } from '$app/env'
 // https://stackoverflow.com/questions/9038625/detect-if-device-is-ios
+
+
+export const setTheme = (themeName: ThemeName) => {
+  if (browser){
+    // https://stackoverflow.com/questions/56393880/how-do-i-detect-dark-mode-using-javascript
+    const isDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+    const theme = (themeName == "auto") ? ((isDark) ? 'dark' : 'light') : themeName
+    document.documentElement.setAttribute("data-theme", theme)
+  }}
 export function iOS():boolean {
   if(browser){
     return [

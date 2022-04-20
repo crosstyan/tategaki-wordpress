@@ -4,6 +4,8 @@
   import Archive from "svelte-material-icons/Archive.svelte"
   import { themeStore, type ThemeName, themeList } from "$lib/store/Theme"
   import { get } from 'svelte/store'
+	import { onDestroy, onMount } from "svelte"
+  import { browser } from '$app/env'
   import Brightness4 from "svelte-material-icons/Brightness4.svelte" // Auto
   import Brightness3 from "svelte-material-icons/Brightness3.svelte" // Dark
   import Brightness7 from "svelte-material-icons/Brightness7.svelte" // Bright
@@ -24,6 +26,11 @@
     const nextTheme = next(themeList, currentTheme)
     themeStore.set({theme: nextTheme})
   }
+  onDestroy(() => {
+    if(browser) {
+      unsubscribe()
+    }
+  })
 </script>
 
 <style lang="postcss">
